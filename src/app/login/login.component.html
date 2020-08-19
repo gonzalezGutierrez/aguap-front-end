@@ -1,0 +1,57 @@
+
+<app-toolbar></app-toolbar>
+  
+  <mat-card class="login">
+
+      <form [formGroup]="profileForm" (ngSubmit)="submitForm()">      
+          
+        <div>
+            <mat-form-field appearance="fill">
+              <mat-label>número o dirección electronica</mat-label>
+              <input matInput type="text" formControlName="email_o_phoneNumber" >
+            </mat-form-field>
+          </div>
+          
+          <div>
+            <mat-form-field appearance="fill">
+              <mat-label>contraseña</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">      
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div class="links">
+            <p><a  [routerLink]="['/forgotPassword']" >olvido su contraseña ?</a></p>
+            <p ><a  [routerLink]="['/registerUser']" >crear una cuenta</a></p>
+          </div>
+
+          <div>
+            <button class="button_login" type="submit" mat-raised-button color="primary">Ingresar</button>
+          </div>
+       
+      </form>
+      
+  </mat-card>
+    
+  <div class="social_medias">  
+    <div class=google>
+      <button (click)="login_with_Google()"class="social_medias_buttons" mat-raised-button><i class="fab fa-google" id="Google"></i> Iniciar sesion con google</button>
+    </div>
+
+    <div class="facebok">
+      <button (click)="login_with_Facebook()" class="social_medias_buttons" mat-raised-button><i class="fab fa-facebook" id="Facebook"></i> Iniciar sesion con Facebook</button>
+    </div>
+    
+    <div class="instagram">
+      <button (click)="login_with_instagram()" class="social_medias_buttons"  mat-raised-button ><i class="fa fa-instagram" id="Instagram" aria-hidden="true"></i> Iniciar sesion con Instagram</button>
+    </div>
+    
+    <div class="twitter">
+      <button class="social_medias_Twitter"  class="social_medias_buttons" mat-raised-button><i class="fab fa-twitter-square" id="Twitter" ></i> Iniciar sesion con Twitter </button>
+    </div>
+    
+  
+  </div>
+  

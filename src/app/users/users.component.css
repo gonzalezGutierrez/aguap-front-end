@@ -1,0 +1,97 @@
+/*PHONE*/
+@media only screen and (max-width:812px){
+    .card_main{
+        margin: auto;
+        display:block;
+    }
+    .icon_profile{
+        font-size:30px;
+        text-align:center;   
+    }
+    .card_profile{
+        display: block;
+        margin-top:auto;
+        margin-top:0.5rem;
+    }
+    .button_profile{ 
+        width:100%;
+    }
+    .icon_deliveries{
+        font-size: 30px;
+        text-align:center;
+    }
+    .card_deliveries{
+        margin-top:auto;
+        margin-top:1rem;
+        display:block;
+        
+    }
+    .button_deliveries{
+        width:100%;
+    }
+    .icon_coupon_discount{
+        font-size:30px;
+        text-align:center;
+    }
+    .card_coupon{
+        margin-top:auto;
+        margin-top:1rem;
+        display:block;
+    }
+    .button_coupon{
+        width:100%;
+    }
+
+  
+}
+
+
+/*WEB*/
+@media only screen and (min-width:812px) {
+    .card_main{
+        margin-top:auto;
+        margin-top:1rem;
+        display:block;
+        margin-left:30%;
+    }
+    .card_profile{
+        width:50%;
+    }
+    .icon_profile{
+        font-size:40px;
+        text-align:center;
+    }
+    .button_profile{
+        display:block;
+        width:100%;
+        margin-top:0.5rem;
+    }
+    .card_deliveries{
+        margin-top:1rem;
+        width:50%;
+    }
+    .icon_deliveries{
+        font-size:40px;
+        text-align:center;
+    }
+    .button_deliveries{
+        width:100%;
+        display:block;
+        margin-top:0.5rem;
+    }
+    .card_coupon{
+        margin-top:1rem;
+        width:50%;
+    }
+    .icon_coupon_discount{
+        font-size:40px;
+        text-align:center;
+    }
+    .button_coupon{
+        display:block;
+        margin-top:0.5rem;
+        width:100%;
+    }
+
+    
+}

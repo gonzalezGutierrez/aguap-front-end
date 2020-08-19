@@ -1,0 +1,118 @@
+
+@media only screen and (max-width:812px) {
+    .login{
+        margin-top:auto;
+        display: block;
+        margin-top:1rem; /* 5 × 16px = 80px */
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+    
+    .button_login{
+        display:block;
+        width:100%;
+        margin-top:0.5rem;
+    }
+    
+    .social_medias{
+        margin-top:auto;
+        margin-top:3%;
+    }
+    
+    #Google{
+        background:white;
+        color: #dd4b39;
+        font-size:15px;
+    }
+    
+    #Facebook{
+        background:white;
+        color: #3B5998;
+        font-size: 15px;
+    }
+    #Instagram{
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        -webkit-background-clip: text;
+        /* Also define standard property for compatibility */
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size:15px; /* change this to change the size*/  
+    }
+    
+    #Twitter{
+        background:white ;
+        color: #55ACEE;
+        font-size:15px;
+        
+    }   
+    .social_medias_buttons{
+        margin: auto;
+        width:100%;
+        display: block;
+    } 
+ 
+}
+
+@media only screen and (min-width:812px){
+    .login{
+        margin-left:35%;
+        margin-top:auto;
+        width: 35%;
+        display: block;
+        margin-top: 2rem; /* 5 × 16px = 80px */ 
+    }
+
+    button{
+        display:block;
+        width:100%;
+        margin-top:0.5rem;
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    .social_medias{
+        margin-top:auto;
+        margin-top:1%;
+        margin-left:35%;
+        width:37%;
+        height:20%;
+    }
+
+    #Google{
+        background:white;
+        color: #dd4b39;
+        font-size:25px;
+    }
+
+    #Facebook{
+        background:white;
+        color: #3B5998;
+        font-size: 25px;
+    }
+
+    #Instagram{
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        -webkit-background-clip: text;
+        /* Also define standard property for compatibility */
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 25px; /* change this to change the size*/  
+    }
+
+    #Twitter{
+        background:white ;
+        color: #55ACEE;
+        font-size:25px;
+    
+    }
+
+    .social_medias_buttons{
+        width:100%;
+        display: block;
+    }
+
+}
