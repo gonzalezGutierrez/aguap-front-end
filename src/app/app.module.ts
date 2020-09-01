@@ -29,7 +29,7 @@ import { HttpReqInterceptor } from './http-req-interceptor';*/
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("579711312957-6sihn9vuqg3j37bbbnfknr080crfsevs.apps.googleusercontent.com")
+    provider: new GoogleLoginProvider("415824151320-qnoh0dmlq9vqmlojdd3054hijcilhqg5.apps.googleusercontent.com")
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,

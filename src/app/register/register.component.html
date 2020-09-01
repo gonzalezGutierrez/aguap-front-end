@@ -3,12 +3,13 @@
 <div class="card">
     <mat-card >
         <div>
-            <form [formGroup]="(user)" (ngSubmit)="sending_data()" class="example-form">
+            <form [formGroup]="(user)" class="example-form">
                 
                 <div >
                     <mat-form-field appearance="fill">
                         <mat-label>nombre</mat-label>
                         <input matInput formControlName="name">
+                        <mat-icon matSuffix>account_circle</mat-icon>
                     </mat-form-field>
                     <br>
                 </div>
@@ -17,6 +18,7 @@
                     <mat-form-field appearance="fill">
                         <mat-label>apellidos</mat-label>
                         <input matInput formControlName="last_name" >
+                        <mat-icon matSuffix>account_circle</mat-icon>
                     </mat-form-field>
                     <br>
                 </div>
@@ -24,7 +26,9 @@
                 <div >
                     <mat-form-field appearance="fill">
                         <mat-label>número de teléfono</mat-label>
-                        <input matInput type="phone" formControlName="cellphone">
+                        <input matInput  #input maxlength="10"  type="phone" formControlName="cellphone">
+                        <mat-icon matSuffix>phone_enabled</mat-icon>
+                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
                     </mat-form-field>
                 </div>
     
@@ -32,6 +36,7 @@
                     <mat-form-field appearance="fill">
                        <mat-label>dirección electrónica</mat-label>
                       <input matInput placeholder="pat@example.com" [formControl]="email" [value]="email_Value">
+                       <mat-icon matSuffix>mail_outline</mat-icon>
                       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                 </div>
@@ -57,7 +62,7 @@
                 </div>
                 
                 <div>
-                    <button class="button_register_login" type="submit" mat-raised-button color="primary">Registrarse</button>
+                    <button class="button_register_login" (click)="sending_data()"  mat-raised-button color="primary">Registrarse</button>
                 </div>
                 
             </form>

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormControl ,FormGroup,Validators} from '@angular/forms';
 import { AuthService,SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider,GoogleLoginProvider } from "angularx-social-login";
-import { UsuariosService} from 'src/app/usuarios.service';
+
 
 
 @Component({
@@ -13,7 +13,7 @@ import { UsuariosService} from 'src/app/usuarios.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router,private authService:AuthService,private usuarioService:UsuariosService) {}
+  constructor(private router:Router,private authService:AuthService) {}
   user: SocialUser;
   loggedIn: boolean;
   ngOnInit(){
@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit {
     this.loggedIn = (user != null);
     console.log("el usuario es ",this.user);
     });
-    //this.usuarioService.provando="hola";
-   
+    
   }
   
   hide = true;
