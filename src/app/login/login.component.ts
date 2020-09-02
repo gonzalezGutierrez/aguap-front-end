@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormControl ,FormGroup,Validators} from '@angular/forms';
 import { AuthService,SocialUser } from "angularx-social-login";
@@ -42,8 +42,10 @@ export class LoginComponent implements OnInit {
 
   login_with_Google():void{
     console.log("google");
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  
+    //this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    var email="salva@gmail.com"
+    this.usuarioService.logWithGoogle(email);
+    this.router.navigate(['user'])
   }
 
   login_with_Facebook():void{
