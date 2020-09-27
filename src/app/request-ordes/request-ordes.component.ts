@@ -3,6 +3,7 @@ import {environment} from 'src/environments/environment.prod';
 import * as Mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { UsuariosService} from 'src/app/usuarios.service';
+import {FormControl, Validators, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-request-ordes',
@@ -14,7 +15,13 @@ export class RequestOrdesComponent implements OnInit {
   latitud:number
   longitud:number
   marker
-  address
+  public formGroup = new FormGroup({
+
+    address: new FormControl('', [
+        Validators.required,
+    ])
+
+});
   constructor(private usuarioService:UsuariosService) { 
     
   }
@@ -55,7 +62,7 @@ export class RequestOrdesComponent implements OnInit {
     console.log('geocoder ',lng, lat)
     this.usuarioService.getAddress(lng, lat).subscribe((data:any) => {
       console.log(data.features[0].place_name)
-      this.address = [data.features[0].place_name]
+      this.formGroup.controls.address.setValue(data.features[0].place_name);
     })
   }
 
