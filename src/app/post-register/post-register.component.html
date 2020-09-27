@@ -3,39 +3,23 @@
 <div class="card">
     <mat-card >
         <div>
-            <form [formGroup]="(user)" (ngSubmit)="sending_data()" class="example-form">
-                
-                <div >
-                    <mat-form-field appearance="fill">
-                        <mat-label>nombre</mat-label>
-                        <input matInput formControlName="name">
-                    </mat-form-field>
-                    <br>
-                </div>
-    
-                <div>
-                    <mat-form-field appearance="fill">
-                        <mat-label>apellidos</mat-label>
-                        <input matInput formControlName="last_name" >
-                    </mat-form-field>
-                    <br>
-                </div>
-    
+            <form [formGroup]="(user)" (ngSubmit)="sending_data()" class="example-form">  
+                <mat-card class="tarjeta" style="background-color: yellow">
+                    <mat-card-header>
+                        <mat-card-title>Datos del usuario</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>Gracias {{name_value}} por registrarte, esto nos permitira crearte un perfil 
+                           con tu correo {{email_value}} para guardar tus datos y facilitar la compra.</p>
+                    </mat-card-content>
+                </mat-card>
                 <div >
                     <mat-form-field appearance="fill">
                         <mat-label>número de teléfono</mat-label>
                         <input matInput type="phone" formControlName="cellphone">
                     </mat-form-field>
                 </div>
-    
-                <div >
-                    <mat-form-field appearance="fill">
-                       <mat-label>dirección electrónica</mat-label>
-                      <input matInput placeholder="pat@example.com" [formControl]="email" [value]="email_Value">
-                      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-    
+
                 <div>
                     <mat-form-field appearance="fill">
                         <mat-label>contraseña</mat-label>
@@ -57,17 +41,10 @@
                 </div>
                 
                 <div>
-                    <button class="button_register_login" type="submit" mat-raised-button color="primary">Registrarse</button>
+                    <button class="button_register_login" type="submit" mat-raised-button color="primary">Completar Registro</button>
                 </div>
                 
             </form>
-
-            <div>
-                <button class="button_register_login" mat-raised-button (click)="route_login()" color="primary">Ingresar</button>
-            </div>
-            
         </div>
-       
     </mat-card>
-
 </div>

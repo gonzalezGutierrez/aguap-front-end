@@ -2,35 +2,234 @@
 <app-toolbar></app-toolbar>
 
 <div class="container">
-    <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource">
-           
-                <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                </ng-container>
-        
-                <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                </ng-container>
-        
-                <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Weight </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-                </ng-container>
 
-                <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                <td mat-cell *matCellDef="let element">{{element.symbol}} </td>
-                </ng-container>
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        
-        </table>
-       
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-       
+    <div class="item" *ngFor="let ubication of ubications; index as i">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  {{ubication.address}}
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button ><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button (click)="delete_ubication(ubication)" ><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
     </div>
+    
+    <!--<div class="item">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="button_div"><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button class="button_div"><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
+    </div>
+
+    <div class="item">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="button_div"><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button class="button_div"><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
+    </div>
+
+    <div class="item">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="button_div"><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button class="button_div"><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
+    </div>
+
+    <div class="item">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="button_div"><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button class="button_div"><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
+    </div>
+
+    <div class="item">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="button_div"><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button class="button_div"><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
+    </div>
+
+    <div class="item">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="button_div"><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button class="button_div"><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
+    </div>
+
+    <div class="item">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="button_div"><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button class="button_div"><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
+    </div>
+    <div class="item">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="button_div"><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button class="button_div"><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
+    </div>
+
+    <div class="item">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar >
+                    <i class="fas fa-home icon_home"></i>
+                </div>
+                <mat-card-title>alexis</mat-card-title>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="button_div"><i class="far fa-edit icon_edit"></i></button>
+                <button mat-raised-button class="button_div"><i class="far fa-trash-alt icon_delete"></i></button>
+                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+            </mat-card-actions> 
+        </mat-card>
+    </div>-->
+
+
 </div>

@@ -10,19 +10,23 @@ import {environment} from 'src/environments/environment';
 export class UsuariosService {
 
   public email;
-
+  public firstName;
+  public lastName;
   constructor(private http: HttpClient) { }
 
   set provando(p:String){
-    console.log("hola perro estoy en el set xdxdddd");
+    console.log("");
   }
 
   getAddress(lng, lat){
-    return this.http.get("https://api.mapbox.com/geocoding/v5/mapbox.places/"+lng+","+lat+".json?access_token="+environment.mapBoxkey)
+    return this.http.get("https://api.mapbox.com/geocoding/v5/mapbox.places/"+lng+","+lat+".json?access_token="
+    +environment.mapBoxkey)
   }
 
-  logWithGoogle(email){
+  upDates(email, firstName, lastName){
     this.email = email;
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
 }

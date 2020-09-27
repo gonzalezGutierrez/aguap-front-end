@@ -2,8 +2,9 @@ import { Component, OnInit, Input  } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormControl ,FormGroup,Validators} from '@angular/forms';
 import { AuthService,SocialUser } from "angularx-social-login";
-import { FacebookLoginProvider,GoogleLoginProvider } from "angularx-social-login";
 import { UsuariosService} from 'src/app/usuarios.service';
+import { FacebookLoginProvider,GoogleLoginProvider } from "angularx-social-login";
+
 
 
 @Component({
@@ -13,18 +14,13 @@ import { UsuariosService} from 'src/app/usuarios.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router,private authService:AuthService,private usuarioService:UsuariosService) {}
+  constructor(private router:Router,private authService:AuthService, private usuarioService:UsuariosService) {}
   user: SocialUser;
   loggedIn: boolean;
   ngOnInit(){
     
-    this.authService.authState.subscribe((user) => {
-    this.user = user;
-    this.loggedIn = (user != null);
-    console.log("el usuario es ",this.user);
-    });
-    //this.usuarioService.provando="hola";
-   
+    
+    
   }
   
   hide = true;
@@ -42,10 +38,14 @@ export class LoginComponent implements OnInit {
 
   login_with_Google():void{
     console.log("google");
-    //this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    var email="salva@gmail.com"
-    this.usuarioService.logWithGoogle(email);
-    this.router.navigate(['user'])
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log("el usuario es ",this.user);
+      this.usuarioService.upDates(this.user.email, this.user.firstName, this.user.lastName);
+      this.router.navigate(['user'])
+      });
   }
 
   login_with_Facebook():void{
@@ -66,9 +66,7 @@ export class LoginComponent implements OnInit {
     this.authService.signOut();
   }
 
-
-  
-  
-  
-
+  route_menu():void{
+    this.router.navigate(['user']);
+  }
 }

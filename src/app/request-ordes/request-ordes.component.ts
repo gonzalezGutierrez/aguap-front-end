@@ -14,6 +14,7 @@ export class RequestOrdesComponent implements OnInit {
   latitud:number
   longitud:number
   marker
+  address
   constructor(private usuarioService:UsuariosService) { 
     
   }
@@ -54,6 +55,7 @@ export class RequestOrdesComponent implements OnInit {
     console.log('geocoder ',lng, lat)
     this.usuarioService.getAddress(lng, lat).subscribe((data:any) => {
       console.log(data.features[0].place_name)
+      this.address = [data.features[0].place_name]
     })
   }
 

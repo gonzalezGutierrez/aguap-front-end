@@ -21,6 +21,7 @@ import { MyUbicationsComponent } from './my-ubications/my-ubications.component';
 import { RequestOrdesComponent } from './request-ordes/request-ordes.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { PostRegisterComponent } from './post-register/post-register.component';
+import {MatCardModule} from '@angular/material/card';
 
 /*
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -31,7 +32,7 @@ import { HttpReqInterceptor } from './http-req-interceptor';*/
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("579711312957-6sihn9vuqg3j37bbbnfknr080crfsevs.apps.googleusercontent.com")
+    provider: new GoogleLoginProvider("415824151320-qnoh0dmlq9vqmlojdd3054hijcilhqg5.apps.googleusercontent.com")
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
@@ -73,6 +74,7 @@ export function provideConfig() {
     FormsModule,
     SocialLoginModule,
     HttpClientModule,
+    MatCardModule,
   ],
   providers: [ 
     {
