@@ -5,17 +5,17 @@
    
     <div class="item_1">
         <mat-card class="card_1" id="map" ></mat-card>
-    </div>  
+    </div> 
     
     <div class="item_2">
-        <form>
+        <form [formGroup]="(formGroup)">
             <mat-card class="card_2">
 
                <div class="item_2_son_1">
                     <div>
                         <mat-form-field appearance="fill">
                             <mat-label>direcion de envio </mat-label>
-                            <input matInput>
+                            <input matInput formControlName="address">
                         </mat-form-field>
                     </div>
                     <div>

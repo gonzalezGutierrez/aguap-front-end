@@ -17,12 +17,19 @@ export class UserService {
   }
 
   registerUser(user:User){
-    return this.http.post(this.url +"register",user);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(this.url +"register",user, {headers:headers});
   }
 
   userById(id:number,token:string):Observable<Iuser>{
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
     return this.http.get<Iuser>(this.url+"user/"+id,{headers:headers});
+  }
+
+  findEmail(email:any):Observable<any>{
+    console.log("si estoy valiendo==", email)
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get<any>(this.url+"user/email?email="+email);
   }
 
   updateUserById(id:number,token:string,user:User):Observable<Iuser>{
