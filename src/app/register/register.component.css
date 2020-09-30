@@ -1,26 +1,64 @@
 
 @media only screen and (max-width:812px){
-    .card{
-        margin:auto;
-        margin-top:auto;
-        display: block;
-        margin-top:0.5rem;
+    .container{
+        width:100%;
+        background-color:black;
     }
-
-    .button_register_login{
+    #card{
         display:block;
-        width: 100%;
-        margin-top:0.5rem;
     }
-    
-    mat-form-field {
-        width: 100%;
+    mat-form-field{
+        width:100%;
+    }
+    .container_buttons{
+        display: flex;
+        flex-direction:column;
+        justify-content:space-around;
+    }
+    .item_buttons{
+        width:100%;
+        margin-top:2px;
+    }
+    .buttons{
+        width:100%;
     }
     
 }
 
 @media only screen and (min-width:812px){
-    .card{
+
+    .container{
+        margin:auto;
+        display: flex;
+        flex-direction:row;
+        justify-content:center;
+        width:100%;
+    }
+    .item{
+        margin-top:8px;
+        width:40%;
+    }
+    #card{
+        display:block;
+    }
+    mat-form-field{
+        width:100%;
+    }
+    .container_buttons{
+        display: flex;
+        flex-direction:column;
+        justify-content:start;
+    }
+    .item_buttons{
+        width:100%;
+        margin-top:2px;
+    }
+    .buttons{
+        width:100%;
+    }
+
+    
+    /*.card{
         margin-top:auto;
         display:block;
         margin-left:35%;
@@ -37,5 +75,5 @@
         display:block;
         width: 100%;
         margin-top:0.5rem;
-    }
+    }*/
 }

@@ -18,9 +18,7 @@ export class LoginComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
   ngOnInit(){
-    
-    
-    
+     
   }
   
   hide = true;
