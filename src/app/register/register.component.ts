@@ -10,9 +10,10 @@ import {UserService} from 'src/app/services/user.service'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  status:boolean=true;
+  hide=true;
+  email_Value:string='';
   
-  hide = true;
-  email_Value:string;
   email = new FormControl('', [Validators.required, Validators.email]);
   user=new FormGroup({
     name:new FormControl('',Validators.required),
@@ -21,6 +22,16 @@ export class RegisterComponent implements OnInit {
     password:new FormControl('',[Validators.required,Validators.maxLength(15),Validators.minLength(6)]),
     password_confirmation:new FormControl('',[Validators.required,Validators.maxLength(15),Validators.minLength(6)]),
   })
+
+  name=this.user.get('name').value;
+  last_name=this.user.get('last_name').value;
+  user_email=this.email.value;
+  cellphone=this.user.get('cellphone').value;
+  idRol=1;
+  password=this.user.get('password').value;
+  password_confirmation=this.user.get('password_confirmation').value;
+  user_status:number=0;
+  
   constructor(private router: Router,private userService:UserService) { 
 
   }
@@ -42,17 +53,10 @@ export class RegisterComponent implements OnInit {
   sending_data():void{
     localStorage.removeItem('send_email');
     this.email_Value="";
-    let name:string=this.user.get('name').value;
-    let lastName:string=this.user.get('last_name').value;
-    let email:string=this.email.value;
-    let phone:number=this.user.get('cellphone').value;
-    let idRol:number=1;
-    let password:string=this.user.get('password').value;
-    let password_confirmation:string=this.user.get('password_confirmation').value;
-    let status:number=0;
-    
-    let person=new User(name,lastName,email,phone,idRol,password,password_confirmation,status);
-    console.log(person)
+    let person=new User(this.name,this.last_name,this.user_email,this.cellphone,
+      this.idRol,this.password,this.password_confirmation,this.user_status);
+    console.log("persona ",this.name);
+    console.log(person);
     this.userService.registerUser(person)
     .subscribe( response=>{
       console.log("respuesta ",response);

@@ -10,42 +10,55 @@
             <form [formGroup]="(user)">
                 
                 <mat-form-field appearance="fill">
-                    <mat-label>nombre</mat-label>
-                    <input matInput formControlName="name">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="name" 
+                    [(ngModel)]="name" 
+                    name="name"
+                    >
                     <mat-icon matSuffix>account_circle</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                    <mat-label>apellidos</mat-label>
-                    <input matInput formControlName="last_name" >
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput formControlName="last_name" 
+                    [(ngModel)]="last_name" name="last_name" 
+                    >
                     <mat-icon matSuffix>account_circle</mat-icon>
                 </mat-form-field>
                 
                 <mat-form-field appearance="fill">
-                    <mat-label>número de teléfono</mat-label>
-                    <input matInput  #input maxlength="10"  type="phone" formControlName="cellphone">
+                    <mat-label>Número telefónico</mat-label>
+                    <input matInput  #input maxlength="10"  type="phone" formControlName="cellphone"
+                    [(ngModel)]="cellphone" name="cellphone" 
+                    >
                     <mat-icon matSuffix>phone_enabled</mat-icon>
                     <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                    <mat-label>dirección electrónica</mat-label>
-                   <input matInput placeholder="pat@example.com" [formControl]="email" [value]="email_Value">
+                    <mat-label>Dirección electrónica</mat-label>
+                   <input matInput placeholder="pat@example.com" [formControl]="email" 
+                    [value]="email_Value" [(ngModel)]="user_email" name="user_email"
+                    >
                     <mat-icon matSuffix>mail_outline</mat-icon>
                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                    <mat-label>contraseña</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"
+                    [(ngModel)]="password" name="password"
+                    >
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
                 
                 <mat-form-field appearance="fill">
-                    <mat-label>confirmar contraseña</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password_confirmation">
+                    <mat-label>Confirmar contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password_confirmation" 
+                    [(ngModel)]="password_confirmation" name="password password_confirmation"
+                    >
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
@@ -53,10 +66,34 @@
 
                 <div class="container_buttons">
                     <div class="item_buttons">
-                        <button class="buttons" (click)="sending_data()"  mat-raised-button color="primary">Registrarse</button>
+                        <div 
+                        *ngIf="
+                        (name.length<3 || last_name.length<3 || 
+                        cellphone.length<3 || user_email.length<3 || 
+                        password.length<5 || password_confirmation.length<5);
+                        then thenBlock else elseBlock">
+                        </div>
+                        <ng-template #thenBlock>
+                            <button class="buttons" [disabled]="status" 
+                                (click)="sending_data()"  
+                                mat-raised-button color="primary">
+                                Registrarse
+                            </button>
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <button class="buttons" 
+                                [disabled]="status==false" (click)="sending_data()"  
+                                mat-raised-button color="primary">
+                                Registrarse
+                            </button>
+                        </ng-template>
                     </div>
                     <div class="item_buttons">
-                        <button class="buttons" mat-raised-button (click)="route_login()" color="primary">Ingresar</button>
+                        <button class="buttons" 
+                            mat-raised-button 
+                            (click)="route_login()" color="warn">
+                            Cancelar
+                        </button>
                     </div>
                 </div>
                 
