@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators, FormGroup} from '@angular/forms';
+import {Validators,FormBuilder} from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { User } from 'src/app/models/user';
-import {UserService} from 'src/app/services/user.service'
+import {UserService} from 'src/app/services/user.service';
+import {MustMatch} from 'src/app/register/confirm-password.validator';
+import {Alert} from 'src/app/alerts/alert';
+
 
 @Component({
   selector: 'app-register',
@@ -13,61 +16,89 @@ export class RegisterComponent implements OnInit {
   status:boolean=true;
   hide=true;
   email_Value:string='';
-  
-  email = new FormControl('', [Validators.required, Validators.email]);
-  user=new FormGroup({
-    name:new FormControl('',Validators.required),
-    last_name:new FormControl('',Validators.required),
-    cellphone:new FormControl('',Validators.required),
-    password:new FormControl('',[Validators.required,Validators.maxLength(15),Validators.minLength(6)]),
-    password_confirmation:new FormControl('',[Validators.required,Validators.maxLength(15),Validators.minLength(6)]),
-  })
+  validate_email=/\S+@\S+\.\S+/;
+  validate_password=/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/
+  validate_cell_phone=/(9)[0-9]{9}/;
+  message_required='debes llenar el campo';
+  registerForm=this.fb.group({
+    name: ['',Validators.required],
+    last_name: ['',Validators.required],
+    email:['',[Validators.required,Validators.pattern(this.validate_email)]],
+    cell_phone: ['',[Validators.required,Validators.pattern(this.validate_cell_phone),Validators.maxLength(10)]],
+    password:['',[Validators.required,Validators.pattern(this.validate_password)]],
+    password_confirmation:['',[Validators.required]]
+  },{
+    validator: MustMatch('password', 'password_confirmation')
+  });
 
-  name=this.user.get('name').value;
-  last_name=this.user.get('last_name').value;
-  user_email=this.email.value;
-  cellphone=this.user.get('cellphone').value;
-  idRol=1;
-  password=this.user.get('password').value;
-  password_confirmation=this.user.get('password_confirmation').value;
-  user_status:number=0;
-  
-  constructor(private router: Router,private userService:UserService) { 
-
+  constructor(private router: Router,private userService:UserService,private fb: FormBuilder) { 
   }
-  
+
   ngOnInit() {
     this.email_Value=localStorage.getItem('send_email');
     console.log("el valor del email es ",this.email_Value);
   }
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'ingresa una dirección electronica';
+  
+
+  isValidField(field:string):boolean{
+    var objectFormControl=this.registerForm.get(field);
+    if( (objectFormControl.touched ||objectFormControl.dirty )&& objectFormControl.invalid){
+      return true;
     }
-    if(this.email.hasError('email')){
-      return 'invalida dirección electronica'; 
+    else{
+      return false;
     }
   }
 
-  sending_data():void{
+  getErrorMessage(field:string):string{
+    var invalid_email_message='dirección electrónica invalida';
+    if(this.registerForm.get(field).hasError('required')){
+      return this.message_required;
+    }
+    if(this.registerForm.get(field).hasError('pattern')){
+      return invalid_email_message;
+    }
+  }
+
+  cellPhoneMessageError():string{
+    return "ingrese un número telefónico valido";
+  }
+
+  passwordMessageError():string{
+    return "la contraseña debe contener almenos una letra mayuscula,minuscula,un digito y un caracter especial";
+  }
+
+  matchPassword():string{
+    return "Las contraseñas deben de coincidir";
+  }
+
+  sendingData():void{
     localStorage.removeItem('send_email');
     this.email_Value="";
-    let person=new User(this.name,this.last_name,this.user_email,this.cellphone,
-      this.idRol,this.password,this.password_confirmation,this.user_status);
-    console.log("persona ",this.name);
+    var user_name=this.registerForm.get('name').value;
+    var user_last_name=this.registerForm.get('last_name').value;
+    var user_email=this.registerForm.get('email').value;
+    var user_cellphone=this.registerForm.get('cell_phone').value;
+    var user_idRol=1;
+    var user_password=this.registerForm.get('password').value;
+    var user_password_confirmation=this.registerForm.get('password_confirmation').value;
+    var user_status=0;
+    let person=new User(user_name,user_last_name,user_email,user_cellphone,
+      user_idRol,user_password,user_password_confirmation,user_status);
     console.log(person);
+    let alert=new Alert();
     this.userService.registerUser(person)
     .subscribe( response=>{
       console.log("respuesta ",response);
-      this.route_login();
+      alert.successfulRegistration();
+      this.routeLogin();
     },error=>{
       console.log("error resepuesta",error);
     });
-
   }
 
-  route_login():void{
+  routeLogin():void{
     this.router.navigate(['login']);
   }
 

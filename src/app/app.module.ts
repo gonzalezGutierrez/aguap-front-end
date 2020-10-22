@@ -22,6 +22,7 @@ import { RequestOrdesComponent } from './request-ordes/request-ordes.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { PostRegisterComponent } from './post-register/post-register.component';
 import {MatCardModule} from '@angular/material/card';
+import { AccountActivationComponent } from './account-activation/account-activation.component';
 
 /*
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -62,6 +63,7 @@ export function provideConfig() {
     RequestOrdesComponent,
     OrderListComponent,
     PostRegisterComponent,
+    AccountActivationComponent,
 
     
   ],

@@ -17,23 +17,27 @@ export class UserService {
   }
 
   registerUser(user:User){
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type','application/json');
     return this.http.post(this.url +"register",user, {headers:headers});
+  }
+  
+  userAccountActivation(token:string,id:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer '+token);
+    return  this.http.get<any>(this.url+"user/activate/"+id,{headers:headers});
+  }
+
+  usersCurrentpassword(token:string,password:string,id:Number):Observable<any>{
+    const headers=new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer '+token);
+    return this.http.put<any>(this.url+"user/verificationPassword/"+id,password,{headers:headers});
   }
 
   userById(id:number,token:string):Observable<Iuser>{
-    const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', 'Bearer '+token);
     return this.http.get<Iuser>(this.url+"user/"+id,{headers:headers});
   }
 
-  findEmail(email:any):Observable<any>{
-    console.log("si estoy valiendo==", email)
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.get<any>(this.url+"user/email?email="+email);
-  }
-
   updateUserById(id:number,token:string,user:User):Observable<Iuser>{
-    const headers=new HttpHeaders().set('Authorization','Bearer '+token);
+    const headers=new HttpHeaders().set('Content-Type', 'application/json').set('Authorization','Bearer '+token);
     return this.http.put<Iuser>(this.url+"user/"+id,user,{headers:headers});
   }
 
@@ -47,6 +51,16 @@ export class UserService {
     const headers=new HttpHeaders().set('Authorization','Bearer '+token);
     return this.http.delete<any>(this.url+"ubication/"+ubication.id,{headers:headers});
   }
+
+  findEmail(email:any):Observable<any>{
+    console.log("si estoy valiendo==", email)
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get<any>(this.url+"user/email?email="+email);
+  }
+
+  
+
+  
 
 
 

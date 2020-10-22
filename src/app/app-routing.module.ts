@@ -11,7 +11,9 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import {MyUbicationsComponent} from './my-ubications/my-ubications.component';
 import {RequestOrdesComponent} from './request-ordes/request-ordes.component';
 import {OrderListComponent} from './order-list/order-list.component';
-import {PostRegisterComponent} from './post-register/post-register.component'
+import {PostRegisterComponent} from './post-register/post-register.component';
+import {AccountActivationComponent} from './account-activation/account-activation.component';
+
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'registerUser',component:RegisterComponent},
@@ -24,8 +26,10 @@ const routes: Routes = [
   {path:'requestOrders',component:RequestOrdesComponent},
   {path:'orderList',component:OrderListComponent},
   {path:'menubar',component:MenuBarComponent},
-  {path: 'postRegister',component:PostRegisterComponent},
+  {path:'accountActivation/:token',component:AccountActivationComponent},
+  {path:'postRegister',component:PostRegisterComponent},
   {path: '**',component:NotFoundComponent}, 
+  
 ];
 
 

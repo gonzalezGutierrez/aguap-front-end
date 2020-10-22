@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   //public email_Value_002 = 'jhon@gmail.com'
   public isButtonVisible = false;
   ngOnInit() {
-    console.log(this.usuarioService.email)
+   /* console.log(this.usuarioService.email)
     this.userService.findEmail(this.usuarioService.email).subscribe( 
       response => {
         console.log("Email registrado",response);
@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
         icon: 'warning',
         confirmButtonText: 'aceptar'
       });
-      });
+      });*/
 
     /*if(this.usuarioService.email != this.email_Value_002){
       this.isButtonVisible = true;

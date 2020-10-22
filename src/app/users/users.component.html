@@ -1,8 +1,37 @@
 
-<app-toolbar></app-toolbar>
+<div class="header">
+  <app-toolbar></app-toolbar>
+</div>
 
 
-<div class="card_main">
+<div class="container">
+  <div class="item">
+    <mat-card >
+      <div class="icon_profile">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <div>
+        <button (click)="see_profile()" 
+          mat-raised-button 
+          color="primary">
+          ver Perfil
+        </button>
+      </div>
+      <div>
+        <button (click)="see_profile()" 
+          mat-raised-button 
+          color="primary">
+          vincula tus Numeros Telefonicos y Correos
+        </button>
+      </div>
+    </mat-card>
+  </div>
+  <div class="item"></div>
+  <div class="item"></div>
+</div >
+
+
+<!--<div class="card_main">
 
     <div class="icon_profile">
       <mat-card class="card_profile">
@@ -28,7 +57,7 @@
       </mat-card>
     </div>
 
-</div>
+</div>-->
 
     
 
