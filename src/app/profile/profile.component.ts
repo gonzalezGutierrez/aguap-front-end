@@ -122,20 +122,9 @@ export class ProfileComponent implements OnInit {
      
   }
 
-  isValidField(field:string):boolean{
-    var profileFormControl=this.profile.get(field);
-    if((profileFormControl.touched ||profileFormControl.dirty) &&profileFormControl.invalid ){
-      return true;
-    }
-    else{
-      return false;
-    }
-   
-  }
-
-  isValidPassword(field:string,myForm:FormGroup){
+  isValidField(field:string,myForm:FormGroup){
     var FormControl=myForm.get(field);
-    //console.log("my form ",myForm);
+    console.log("my form ",myForm);
     if((FormControl.touched||FormControl.dirty)&&FormControl.invalid){
       return true;
     }
@@ -144,19 +133,20 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  getErrorMessage(field:string):string{
-
-    if(this.profile.get(field).hasError('required')){
+  getErrorMessage(field:string,myForm:FormGroup):string{
+    var FormControl=myForm.get(field);
+    console.log("formperro",myForm);
+    if(FormControl.hasError('required')){
       console.log("requerido");
       return "campo necesario";
     }
-    if(this.profile.get(field).hasError('maxlength')){
+    if(FormControl.hasError('maxlength')){
       console.log("max length");
       return "tu número de teléfono debe contener 10 digitos";
     }
-    if(this.profile.get(field).hasError('pattern')){
+    if(FormControl.hasError('pattern')){
       console.log("pattern");
-      if(this.profile.get(field)==this.profile.get('cell_phone')){
+      if(myForm.get(field)==myForm.get('cell_phone')){
         console.log("pattern telefono");
         return "ingrese un número de teléfono valido";
       }
@@ -166,19 +156,12 @@ export class ProfileComponent implements OnInit {
       }
      
     }
-    
-  }
-
-  passwordError(field:string):string{
-    if(this.profilePassword.get(field).hasError('required')){
-      console.log("requerido");
-      return "campo requerido";
-    }
-    if(this.profilePassword.get(field).errors.CurrentPassword){
+    if(FormControl.errors.CurrentPassword){
       console.log("entro en before password ");
       return "contraseña no coincide con la actual";
     }
   }
+
   
   oldPasword():void{
     this.userService.usersCurrentpassword(this.token,"alexis123",26)

@@ -24,7 +24,7 @@
                         formControlName="name"   
                     >
                     <mat-icon matSuffix>account_circle</mat-icon> 
-                    <mat-error *ngIf="isValidField('name')">{{getErrorMessage("name")}}</mat-error>
+                    <mat-error *ngIf="isValidField('name',profile)">{{getErrorMessage("name",profile)}}</mat-error>
                 </mat-form-field>
     
                 <mat-form-field appearance="fill">
@@ -34,7 +34,7 @@
                         formControlName="last_name"
                     >
                     <mat-icon matSuffix>account_circle</mat-icon>
-                    <mat-error *ngIf="isValidField('last_name')">{{getErrorMessage("last_name")}}</mat-error>
+                    <mat-error *ngIf="isValidField('last_name',profile)">{{getErrorMessage("last_name",profile)}}</mat-error>
                 </mat-form-field>
     
                 <mat-form-field appearance="fill">
@@ -44,7 +44,7 @@
                         formControlName="cell_phone"   
                     >
                     <mat-icon matSuffix>phone_enabled</mat-icon>
-                    <mat-error *ngIf="isValidField('cell_phone')">{{getErrorMessage("cell_phone")}}</mat-error>
+                    <mat-error *ngIf="isValidField('cell_phone',profile)">{{getErrorMessage("cell_phone",profile)}}</mat-error>
                 </mat-form-field>
     
                 <mat-form-field appearance="fill">
@@ -54,7 +54,7 @@
                         formControlName="email"
                     >
                     <mat-icon matSuffix>mail_outline</mat-icon>
-                    <mat-error *ngIf="isValidField('email')">{{getErrorMessage("email")}}</mat-error>
+                    <mat-error *ngIf="isValidField('email',profile)">{{getErrorMessage("email",profile)}}</mat-error>
                 </mat-form-field>
 
                 <div class="container_button">
@@ -96,8 +96,8 @@
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                    <mat-error *ngIf="isValidPassword('before_password',profilePassword)">
-                        {{passwordError("before_password")}}
+                    <mat-error *ngIf="isValidField('before_password',profilePassword)">
+                        {{getErrorMessage("before_password",profilePassword)}}
                     </mat-error>
                 </mat-form-field>
 
