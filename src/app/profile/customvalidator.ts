@@ -1,14 +1,21 @@
-import { FormGroup, AbstractControl } from "@angular/forms";
-import {UserService} from 'src/app/services/user.service';
-
+import {AbstractControl } from "@angular/forms";
+import * as CryptoJS from 'crypto-js';
 export class CurrentPassword{
+    encrypted="";
     key="";
     constructor(){}
 
-    set_data(key:any){
-        this.key=key;
+    set_encrypted(encrypted:any){
+        this.encrypted=encrypted;
     }
 
+    get_encrypted(){
+        return this.encrypted;
+    }
+
+    set_key(key:any){
+        this.key=key
+    }
     get_key(){
         return this.key;
     }
@@ -17,14 +24,17 @@ export class CurrentPassword{
 
 var current =new CurrentPassword();
 
-export function myCurrentPassword(current_password:String){
-    var key=current_password;
-    current.set_data(key);
+export function myCurrentPassword(encrypted:any,key:any){
+    var encrypted=encrypted;
+    var key=key;
+    current.set_encrypted(encrypted);
+    current.set_key(key);
 }
 
 export function ValidateOldPassword(control: AbstractControl){
-    var key_value=current.get_key();
-    if (control.value===key_value) {
+    var encrypted=current.get_encrypted();
+    var key=current.get_key();
+    if (control.value===(CryptoJS.AES.decrypt(encrypted.trim(),key.trim()).toString(CryptoJS.enc.Utf8))) {
         return null;
     }
     else{

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl,Validators,FormGroup,FormBuilder, Form} from '@angular/forms';
+import {Validators,FormGroup,FormBuilder} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
 import {Iuser} from 'src/app/models/InterfaceUser'
 import {User} from 'src/app/models/user';
 import {regex} from 'src/environments/environment.prod';
 import {Alert} from 'src/app/alerts/alert';
-//import Swal from 'sweetalert2';
-//import {MustMatch} from 'src/app/register/confirm-password.validator';
 import {myCurrentPassword,ValidateOldPassword} from 'src/app/profile/customvalidator';
+import * as CryptoJS from 'crypto-js';
 
 
 @Component({
@@ -35,7 +34,7 @@ export class ProfileComponent implements OnInit {
 
   profilePassword=this.passwordForm.group({
     before_password:['',[Validators.required,ValidateOldPassword]],
-    new_password:['',[Validators.required]]
+    new_password:['',[Validators.required,Validators.pattern(regex.validate_password)]]
   });
 
   constructor(private userService:UserService,private profileForm:FormBuilder,
@@ -47,19 +46,17 @@ export class ProfileComponent implements OnInit {
     
     this.profile.disable();
     this.profilePassword.disable();
-    this.id=24;//senecesita recuperar el id del usuario y asignarla ala variable serecupera des el login
+    this.id=26;//senecesita recuperar el id del usuario y asignarla ala variable serecupera des el login
     this.token="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiMDQ5MGFkZjRhZGFjYzNhNmZlMDZiZTgxODVhYzEyMjE0YTY1YjBhMzViZTdjN2E4ZDAwZmFlY2Q4MTBiMmU4YzMwNmJiYTVmNDc4N2VjNDkiLCJpYXQiOjE1OTgyNDM1NjMsIm5iZiI6MTU5ODI0MzU2MywiZXhwIjoxNjI5Nzc5NTYyLCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.JUEOP5uG7RrlyMEZaoZpD-pLrIkbOrqJKTDMtJEScWm4EK4N5N1aqWsPWO_Bl8MsZLz4SWE_AuKKDowd69hh0iKxKZ6HuPgk0_C4VquuTVvzT4Nhf5JSSl5AoUfB4u8UJk01r_lDRYIg9m-KxIdYwgt8FGYi3eklDFEGLt0AnftTZOjGxViyQ4KZZzEuZNQWGaEJcHMpekt8hqAzC_qIulH_CYNBXodn_bb7CkoNz5y1JhhecLA1ttTopHfyzgUmoa_PH7AuxOwUcoeZw5CYzQhzptWGdz7qRarfcfbhhZ6kijAxs6Yethy1Oq7hdrmLZR1ttVOQyxhmIO3xLrvmn2dVVXDIlW687v5GE1PHNtjboI4oXH4zWWZQ9y7PAKLxngHVxOt1TJJBfhrJMgO-YhsaXNmGcBMmaNIn38V6GU9TRRIQShqkVabNJKkPde36uA0EG16gy7dYQNsZLsrhj7nYQEGaen1ppR2jG4Mt0KJGSRXfE4T3cU0ZKGBLD4KejShvJY7gl5SVsjPSYLl-ZsNqxs19S9Rh8Vibfd6X47OSsPdkWP8Puef3JlC6GJnxDlFrcSeERJjaX88TqLwS0wLWEQOHRJr8jdnzj4SstlVjGK2as3BBOJDngl17WzakaucVYesKfIhAViVMhgMbMmRLGj8EydgU0ol3L8wU0Q8"; 
     //se necesita recuperar el token y asignarle ala variable se recupera desde el login
     this.oldPasword();
-    this.userService.userById(this.id,this.token).subscribe(
-      response=>{
-        console.log("desde el Onit ",response);
-        this.Iuser=response;
-        this.initialize_data();
-      },error=>{
-        console.log("error ",error);
-      }
-    );
+    this.userService.userById(this.id,this.token)
+    .subscribe(response=>{
+      this.Iuser=response;
+      this.initialize_data();
+    },error=>{
+      console.log("error ",error);
+    });
 
   }
   initialize_data(){
@@ -72,7 +69,6 @@ export class ProfileComponent implements OnInit {
     this.profile.controls['last_name'].setValue(user_last_name);
     this.profile.controls['email'].setValue(user_email);
     this.profile.controls['cell_phone'].setValue(user_cell_phone);
-    
   }
 
   profile_edit(){
@@ -80,13 +76,10 @@ export class ProfileComponent implements OnInit {
       this.status=true;
       this.button_status_profile=false;
       this.profile.enable();
-      this.initialize_data();//inicializar los datos para no quedar con errores 
+      this.initialize_data(); 
     }
     else{
-      this.status=false;
-      this.button_status_profile=true;
-      this.profile.disable();
-      this.initialize_data();//inicializar los datos para no quedar con errores
+      this.deactivateProfileFields();
     }
   }
 
@@ -95,11 +88,10 @@ export class ProfileComponent implements OnInit {
       this.status_password=true;
       this.button_status_password=false;
       this.profilePassword.enable();
+      this.profilePassword.reset();
     }
     else{
-      this.status_password=false;
-      this.profilePassword.disable();
-      this.button_status_password=true;
+      this.deactivatePasswordFields();
     }
   }
 
@@ -108,23 +100,43 @@ export class ProfileComponent implements OnInit {
       this.alert.error("formato invalido",true);
     }
     else{
-      console.log("cambiar datos");
+      var name=this.profile.get('name').value;
+      var lastName=this.profile.get('last_name').value;
+      var email=this.profile.get('email').value;
+      var phone=this.profile.get('cell_phone').value;
+      var user =new User(name,lastName,email,phone);
+      this.userService.updateUser(this.token,user,this.id)
+      .subscribe(response=>{
+        this.Iuser=response;
+        this.alert.sucessful("actualizado",true);
+        this.deactivateProfileFields();
+      },error=>{
+        console.log("error ",error);
+      });
     }
   }
 
   change_password():void{
     if(this.profilePassword.invalid){
-      this.alert.error("llene los campos",true);
+      this.alert.error("formato invalido",true);
     }
     else{
-      console.log("cambiar contraseña")  
+      const newPassword=this.profilePassword.get('new_password').value;
+      this.userService.changeUserPassword(this.token,newPassword,this.id)
+      .subscribe(response=>{
+        this.alert.sucessful("contrasañe actualizada",true);
+        this.deactivatePasswordFields();
+        this.oldPasword();
+      },
+      error=>{
+        console.log("error ",error);
+      });
     }
      
   }
 
   isValidField(field:string,myForm:FormGroup){
     var FormControl=myForm.get(field);
-    console.log("my form ",myForm);
     if((FormControl.touched||FormControl.dirty)&&FormControl.invalid){
       return true;
     }
@@ -135,46 +147,74 @@ export class ProfileComponent implements OnInit {
 
   getErrorMessage(field:string,myForm:FormGroup):string{
     var FormControl=myForm.get(field);
-    console.log("formperro",myForm);
     if(FormControl.hasError('required')){
-      console.log("requerido");
       return "campo necesario";
     }
     if(FormControl.hasError('maxlength')){
-      console.log("max length");
       return "tu número de teléfono debe contener 10 digitos";
     }
     if(FormControl.hasError('pattern')){
-      console.log("pattern");
       if(myForm.get(field)==myForm.get('cell_phone')){
-        console.log("pattern telefono");
         return "ingrese un número de teléfono valido";
       }
+      if(myForm.get(field)==myForm.get('email')){
+        return "dirección electrónica invalida"
+      }
       else{
-        console.log("pattern correo electoronico");
-        return "correo electrónico invalido";
+        return "la contraseña debe contener almenos una letra mayuscula,minuscula,un digito y un caracter especial";
       }
      
     }
     if(FormControl.errors.CurrentPassword){
-      console.log("entro en before password ");
       return "contraseña no coincide con la actual";
     }
+
   }
 
-  
   oldPasword():void{
-    this.userService.usersCurrentpassword(this.token,"alexis123",26)
-    .subscribe(
-      response=>{
-        console.log("respuesta ",response.password);
-        myCurrentPassword(response.password);
-      },error=>{
-        console.log("error",error);
-      }
-  
-    );
+    this.userService.usersCurrentpassword(this.token,this.id)
+    .subscribe(response=>{
+      const generate_key=this.generateKey();
+      var encrypted=CryptoJS.AES.encrypt(response.password.trim(),generate_key.trim()).toString();
+      myCurrentPassword(encrypted,generate_key);
+    },
+    error=>{
+      console.log("error",error);
+    });
 
+  }
+
+  generateKey():string{
+    var tokens = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+    chars = 5,
+    segments = 4,
+    keyString = "";
+		for( var i = 0; i < segments; i++ ) {
+      var segment = "";
+      for( var j = 0; j < chars; j++ ) {
+        var k =(Math.floor(Math.random() * tokens.length));
+				segment += tokens[ k ];
+      }
+      keyString += segment;
+      if( i < ( segments - 1 ) ) {
+				keyString += "-";
+			}
+    }
+    return keyString;
+  }
+
+  deactivateProfileFields():void{
+    this.status=false;
+    this.button_status_profile=true;
+    this.profile.disable();
+    this.initialize_data();
+  }
+  deactivatePasswordFields():void{
+    this.status_password=false;
+    this.button_status_password=true;
+    this.profilePassword.disable();
+    this.profilePassword.reset();
+    //this.hide=false;
   }
 
 } 

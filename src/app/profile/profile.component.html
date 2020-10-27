@@ -112,6 +112,9 @@
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
+                    <mat-error *ngIf="isValidField('new_password',profilePassword)">
+                        {{getErrorMessage("new_password",profilePassword)}}
+                    </mat-error>
                 </mat-form-field> 
 
                 <div class="container_button">
@@ -123,7 +126,9 @@
                             >
                             Cambiar Contraseña
                         </button>
-                    </div>   
+                    </div> 
+                    <!--[disabled]="profilePassword.invalid"-->
+                    <!--[disabled]="button_status_password"-->  
                 </div>
             </form>
         </mat-card>
@@ -132,82 +137,6 @@
 </div>
 
 
-<!--<div>
-    <mat-card class="main_card">
-        <div>
-            <form>
-
-                <div>
-                    <mat-form-field class="name" appearance="fill">
-                        <input required  matInput  [disabled]="status" [value]="name" [(ngModel)]="name" name="name" >
-                        <mat-icon matSuffix>account_circle</mat-icon>
-                        <mat-hint>nombre</mat-hint>
-                    </mat-form-field>
-                </div>
-               
-                <div>
-                    <mat-form-field class="last_name" appearance="fill">
-                        <input required matInput  [disabled]="status" [value]="last_name" [(ngModel)]="last_name" name="last_name" >
-                        <mat-icon matSuffix>account_circle</mat-icon>
-                        <mat-hint>apellidos</mat-hint>
-                    </mat-form-field>
-                </div>
-
-                <div>
-                    <mat-form-field hintLabel="telefono 10 digitos" appearance="fill">
-                        <input required matInput #input maxlength="10"  [value]="cell_phone" [disabled]="status" [(ngModel)]="cell_phone" name="cell_phone" >
-                        <mat-icon matSuffix>phone_enabled</mat-icon>
-                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                    </mat-form-field>
-                </div>
-
-                <div>
-                    <mat-form-field appearance="fill">
-                        <input required  matInput [value]="email_user" [disabled]="status" [(ngModel)]="email_user" name="email_user">
-                        <mat-icon matSuffix>mail_outline</mat-icon>
-                        <mat-hint>nuevo correo electronico</mat-hint>
-                    </mat-form-field>
-                </div>
-                
-                <div>
-                    <mat-form-field appearance="fill">
-                        <input matInput [type]="hide ? 'password' : 'text'" [disabled]="status" [(ngModel)]="password" name="password" >
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                        <mat-hint>nueva contraseña</mat-hint>
-                    </mat-form-field>    
-                </div>
-                <div>
-                    <mat-form-field appearance="fill">
-                        <input matInput [type]="hide ? 'password' : 'text'" [disabled]="status" [(ngModel)]="password_confirmation" name="password_confirmation">
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                        <mat-hint>confirmar nueva contraseña</mat-hint>
-                    </mat-form-field> 
-                </div>
-                
-                <button 
-                    class="button_enable_fields" 
-                    (click)="enable_fields_forms()"
-                    color="primary" 
-                    mat-raised-button>
-                    {{enable_fields}}
-                </button>
-                <button 
-                    (click)="change_data()"
-                    class="button_update_data" 
-                    color="primary"
-                    mat-raised-button>
-                    cambiar datos
-                </button>
-
-            </form>
-           
-        </div>
-    </mat-card>
-</div>-->
 
 
 
