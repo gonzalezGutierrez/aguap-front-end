@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators'
+import { Observable} from 'rxjs';
 import {User} from 'src/app/models/user';
 import {Iuser} from 'src/app/models/InterfaceUser'
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -45,20 +45,20 @@ export class UserService {
     return this.http.put<Iuser>(this.url+"user/updateUser/"+id,user,{headers:headers});
   }
 
-  changeUserPassword(token:string,newPassword:string,id:number):Observable<any>{
+  changeUserPassword(token:string,newPassword:string,id:number,key:string):Observable<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json')
     .set('Authorization', 'Bearer '+token);
     var user={
-      'newPassword':newPassword,
+      'newPassword':CryptoJS.AES.decrypt(newPassword.trim(),key.trim()).toString(CryptoJS.enc.Utf8),
     }
+
     return this.http.put<any>(this.url+"user/updatePassword/"+id,user,{headers:headers});
   }
 
  
   get_ubications(id:number,token:string):Observable<any>{
-    console.log("estoy en el servicio de ubicaciones xd xd ");
     const headers=new HttpHeaders().set('Authorization','Bearer '+token);
-    return this.http.get<any>(this.url+"ubication",{headers:headers});
+    return this.http.get<any>(this.url+"ubication/"+id,{headers:headers});
   }
 
   delete_ubication(ubication:any,token:string):Observable<any>{

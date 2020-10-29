@@ -5,7 +5,7 @@ import { User } from 'src/app/models/user';
 import {UserService} from 'src/app/services/user.service';
 import {MustMatch} from 'src/app/register/confirm-password.validator';
 import {Alert} from 'src/app/alerts/alert';
-
+import {regex} from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-register',
@@ -16,16 +16,13 @@ export class RegisterComponent implements OnInit {
   status:boolean=true;
   hide=true;
   email_Value:string='';
-  validate_email=/\S+@\S+\.\S+/;
-  validate_password=/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/
-  validate_cell_phone=/(9)[0-9]{9}/;
-  message_required='debes llenar el campo';
+
   registerForm=this.fb.group({
     name: ['',Validators.required],
     last_name: ['',Validators.required],
-    email:['',[Validators.required,Validators.pattern(this.validate_email)]],
-    cell_phone: ['',[Validators.required,Validators.pattern(this.validate_cell_phone),Validators.maxLength(10)]],
-    password:['',[Validators.required,Validators.pattern(this.validate_password)]],
+    email:['',[Validators.required,Validators.pattern(regex.validate_email)]],
+    cell_phone: ['',[Validators.required,Validators.maxLength(10),Validators.pattern(regex.validate_cell_phone),Validators.maxLength(10)]],
+    password:['',[Validators.required,Validators.pattern(regex.validate_password)]],
     password_confirmation:['',[Validators.required]]
   },{
     validator: MustMatch('password', 'password_confirmation')
@@ -36,10 +33,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.email_Value=localStorage.getItem('send_email');
-    console.log("el valor del email es ",this.email_Value);
   }
-
-  
 
   isValidField(field:string):boolean{
     var objectFormControl=this.registerForm.get(field);
@@ -52,26 +46,31 @@ export class RegisterComponent implements OnInit {
   }
 
   getErrorMessage(field:string):string{
-    var invalid_email_message='dirección electrónica invalida';
+
     if(this.registerForm.get(field).hasError('required')){
-      return this.message_required;
+      return "campo requerido"
+    }
+    if(this.registerForm.get(field).hasError('maxlength')){
+      return "tu número de teléfono debe contener 10 digitos";
     }
     if(this.registerForm.get(field).hasError('pattern')){
-      return invalid_email_message;
+      if(this.registerForm.get(field)===this.registerForm.get('email')){
+        return "dirección electrónica invalido";
+      } 
+      if(this.registerForm.get(field)===this.registerForm.get('cell_phone')){
+        return "teléfono móvil invalido";
+      }
+      else{
+        return "la contraseña debe contener almenos una letra mayuscula,minuscula,un digito y un caracter especial";
+      }
     }
+    if(this.registerForm.get(field).errors.mustMatch){
+      return "las contraseñas no coinciden";
+    }
+   
   }
 
-  cellPhoneMessageError():string{
-    return "ingrese un número telefónico valido";
-  }
-
-  passwordMessageError():string{
-    return "la contraseña debe contener almenos una letra mayuscula,minuscula,un digito y un caracter especial";
-  }
-
-  matchPassword():string{
-    return "Las contraseñas deben de coincidir";
-  }
+ 
 
   sendingData():void{
     localStorage.removeItem('send_email');
@@ -83,10 +82,9 @@ export class RegisterComponent implements OnInit {
     var user_idRol=1;
     var user_password=this.registerForm.get('password').value;
     var user_password_confirmation=this.registerForm.get('password_confirmation').value;
-    var user_status=0;
+    var user_status="inactive";
     let person=new User(user_name,user_last_name,user_email,user_cellphone,
       user_idRol,user_password,user_password_confirmation,user_status);
-    console.log(person);
     let alert=new Alert();
     this.userService.registerUser(person)
     .subscribe( response=>{

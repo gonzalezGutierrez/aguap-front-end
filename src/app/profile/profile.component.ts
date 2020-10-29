@@ -46,8 +46,8 @@ export class ProfileComponent implements OnInit {
     
     this.profile.disable();
     this.profilePassword.disable();
-    this.id=26;//senecesita recuperar el id del usuario y asignarla ala variable serecupera des el login
-    this.token="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiMDQ5MGFkZjRhZGFjYzNhNmZlMDZiZTgxODVhYzEyMjE0YTY1YjBhMzViZTdjN2E4ZDAwZmFlY2Q4MTBiMmU4YzMwNmJiYTVmNDc4N2VjNDkiLCJpYXQiOjE1OTgyNDM1NjMsIm5iZiI6MTU5ODI0MzU2MywiZXhwIjoxNjI5Nzc5NTYyLCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.JUEOP5uG7RrlyMEZaoZpD-pLrIkbOrqJKTDMtJEScWm4EK4N5N1aqWsPWO_Bl8MsZLz4SWE_AuKKDowd69hh0iKxKZ6HuPgk0_C4VquuTVvzT4Nhf5JSSl5AoUfB4u8UJk01r_lDRYIg9m-KxIdYwgt8FGYi3eklDFEGLt0AnftTZOjGxViyQ4KZZzEuZNQWGaEJcHMpekt8hqAzC_qIulH_CYNBXodn_bb7CkoNz5y1JhhecLA1ttTopHfyzgUmoa_PH7AuxOwUcoeZw5CYzQhzptWGdz7qRarfcfbhhZ6kijAxs6Yethy1Oq7hdrmLZR1ttVOQyxhmIO3xLrvmn2dVVXDIlW687v5GE1PHNtjboI4oXH4zWWZQ9y7PAKLxngHVxOt1TJJBfhrJMgO-YhsaXNmGcBMmaNIn38V6GU9TRRIQShqkVabNJKkPde36uA0EG16gy7dYQNsZLsrhj7nYQEGaen1ppR2jG4Mt0KJGSRXfE4T3cU0ZKGBLD4KejShvJY7gl5SVsjPSYLl-ZsNqxs19S9Rh8Vibfd6X47OSsPdkWP8Puef3JlC6GJnxDlFrcSeERJjaX88TqLwS0wLWEQOHRJr8jdnzj4SstlVjGK2as3BBOJDngl17WzakaucVYesKfIhAViVMhgMbMmRLGj8EydgU0ol3L8wU0Q8"; 
+    this.id=1;//senecesita recuperar el id del usuario y asignarla ala variable serecupera des el login
+    this.token="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZjQ2NTNhMTc1ZmM3NTk5Y2I2MWJiNTExNWRkOTdlMmM1YzZjNzAxZWUwYmNlNzllYTM2MWIzMDE3ZTlmNjhjZGQyOTRiYmJiY2JlYjM4NDkiLCJpYXQiOjE2MDM5OTkzMTIsIm5iZiI6MTYwMzk5OTMxMiwiZXhwIjoxNjM1NTM1MzEyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cYbauP17fjmrLSAsC27eeeEJfnq5heRcFQ2rSb1vxkm--Wp7OdvqgF32bC8jItZG8uaVJYnyx-aPFbpFzfOI3d1EcTvpYuhspajeHXmRO3eIrSMW6sBwQ3oIYuuC7sCdQQt3f6UzH1bly8wU1_KNPg7yD4-CjjON95EyVH3XqbidMXWgDHkjisrckxEBYo9Q_i0sd85he1LENfLtqZQoNL6akWDBBfC_qQusPLgIZdqqmSQTKAaPi1THlVnCi1cKwYre6XQ9kKF6dwhXh4tYJSK9iU_bUj85iAn8NDJ205_5qwv-SGKM6As9u1TpptIv3ZBO5suobLSMfHGU49oFAQr7tmoQcDIi8IjrbHom_XkjtVE7GmwrJydevLfc4FzM9mILefAASdgKfZ1hWP67clkkjS7SUnf0bhpfeWepfSQJiLw3iMn4UYYZkXeBhISFdz4o9tPiEYp1Lk4nROzfOOVp0XK8EueqOoOzb3GGtBe6t4hNI76P2h5P7Wdt9m8pvaZm6uxkfcfZngaRijN0nuI94ADED5xA6Kk1v9XhYy3G_YKTqG1xdyBJlpbnbMn60-1XuxqTU0e-lzLyHfDxLH22myzHHSuJ1JkhOb2M0yYuVPv_mD_AJa-hnV9Kd4RGFh_yRqv3GU_lZ-B5KtkXtDSnfhphlbTE8v5EH1EwyUw"; 
     //se necesita recuperar el token y asignarle ala variable se recupera desde el login
     this.oldPasword();
     this.userService.userById(this.id,this.token)
@@ -121,8 +121,11 @@ export class ProfileComponent implements OnInit {
       this.alert.error("formato invalido",true);
     }
     else{
-      const newPassword=this.profilePassword.get('new_password').value;
-      this.userService.changeUserPassword(this.token,newPassword,this.id)
+      //const newPassword=this.profilePassword.get('new_password').value;
+      const key=this.generateKey();
+      const newPassword=CryptoJS.AES.encrypt(this.profilePassword.get('new_password').value.trim(),
+      key.trim()).toString();
+      this.userService.changeUserPassword(this.token,newPassword,this.id,key)
       .subscribe(response=>{
         this.alert.sucessful("contrasañe actualizada",true);
         this.deactivatePasswordFields();
@@ -154,10 +157,10 @@ export class ProfileComponent implements OnInit {
       return "tu número de teléfono debe contener 10 digitos";
     }
     if(FormControl.hasError('pattern')){
-      if(myForm.get(field)==myForm.get('cell_phone')){
+      if(myForm.get(field)===myForm.get('cell_phone')){
         return "ingrese un número de teléfono valido";
       }
-      if(myForm.get(field)==myForm.get('email')){
+      if(myForm.get(field)===myForm.get('email')){
         return "dirección electrónica invalida"
       }
       else{
@@ -214,7 +217,6 @@ export class ProfileComponent implements OnInit {
     this.button_status_password=true;
     this.profilePassword.disable();
     this.profilePassword.reset();
-    //this.hide=false;
   }
 
 } 

@@ -14,20 +14,69 @@
         <button (click)="see_profile()" 
           mat-raised-button 
           color="primary">
-          ver Perfil
+          mi perfil
         </button>
       </div>
       <div>
         <button (click)="see_profile()" 
           mat-raised-button 
           color="primary">
-          vincula tus Numeros Telefonicos y Correos
+          vincula tus numeros telefonicos y correos
         </button>
       </div>
     </mat-card>
   </div>
-  <div class="item"></div>
-  <div class="item"></div>
+  <div class="item">
+    <mat-card>
+      <div class="icon_ubication">
+        <i class="fas fa-map-marked-alt"></i>
+      </div>
+      <div>
+        <button mat-raised-button
+          (click)="view_saved_locations()"
+          color="primary">
+          mis ubicaciones
+        </button>  
+      </div>
+    </mat-card>
+  </div>
+  <div class="item">
+    <mat-card>
+      <div class="icon_list">
+        <i class="fas fa-clipboard-list"></i>
+      </div>
+      <div>
+        <button (click)="request_orders()" 
+          mat-raised-button color="primary"
+          >
+          Solicitar pedidos
+        </button>
+      </div>
+      <div>
+        <button (click)="see_my_orders()" 
+          mat-raised-button 
+          color="primary"> 
+          Ver mis pedidos
+        </button>
+      </div>
+    </mat-card>
+  </div>
+  <div class="item">
+    <mat-card>
+      <div class="icon_coupon">
+        <i class="fas fa-qrcode"></i>
+      </div>
+      <div>
+        <button 
+          (click)="coupon()" 
+          mat-raised-button 
+          color="primary">
+          obtener cupon de descuento
+        </button>
+      </div>
+    </mat-card>
+  </div>
+ 
 </div >
 
 
