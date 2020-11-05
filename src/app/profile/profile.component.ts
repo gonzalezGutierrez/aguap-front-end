@@ -7,7 +7,7 @@ import {regex} from 'src/environments/environment.prod';
 import {Alert} from 'src/app/alerts/alert';
 import {myCurrentPassword,ValidateOldPassword} from 'src/app/profile/customvalidator';
 import * as CryptoJS from 'crypto-js';
-
+import {UserMethods} from 'src/app/models/globalUserMethods';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   idRol:number=0;
   hide = true;
   alert=new Alert();
+  userMethods=new UserMethods();
   profile=this.profileForm.group({
     name:['',[Validators.required]],
     last_name:['',[Validators.required]],
@@ -40,7 +41,7 @@ export class ProfileComponent implements OnInit {
   constructor(private userService:UserService,private profileForm:FormBuilder,
     private passwordForm:FormBuilder) { 
 
-    }
+  }
 
   ngOnInit() {
     
@@ -121,11 +122,10 @@ export class ProfileComponent implements OnInit {
       this.alert.error("formato invalido",true);
     }
     else{
-      //const newPassword=this.profilePassword.get('new_password').value;
-      const key=this.generateKey();
+      const generate_key=this.userMethods.generateKey();
       const newPassword=CryptoJS.AES.encrypt(this.profilePassword.get('new_password').value.trim(),
-      key.trim()).toString();
-      this.userService.changeUserPassword(this.token,newPassword,this.id,key)
+      generate_key.trim()).toString();
+      this.userService.changeUserPassword(this.token,newPassword,this.id,generate_key)
       .subscribe(response=>{
         this.alert.sucessful("contrasañe actualizada",true);
         this.deactivatePasswordFields();
@@ -177,33 +177,14 @@ export class ProfileComponent implements OnInit {
   oldPasword():void{
     this.userService.usersCurrentpassword(this.token,this.id)
     .subscribe(response=>{
-      const generate_key=this.generateKey();
-      var encrypted=CryptoJS.AES.encrypt(response.password.trim(),generate_key.trim()).toString();
+      const generate_key=this.userMethods.generateKey();
+      const encrypted=CryptoJS.AES.encrypt(response.password.trim(),generate_key.trim()).toString();
       myCurrentPassword(encrypted,generate_key);
     },
     error=>{
       console.log("error",error);
     });
 
-  }
-
-  generateKey():string{
-    var tokens = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-    chars = 5,
-    segments = 4,
-    keyString = "";
-		for( var i = 0; i < segments; i++ ) {
-      var segment = "";
-      for( var j = 0; j < chars; j++ ) {
-        var k =(Math.floor(Math.random() * tokens.length));
-				segment += tokens[ k ];
-      }
-      keyString += segment;
-      if( i < ( segments - 1 ) ) {
-				keyString += "-";
-			}
-    }
-    return keyString;
   }
 
   deactivateProfileFields():void{
@@ -219,4 +200,6 @@ export class ProfileComponent implements OnInit {
     this.profilePassword.reset();
   }
 
+
 } 
+

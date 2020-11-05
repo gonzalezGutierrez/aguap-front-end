@@ -1,37 +1,56 @@
 @media only screen and (max-width:812px) {
-    .card{
-        margin-top:auto;
-        margin-top:3rem;
-        display:block;
+    .container{
+        display: flex;
+        flex-direction: column;
         width:100%;
+    }
+    .item{
+        width:100%;
+        margin-top:10%;
     }
     mat-form-field{
         width: 100%;
     }
-    button{
-        width:100%;
-        display: block;
-        margin-top:0.5;
+    .container_item{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
-
+    .son_item{
+        width:100%;
+        margin-top:1px;
+    }
+    button{
+        width:100%;  
+    }
+    
 }
 
-
 @media only screen and (min-width:812px){
-    .card{
-        margin-top:auto;
-        display:block;
-        max-width:35%;
-        margin-top:2rem;/* 5 × 16px = 80px */
-        margin-left:35%;
-    } 
+    .container{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        width:100%;
+    }
+    .item{
+        margin-top:8%;
+        width:35%;
+    }
     mat-form-field{
-        width: 100%;
+        width:100%;
+    }
+    .container_item{
+        display: flex;
+        flex-direction: row;
+        justify-content:center;
+    }
+    .son_item{
+        width:100%;
+        margin-top: 1px;
     }
     button{
-        width: 100%;
-        display:block;
-        margin-top:0.5rem;
+        width:100%;
     }
 
 }

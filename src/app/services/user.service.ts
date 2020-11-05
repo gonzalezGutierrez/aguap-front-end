@@ -51,11 +51,39 @@ export class UserService {
     var user={
       'newPassword':CryptoJS.AES.decrypt(newPassword.trim(),key.trim()).toString(CryptoJS.enc.Utf8),
     }
-
     return this.http.put<any>(this.url+"user/updatePassword/"+id,user,{headers:headers});
   }
+  
+  accountRecoveryEmail(email:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    const user={
+      'email':email,
+    }
+    return this.http.post<any>(this.url+"user/recoverAccount",user,{headers:headers});
+  }
 
- 
+  addNewEmail(user_id:any,token:string,email:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
+    var user={
+      'email':email,
+      'user_id':user_id,
+    }
+    return this.http.post<any>(this.url+"account",user,{headers:headers});
+  }
+
+  get_emails(user_id:number,token:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
+    return this.http.get<any>(this.url+"account/"+user_id,{headers:headers});
+  }
+
+  delete_email(id:number,token:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
+    return this.http.delete<any>(this.url+"account/"+id,{headers:headers});
+  }
+
   get_ubications(id:number,token:string):Observable<any>{
     const headers=new HttpHeaders().set('Authorization','Bearer '+token);
     return this.http.get<any>(this.url+"ubication/"+id,{headers:headers});
@@ -65,6 +93,8 @@ export class UserService {
     const headers=new HttpHeaders().set('Authorization','Bearer '+token);
     return this.http.delete<any>(this.url+"ubication/"+ubication.id,{headers:headers});
   }
+
+
 
   findEmail(email:any):Observable<any>{
     console.log("si estoy valiendo==", email)

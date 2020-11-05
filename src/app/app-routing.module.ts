@@ -13,12 +13,13 @@ import {RequestOrdesComponent} from './request-ordes/request-ordes.component';
 import {OrderListComponent} from './order-list/order-list.component';
 import {PostRegisterComponent} from './post-register/post-register.component';
 import {AccountActivationComponent} from './account-activation/account-activation.component';
+import {MyAcountsComponent} from './my-acounts/my-acounts.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'registerUser',component:RegisterComponent},
   {path:'forgotPassword',component:ForgotPasswordComponent},
-  {path:'recoverAccount',component:RecoverAccountComponent},
+  {path:'recoverAccount/:token',component:RecoverAccountComponent},
   {path:'',component:LoginComponent,pathMatch: 'full'}, 
   {path:'user',component:UsersComponent},
   {path:'profile',component:ProfileComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'menubar',component:MenuBarComponent},
   {path:'accountActivation/:token',component:AccountActivationComponent},
   {path:'postRegister',component:PostRegisterComponent},
+  {path:'accounts',component:MyAcountsComponent},
   {path: '**',component:NotFoundComponent}, 
   
 ];

@@ -29,6 +29,24 @@ export class Alert{
             showConfirmButton:status,
         }) 
     }
+    successful_account_message(){
+        Swal.fire(
+            'cuenta',
+            'tu cuenta a sido recuperada',
+            'success'
+        )
+    }
+
+    message_error(title:string,text:string,footer:string){
+        Swal.fire({
+            icon: 'error',
+            title:title,
+            text:text,
+            footer:footer,
+        })
+    }
+    
+    
   
 
 

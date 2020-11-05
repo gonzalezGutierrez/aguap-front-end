@@ -47,7 +47,6 @@
     .container_buttons{
         display: flex;
         flex-direction:column;
-        /*justify-content:start;*/
     }
     .item_buttons{
         width:100%;

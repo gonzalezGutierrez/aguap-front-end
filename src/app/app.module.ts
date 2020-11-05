@@ -23,11 +23,9 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { PostRegisterComponent } from './post-register/post-register.component';
 import {MatCardModule} from '@angular/material/card';
 import { AccountActivationComponent } from './account-activation/account-activation.component';
+import { MyAcountsComponent } from './my-acounts/my-acounts.component';
 
-/*
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SessionService } from './session.service';
-import { HttpReqInterceptor } from './http-req-interceptor';*/
+
 
 
 const config = new AuthServiceConfig([
@@ -64,6 +62,7 @@ export function provideConfig() {
     OrderListComponent,
     PostRegisterComponent,
     AccountActivationComponent,
+    MyAcountsComponent,
 
     
   ],

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators, FormGroup} from '@angular/forms';
-
-
+import {FormBuilder,Validators} from '@angular/forms';
+import {regex} from 'src/environments/environment.prod';
+import { Router} from '@angular/router';
+import {UserService} from 'src/app/services/user.service';
+import {Alert} from 'src/app/alerts/alert';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -9,30 +11,52 @@ import {FormControl, Validators, FormGroup} from '@angular/forms';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  email_Value:string;
-  constructor() { }
- 
-  ngOnInit() {
-    this.email_Value=localStorage.getItem('send_email');
+  Alert=new Alert();
+
+  profile=this.fb.group({
+    email:['',[Validators.required,Validators.pattern(regex.validate_email)]],
+  })
+
+  constructor(private fb:FormBuilder,private router:Router,private userService:UserService) {}
+
+  ngOnInit() {}
+
+  getErrorMessage(field:string) {
+    if(this.profile.get(field).hasError('required')){
+      return 'campo requerido';
+    }
+    else{
+      return 'dirección electrónica invalida';
+    }
   }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
- 
-  getErrorMessage() {
-
-    if (this.email.hasError('required')) {
-      return 'ingresa una dirección electronica';
+  isValidField(field:string){
+    var control=this.profile.get(field);
+    if((control.touched || control.dirty)&&control.invalid){
+      return true;
     }
-    if(this.email.hasError('email')){
-      return 'invalida dirección electronica'; 
+    else{
+      return false;
     }
   }
 
   submitForm():void{
-    console.log("email recuperado",this.email.value);
-    console.log("removido ",this.email_Value)
-    localStorage.removeItem('send_email');
-    this.email_Value="";
+    const email=this.profile.get('email').value;
+    this.userService.accountRecoveryEmail(email)
+    .subscribe(response=>{
+      console.log("response ",response);
+      this.Alert.sucessful('email enviado',true);
+      this.profile.reset();
+      this.router.navigate(['/login']);
+    },error=>{
+      console.log("error ",error);
+      this.Alert.message_error('Oops...','','email no registrado en nuestro sistema');
+      this.profile.reset();
+    });
+    
   }
-
+  cancel():void{
+    this.profile.reset();
+    this.router.navigate(['/login']);
+  }
 }
