@@ -1,4 +1,4 @@
-import { Component, OnInit ,Output,EventEmitter} from '@angular/core';
+import { Component, OnInit,Input} from '@angular/core';
 import {Validators,FormBuilder} from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {UserService} from 'src/app/services/user.service';
@@ -13,11 +13,11 @@ import {Validation} from '../formValidations/validation';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  @Input('user_id')  user_idRol:number=1;
   status:boolean=true;
   hide=true;
   email_Value:string='';
   validation=new Validation();
-
   registerForm=this.fb.group({
     name: ['',Validators.required],
     last_name: ['',Validators.required],
@@ -47,16 +47,17 @@ export class RegisterComponent implements OnInit {
   sendingData():void{
     localStorage.removeItem('send_email');
     this.email_Value="";
-    var person=this.validation.get_person_V(this.registerForm,1);
+    var person=this.validation.get_person_V(this.registerForm,this.user_idRol);
     let alert=new Alert();
-    this.userService.registerUser(person)
+    console.log("persona ",person);
+    /*this.userService.registerUser(person)
     .subscribe( response=>{
       console.log("respuesta ",response);
       alert.successfulRegistration();
       this.routeLogin();
     },error=>{
       console.log("error resepuesta",error);
-    });
+    });*/
   }
 
   routeLogin():void{

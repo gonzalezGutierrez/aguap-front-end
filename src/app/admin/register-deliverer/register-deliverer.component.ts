@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register-deliverer.component.css']
 })
 export class RegisterDelivererComponent implements OnInit {
-  var:string="holamundo";
   hide=true;
-  constructor() { }
-
+  user_idRol:number=2;
+  constructor() {
+  }
+  
   ngOnInit() {
   }
 
