@@ -14,6 +14,9 @@ import {OrderListComponent} from './order-list/order-list.component';
 import {PostRegisterComponent} from './post-register/post-register.component';
 import {AccountActivationComponent} from './account-activation/account-activation.component';
 import {MyAcountsComponent} from './my-acounts/my-acounts.component';
+import {MenuComponent} from './admin/menu/menu.component';
+import {DelivererListComponent}from './admin/deliverer-list/deliverer-list.component';
+import {RegisterDelivererComponent} from './admin/register-deliverer/register-deliverer.component'
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -30,6 +33,9 @@ const routes: Routes = [
   {path:'accountActivation/:token',component:AccountActivationComponent},
   {path:'postRegister',component:PostRegisterComponent},
   {path:'accounts',component:MyAcountsComponent},
+  {path:'admin/menu',component:MenuComponent},
+  {path:'admin/delivererList',component:DelivererListComponent},
+  {path:'admin/delivererRegister',component:RegisterDelivererComponent},
   {path: '**',component:NotFoundComponent}, 
   
 ];

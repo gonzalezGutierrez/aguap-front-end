@@ -1,0 +1,26 @@
+@media only screen and (max-width:812px){
+    .container{
+        width:100%;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .item{
+        width:100%;
+    }
+    mat-form-field{
+        width:100%;
+    }
+    .container_buttons{
+        display: flex;
+        flex-direction:column;
+        width:100%;
+    }
+    .item_buttons{
+        width:100%;
+    }
+    .button{
+        width:100%;
+    }
+}

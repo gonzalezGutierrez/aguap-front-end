@@ -1,3 +1,5 @@
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +26,10 @@ import { PostRegisterComponent } from './post-register/post-register.component';
 import {MatCardModule} from '@angular/material/card';
 import { AccountActivationComponent } from './account-activation/account-activation.component';
 import { MyAcountsComponent } from './my-acounts/my-acounts.component';
+import { MenuComponent } from './admin/menu/menu.component';
+import { DelivererListComponent } from './admin/deliverer-list/deliverer-list.component';
+import { RegisterDelivererComponent } from './admin/register-deliverer/register-deliverer.component';
+
 
 
 
@@ -63,8 +69,10 @@ export function provideConfig() {
     PostRegisterComponent,
     AccountActivationComponent,
     MyAcountsComponent,
-
-    
+    MenuComponent,
+    DelivererListComponent,
+    RegisterDelivererComponent,
+  
   ],
   imports: [
     BrowserModule,
