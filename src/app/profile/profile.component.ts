@@ -8,6 +8,7 @@ import {Alert} from 'src/app/alerts/alert';
 import {myCurrentPassword,ValidateOldPassword} from 'src/app/profile/customvalidator';
 import * as CryptoJS from 'crypto-js';
 import {UserMethods} from 'src/app/models/globalUserMethods';
+import {Validation} from '../formValidations/validation';
 
 @Component({
   selector: 'app-profile',
@@ -26,6 +27,8 @@ export class ProfileComponent implements OnInit {
   hide = true;
   alert=new Alert();
   userMethods=new UserMethods();
+  validation=new Validation();
+  user_data:any;
   profile=this.profileForm.group({
     name:['',[Validators.required]],
     last_name:['',[Validators.required]],
@@ -42,14 +45,12 @@ export class ProfileComponent implements OnInit {
     private passwordForm:FormBuilder) { 
 
   }
-
   ngOnInit() {
-    
     this.profile.disable();
     this.profilePassword.disable();
-    this.id=1;//senecesita recuperar el id del usuario y asignarla ala variable serecupera des el login
-    this.token="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZjQ2NTNhMTc1ZmM3NTk5Y2I2MWJiNTExNWRkOTdlMmM1YzZjNzAxZWUwYmNlNzllYTM2MWIzMDE3ZTlmNjhjZGQyOTRiYmJiY2JlYjM4NDkiLCJpYXQiOjE2MDM5OTkzMTIsIm5iZiI6MTYwMzk5OTMxMiwiZXhwIjoxNjM1NTM1MzEyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.cYbauP17fjmrLSAsC27eeeEJfnq5heRcFQ2rSb1vxkm--Wp7OdvqgF32bC8jItZG8uaVJYnyx-aPFbpFzfOI3d1EcTvpYuhspajeHXmRO3eIrSMW6sBwQ3oIYuuC7sCdQQt3f6UzH1bly8wU1_KNPg7yD4-CjjON95EyVH3XqbidMXWgDHkjisrckxEBYo9Q_i0sd85he1LENfLtqZQoNL6akWDBBfC_qQusPLgIZdqqmSQTKAaPi1THlVnCi1cKwYre6XQ9kKF6dwhXh4tYJSK9iU_bUj85iAn8NDJ205_5qwv-SGKM6As9u1TpptIv3ZBO5suobLSMfHGU49oFAQr7tmoQcDIi8IjrbHom_XkjtVE7GmwrJydevLfc4FzM9mILefAASdgKfZ1hWP67clkkjS7SUnf0bhpfeWepfSQJiLw3iMn4UYYZkXeBhISFdz4o9tPiEYp1Lk4nROzfOOVp0XK8EueqOoOzb3GGtBe6t4hNI76P2h5P7Wdt9m8pvaZm6uxkfcfZngaRijN0nuI94ADED5xA6Kk1v9XhYy3G_YKTqG1xdyBJlpbnbMn60-1XuxqTU0e-lzLyHfDxLH22myzHHSuJ1JkhOb2M0yYuVPv_mD_AJa-hnV9Kd4RGFh_yRqv3GU_lZ-B5KtkXtDSnfhphlbTE8v5EH1EwyUw"; 
-    //se necesita recuperar el token y asignarle ala variable se recupera desde el login
+    this.user_data= JSON.parse(localStorage.getItem('usuario'));
+    this.id=this.user_data.id;
+    this.token=this.user_data.token; 
     this.oldPasword();
     this.userService.userById(this.id,this.token)
     .subscribe(response=>{
@@ -65,7 +66,6 @@ export class ProfileComponent implements OnInit {
     let user_last_name=this.Iuser.lastName;
     let user_email=this.Iuser.email;
     let user_cell_phone=this.Iuser.phone;
-    let idRol=this.Iuser.idRol;
     this.profile.controls['name'].setValue(user_name);
     this.profile.controls['last_name'].setValue(user_last_name);
     this.profile.controls['email'].setValue(user_email);
@@ -97,10 +97,7 @@ export class ProfileComponent implements OnInit {
   }
 
   change_data():void{
-    if(this.profile.invalid){
-      this.alert.error("formato invalido",true);
-    }
-    else{
+    if(this.profile.valid){
       var name=this.profile.get('name').value;
       var lastName=this.profile.get('last_name').value;
       var email=this.profile.get('email').value;
@@ -115,13 +112,11 @@ export class ProfileComponent implements OnInit {
         console.log("error ",error);
       });
     }
-  }
 
+  }    
+  
   change_password():void{
-    if(this.profilePassword.invalid){
-      this.alert.error("formato invalido",true);
-    }
-    else{
+    if(this.profilePassword.valid){
       const generate_key=this.userMethods.generateKey();
       const newPassword=CryptoJS.AES.encrypt(this.profilePassword.get('new_password').value.trim(),
       generate_key.trim()).toString();
@@ -139,39 +134,11 @@ export class ProfileComponent implements OnInit {
   }
 
   isValidField(field:string,myForm:FormGroup){
-    var FormControl=myForm.get(field);
-    if((FormControl.touched||FormControl.dirty)&&FormControl.invalid){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return this.validation.isValidField_V(myForm,field);
   }
 
   getErrorMessage(field:string,myForm:FormGroup):string{
-    var FormControl=myForm.get(field);
-    if(FormControl.hasError('required')){
-      return "campo necesario";
-    }
-    if(FormControl.hasError('maxlength')){
-      return "tu número de teléfono debe contener 10 digitos";
-    }
-    if(FormControl.hasError('pattern')){
-      if(myForm.get(field)===myForm.get('cell_phone')){
-        return "ingrese un número de teléfono valido";
-      }
-      if(myForm.get(field)===myForm.get('email')){
-        return "dirección electrónica invalida"
-      }
-      else{
-        return "la contraseña debe contener almenos una letra mayuscula,minuscula,un digito y un caracter especial";
-      }
-     
-    }
-    if(FormControl.errors.CurrentPassword){
-      return "contraseña no coincide con la actual";
-    }
-
+    return this.validation.getErrorMessage_V(myForm,field);
   }
 
   oldPasword():void{

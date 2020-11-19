@@ -13,40 +13,44 @@ export class Validation{
             return false;
         }
     }
-    getErrorMessage_V(register:FormGroup,field:string):string{
-        if(register.get(field).hasError('required')){
+    getErrorMessage_V(control:FormGroup,field:string):string{
+        if(control.get(field).hasError('required')){
             return "campo requerido"
         }
-        if(register.get(field).hasError('maxlength')){
+        if(control.get(field).hasError('maxlength')){
             return "tu número de teléfono debe contener 10 digitos";
         }
-        if(register.get(field).hasError('pattern')){
+        if(control.get(field).hasError('pattern')){
             
-            if(register.get(field)===register.get('email')){
+            if(control.get(field)===control.get('email')){
               return "dirección electrónica invalido";
             } 
-            if(register.get(field)===register.get('cell_phone')){
+            if(control.get(field)===control.get('cell_phone')){
               return "teléfono móvil invalido";
             }
             else{
               return "la contraseña debe contener almenos una letra mayuscula,minuscula,un digito y un caracter especial";
             }
         }
-        if(register.get(field).errors.mustMatch){
+        if(control.get(field).errors.mustMatch){
             return "las contraseñas no coinciden";
         }
+        if(control.get(field).errors.CurrentPassword){
+            return "contraseña no coincide con la actual";
+        }
+        
     }
-    get_person_V(register:FormGroup,user_idRol:number):User{
+    get_person_V(register:FormGroup,role_id:number):User{
         var user_name=register.get('name').value;
         var user_last_name=register.get('last_name').value;
         var user_email=register.get('email').value;
         var user_cellphone=register.get('cell_phone').value;
-        var user_idRol=user_idRol;
+        var role_id=role_id;
         var user_password=register.get('password').value;
         var user_password_confirmation=register.get('password_confirmation').value;
         var user_status="inactive";
         let person=new User(user_name,user_last_name,user_email,user_cellphone,
-            user_idRol,user_password,user_password_confirmation,user_status);
+            role_id,user_password,user_password_confirmation,user_status);
 
         return person;
     }

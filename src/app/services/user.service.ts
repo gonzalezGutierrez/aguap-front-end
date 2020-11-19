@@ -62,6 +62,12 @@ export class UserService {
     return this.http.post<any>(this.url+"user/recoverAccount",user,{headers:headers});
   }
 
+  delete_user(token:string,id:number):Observable<any>{
+    const headers=new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization','Bearer '+token);
+    return this.http.delete<any>(this.url+"user/delete/"+id,{headers:headers});
+  }
+
   addNewEmail(user_id:any,token:string,email:string):Observable<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json')
     .set('Authorization', 'Bearer '+token);
@@ -94,7 +100,10 @@ export class UserService {
     return this.http.delete<any>(this.url+"ubication/"+ubication.id,{headers:headers});
   }
 
-
+  get_deliverers(token:string,role_id:number){
+    const headers=new HttpHeaders().set('Authorization','Bearer '+token);
+    return this.http.get<any>(this.url+"rol/"+role_id,{headers:headers});
+  }
 
   findEmail(email:any):Observable<any>{
     console.log("si estoy valiendo==", email)

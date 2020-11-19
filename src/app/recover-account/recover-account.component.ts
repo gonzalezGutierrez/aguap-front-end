@@ -7,6 +7,7 @@ import {UserMethods} from 'src/app/models/globalUserMethods';
 import * as CryptoJS from 'crypto-js';
 import {UserService} from 'src/app/services/user.service';
 import {Alert} from 'src/app/alerts/alert';
+import {Validation} from '../formValidations/validation';
 
 @Component({
   selector: 'app-recover-account',
@@ -20,6 +21,7 @@ export class RecoverAccountComponent implements OnInit {
   data:string='';
   Alert=new Alert();
   userMethods=new UserMethods(); 
+  validation=new Validation();
   profile=this.f.group({
     password:['',[Validators.required,Validators.pattern(regex.validate_password)]],
     confirmation_password:['',[Validators.required]]
@@ -44,31 +46,14 @@ export class RecoverAccountComponent implements OnInit {
   }
 
   isValidField(field:string):boolean{
-    var form=this.profile.get(field);
-    if((form.touched||form.dirty)&&form.invalid){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return this.validation.isValidField_V(this.profile,field);
   }
   getErrorMessage(field:string):string{
-    if(this.profile.get(field).hasError('required')){
-      return "campo requerido";
-    }
-    if(this.profile.get(field).errors.mustMatch){
-      return "las contraseñas deben coincidir";
-    }
-    if(this.profile.get(field).hasError('pattern')){
-      return "error contraseña erronea";
-    }
+    return this.validation.getErrorMessage_V(this.profile,field);
   }
 
   send_data():void{
-    if(this.profile.invalid){
-      console.log("error en la contraseña");
-    }
-    else{
+    if(this.profile.valid){
       const generate_key=this.userMethods.generateKey();
       const NewPassword=CryptoJS.AES.encrypt(this.profile.get('confirmation_password')
       .value.trim(),generate_key.trim()).toString();
@@ -84,6 +69,7 @@ export class RecoverAccountComponent implements OnInit {
         this.Alert.message_error('Oops...','','intentelo mas tarde');
       });
     }
+    
   }
 
 }

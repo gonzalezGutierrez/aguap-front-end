@@ -5,5 +5,5 @@ export interface Iuser{
     lastName:string,
     email:string,
     phone:string,
-    idRol:number,
+    role_id:number,
 }

@@ -13,7 +13,7 @@ import {Validation} from '../formValidations/validation';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @Input('user_id')  user_idRol:number=1;
+  @Input('user') role_id:number=1;
   status:boolean=true;
   hide=true;
   email_Value:string='';
@@ -47,17 +47,17 @@ export class RegisterComponent implements OnInit {
   sendingData():void{
     localStorage.removeItem('send_email');
     this.email_Value="";
-    var person=this.validation.get_person_V(this.registerForm,this.user_idRol);
+    var person=this.validation.get_person_V(this.registerForm,this.role_id);
     let alert=new Alert();
     console.log("persona ",person);
-    /*this.userService.registerUser(person)
+    this.userService.registerUser(person)
     .subscribe( response=>{
       console.log("respuesta ",response);
       alert.successfulRegistration();
       this.routeLogin();
     },error=>{
       console.log("error resepuesta",error);
-    });*/
+    });
   }
 
   routeLogin():void{

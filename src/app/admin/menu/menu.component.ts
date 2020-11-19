@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -7,16 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   add_deliver_man(){
-    console.log("add repartidor");
+    this.router.navigate(['admin/menu/delivererRegister'])
   }
   list_deliver_man(){
-    console.log("listar reprtidor");
+    this.router.navigate(['admin/menu/delivererList']);
   }
 
 }

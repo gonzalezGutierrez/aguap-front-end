@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder,Validators} from '@angular/forms';
 import {regex} from 'src/environments/environment.prod';
 import { Router} from '@angular/router';
-import {UserService} from 'src/app/services/user.service';
-import {Alert} from 'src/app/alerts/alert';
+import {UserService} from '../services/user.service';
+import {Alert} from '../alerts/alert';
+import {Validation} from '../formValidations/validation';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -12,7 +13,7 @@ import {Alert} from 'src/app/alerts/alert';
 export class ForgotPasswordComponent implements OnInit {
 
   Alert=new Alert();
-
+  validation =new Validation();
   profile=this.fb.group({
     email:['',[Validators.required,Validators.pattern(regex.validate_email)]],
   })
@@ -21,39 +22,29 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit() {}
 
-  getErrorMessage(field:string) {
-    if(this.profile.get(field).hasError('required')){
-      return 'campo requerido';
-    }
-    else{
-      return 'dirección electrónica invalida';
-    }
+  isValidField(field:string):boolean{
+    return this.validation.isValidField_V(this.profile,field);
   }
-
-  isValidField(field:string){
-    var control=this.profile.get(field);
-    if((control.touched || control.dirty)&&control.invalid){
-      return true;
-    }
-    else{
-      return false;
-    }
+  getErrorMessage(field:string):string {
+    return this.validation.getErrorMessage_V(this.profile,field);
   }
 
   submitForm():void{
-    const email=this.profile.get('email').value;
-    this.userService.accountRecoveryEmail(email)
-    .subscribe(response=>{
-      console.log("response ",response);
-      this.Alert.sucessful('email enviado',true);
-      this.profile.reset();
-      this.router.navigate(['/login']);
-    },error=>{
-      console.log("error ",error);
-      this.Alert.message_error('Oops...','','email no registrado en nuestro sistema');
-      this.profile.reset();
-    });
-    
+    if(this.profile.valid){
+      const email=this.profile.get('email').value;
+      this.userService.accountRecoveryEmail(email)
+      .subscribe(response=>{
+        console.log("response ",response);
+        this.Alert.sucessful('email enviado',true);
+        this.profile.reset();
+        this.router.navigate(['/login']);
+      },error=>{
+        console.log("error ",error);
+        this.Alert.message_error('Oops...','','email no registrado en nuestro sistema');
+        this.profile.reset();
+      });
+    }
+  
   }
   cancel():void{
     this.profile.reset();

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterDelivererComponent implements OnInit {
   hide=true;
-  user_idRol:number=2;
+  role_id:number=2;
   constructor() {
   }
   

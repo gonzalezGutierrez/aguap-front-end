@@ -15,15 +15,14 @@
                             formControlName="email"
                         >
                        <mat-icon matSuffix>mail_outline</mat-icon>
-                       <mat-error>
-                           {{getMessageError()}}
-                       </mat-error>
+                       <mat-error *ngIf="isValidField('email')">
+                         {{getErrorMessage("email")}}
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="item_son_1">
                     <button 
                         type="submit"
-                        [disabled]="emailForm.invalid"
                         class="button_item" mat-raised-button 
                         color="primary"> 
                         agregar dirección electrónica
@@ -32,7 +31,6 @@
             </form>
         </mat-card>
     </div>
-    <!--<div *ngFor="let email of emails; index as i;"></div>-->
     <div class="item_2"  *ngFor="let email of emails; index as i;" >
         <mat-card class="card" >
             <mat-card-header>

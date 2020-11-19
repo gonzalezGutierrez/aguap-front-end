@@ -34,8 +34,8 @@ const routes: Routes = [
   {path:'postRegister',component:PostRegisterComponent},
   {path:'accounts',component:MyAcountsComponent},
   {path:'admin/menu',component:MenuComponent},
-  {path:'admin/delivererList',component:DelivererListComponent},
-  {path:'admin/delivererRegister',component:RegisterDelivererComponent},
+  {path:'admin/menu/delivererRegister',component:RegisterDelivererComponent},
+  {path:'admin/menu/delivererList',component:DelivererListComponent},
   {path: '**',component:NotFoundComponent}, 
   
 ];
