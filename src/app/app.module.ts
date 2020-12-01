@@ -3,7 +3,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgxSpinnerModule } from "ngx-spinner";
+
+
 import{MaterialModule} from './material/material.module';
+
+
+
+
+
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -12,7 +22,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { RecoverAccountComponent } from './recover-account/recover-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UsersComponent } from './users/users.component';
-import { SocialLoginModule, AuthServiceConfig} from 'angularx-social-login'; 
+import { SocialLoginModule, AuthServiceConfig} from 'angularx-social-login';
 import {GoogleLoginProvider,FacebookLoginProvider} from 'angularx-social-login';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
@@ -22,6 +32,12 @@ import { RequestOrdesComponent } from './request-ordes/request-ordes.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { PostRegisterComponent } from './post-register/post-register.component';
 import {MatCardModule} from '@angular/material/card';
+
+
+import { ChooseUbicationComponent } from './orders-steps/choose-ubication/choose-ubication.component';
+import { ChooseRepartidorComponent } from './orders-steps/choose-repartidor/choose-repartidor.component';
+import { ChooseDateAndTimeComponent } from './orders-steps/choose-date-and-time/choose-date-and-time.component';
+import { ChooseServicesComponent } from './orders-steps/choose-services/choose-services.component';
 
 /*
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -62,8 +78,13 @@ export function provideConfig() {
     RequestOrdesComponent,
     OrderListComponent,
     PostRegisterComponent,
+    ChooseUbicationComponent,
+    ChooseRepartidorComponent,
+    ChooseDateAndTimeComponent,
+    ChooseServicesComponent,
 
-    
+
+
   ],
   imports: [
     BrowserModule,
@@ -75,8 +96,9 @@ export function provideConfig() {
     SocialLoginModule,
     HttpClientModule,
     MatCardModule,
+    NgxSpinnerModule
   ],
-  providers: [ 
+  providers: [
     {
     provide: AuthServiceConfig,
     useFactory: provideConfig,

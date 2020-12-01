@@ -9,7 +9,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material';
+import { MatPaginatorModule } from '@angular/material';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 
 const MaterialComponents=[
@@ -22,6 +24,7 @@ const MaterialComponents=[
   MatCheckboxModule,
   MatTableModule,
   MatPaginatorModule,
+  MatChipsModule
 ]
 
 @NgModule({
