@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UbicacionesService } from 'src/app/services/ubicaciones.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { OrdenService } from 'src/app/services/orden.service';
 
 @Component({
   selector: 'app-choose-ubication',
@@ -12,7 +13,8 @@ export class ChooseUbicationComponent implements OnInit {
     ubicaciones: any = [];
     constructor(
         private ubicacionService: UbicacionesService,
-        private spinner: NgxSpinnerService
+        private spinner: NgxSpinnerService,
+        private orderService: OrdenService
     ) { }
 
     ngOnInit() {
@@ -29,7 +31,11 @@ export class ChooseUbicationComponent implements OnInit {
     }
 
     onChooseUbication(idUbication) {
-        alert(idUbication);
+        this.spinner.show();
+        this.orderService.updateUbicacion(idUbication).subscribe((result:any) => {
+            this.spinner.hide();
+            alert(result.msg);
+        });
     }
 
 }

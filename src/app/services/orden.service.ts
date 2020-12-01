@@ -1,0 +1,41 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API_URL_LOCAL } from '../config/API';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class OrdenService {
+
+    constructor(private http: HttpClient) { }
+
+    addOrder() {
+        let idUsuario = 21;
+        let endpoint = API_URL_LOCAL + `/ordenes?idUsuario=${idUsuario}`;
+        return this.http.post(endpoint,{});
+    }
+
+    updateRepartidor(idRepartidor:number) {
+        let idUsuario = 21;
+        let endpoint  = API_URL_LOCAL + `/ordenes/update-repartidor?idUsuario=${idUsuario}`;
+        return this.http.patch(endpoint, {
+            idRepartidor:idRepartidor
+        });
+    }
+
+    updateUbicacion(idUbicacion:number) {
+        let idUsuario = 21;
+        let endpoint  = API_URL_LOCAL + `/ordenes/update-ubicacion?idUsuario=${idUsuario}`;
+        return this.http.patch(endpoint, {
+            idUbicacion:idUbicacion
+        });
+    }
+
+    updateFechaOrden(fecha: string) {
+        let idUsuario = 21;
+        let endpoint  = API_URL_LOCAL + `/ordenes/update-fecha?idUsuario=${idUsuario}`;
+        return this.http.patch(endpoint, {
+            fecha:fecha
+        });
+    }
+}

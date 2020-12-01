@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RepartidoresService } from 'src/app/services/repartidores.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { OrdenService } from 'src/app/services/orden.service';
 
 @Component({
     selector: 'app-choose-repartidor',
@@ -12,9 +13,11 @@ export class ChooseRepartidorComponent implements OnInit {
     repartidores: any = [];
     records_numbers: number = 0;
     like: string;
+    
     constructor(
         private repartidorService: RepartidoresService,
-        private spinner: NgxSpinnerService
+        private spinner: NgxSpinnerService,
+        private orderService:OrdenService
     ) { }
 
     ngOnInit() {
@@ -33,5 +36,14 @@ export class ChooseRepartidorComponent implements OnInit {
     onSearchRepartidor() {
         this.getRepartidores(this.like);
     }
+
+    onChooseRepartidor(idRepartidor) {
+        this.spinner.show();
+        this.orderService.updateRepartidor(idRepartidor).subscribe((result:any) => {
+            alert(result.msg);
+            this.spinner.hide();
+        });
+    }
+
 
 }
