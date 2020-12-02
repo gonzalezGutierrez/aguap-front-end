@@ -1,12 +1,14 @@
-
+<html>
 <app-toolbar></app-toolbar>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
 
-<div class="container"> 
-   
+<div class="container">
+
     <div class="item_1">
         <mat-card class="card_1" id="map" ></mat-card>
-    </div> 
-    
+    </div>
+
     <div class="item_2">
         <form [formGroup]="(formGroup)">
             <mat-card class="card_2">
@@ -29,23 +31,23 @@
                             <mat-label>quien recibe</mat-label>
                             <input type="text" matInput>
                         </mat-form-field>
-                    </div>   
+                    </div>
                 </div>
-               
+
                 <div class="item_2_son_2">
                     <div>
-                        <button class="buttons" color="primary" mat-raised-button>guardar direcion a favoritos</button> 
+                        <button class="buttons" color="primary" mat-raised-button>guardar direcion a favoritos</button>
                     </div>
                     <div>
-                        <button class="buttons" color="primary" mat-raised-button>generar pedido</button>  
+                        <button class="buttons" color="primary" mat-raised-button>generar pedido</button>
                     </div>
                 </div>
-            
-            </mat-card> 
+
+            </mat-card>
         </form>
     </div>
 </div>
 
-
+</html>
 
 

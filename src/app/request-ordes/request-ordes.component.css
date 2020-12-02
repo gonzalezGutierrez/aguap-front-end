@@ -1,3 +1,16 @@
+html {
+    background: url(../../assets/background.svg) no-repeat fixed center center #fff;
+     /**max-height: 100%;**/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+ }
 
 @media only screen and (max-width:812px){
     .container{
@@ -5,17 +18,15 @@
         height:100%;
         display:flex;
         flex-direction:column;
-        border:2px solid red;
     }
     .item_1{
         height:50%;
         display:flex;
         flex-direction:column;
-        border:2px solid yellow;
     }
     .card_1{
         height:100%;
-        border:2px solid black;
+        border:15px solid #C2E6F9;
     }
     .item_2{
         width:100%;
@@ -23,22 +34,22 @@
         margin-top:0.5rem;
         display:flex;
         flex-direction:column;
-        border:2px solid green; 
+        /*border:2px solid green;*/
     }
     .card_2{
-        border: 2px solid orange; 
+         border:15px solid #C2E6F9;
     }
     .item_2_son_1{
         display:flex;
         flex-direction:column;
         flex-wrap:wrap;
-        border:3px solid brown;
+        border:10px solid #fff;
     }
     mat-form-field{
         width:100%;
     }
     .item_2_son_2{
-        border:3px solid cyan;
+        /*border:3px solid #9ED16F;*/
         display:flex;
         flex-direction:row;
         flex-wrap:wrap;
@@ -54,40 +65,38 @@
         width:100%;
         height:100%;
         flex-direction:row;
-        border:3px solid red;
     }
     .item_1{
         width:50%;
         height:100%;
         display:flex;
         flex-direction:row;
-        border:3px solid yellow;
+        border:3px solid #C2E6F9;
     }
     .card_1{
         width:100%;
-        border:2px solid black;
+        border:15px solid #C2E6F9;
     }
     .item_2{
         width:50%;
         height:100%;
         flex-direction:row;
         flex-wrap:wrap;
-        border:2px solid red; 
     }
     .card_2{
-        border:3px solid blue;
+        border:15px solid #C2E6F9;
     }
     .item_2_son_1{
         display:flex;
         flex-direction:column;
         flex-wrap:wrap;
-        border:3px solid violet;
+        border:25px solid #fff;
     }
     mat-form-field{
         width:100%;
     }
     .item_2_son_2{
-        border: 3px solid turquoise;
+        /*border: 3px solid #9ED16F;*/
         display:flex;
         flex-direction:row;
         flex-wrap:wrap;
@@ -103,5 +112,13 @@
     border: 1px solid black;
     border-radius: 50%;
     background-color: #305bad;
+    background: url(../../assets/icon.png);
 }
-
+.marker {
+  background-image: url('../../assets/icon.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
