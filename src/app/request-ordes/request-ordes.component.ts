@@ -46,22 +46,29 @@ export class RequestOrdesComponent implements OnInit {
       this.getAddrees(e.lngLat.lng, e.lngLat.lat)
     });
   }
+
   Marcador(lng: number, lat: number){
     console.log(lng, lat)
     this.marker = new Mapboxgl.Marker({
-      draggable: true
+      draggable: true,
+      color: 'green'
       }).setLngLat([lng, lat]).addTo( this.map );
+/*
+    this.marker = new Mapboxgl.Marker({
+      color: 'blue'
+      }).setLngLat([-93.1075127,16.7534462]).addTo( this.map );
+    */
 
     this.marker.on('drag', () => {
       console.log(this.marker.getLngLat());
       });
-    console.log(this.marker)
+    console.log(this.marker);
   }
 
   getAddrees(lng: number, lat: number){
     console.log('geocoder ',lng, lat)
     this.usuarioService.getAddress(lng, lat).subscribe((data:any) => {
-      console.log(data.features[0].place_name)
+      console.log(data.features[0].place_name);
       this.formGroup.controls.address.setValue(data.features[0].place_name);
     })
   }
@@ -74,7 +81,7 @@ export class RequestOrdesComponent implements OnInit {
       fitBoundsOptions: {
         maxZoom:15
       },
-      trackUserLocation: false,
+      trackUserLocation: true,
       showUserLocation: false
       })
     this.map.addControl(geo)

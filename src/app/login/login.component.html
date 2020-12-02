@@ -1,8 +1,9 @@
-
+<html>
 <div class="head">
   <app-toolbar></app-toolbar>
 </div>
 
+<body>  
 <div class="container">
   <div class="item">
     <mat-card>
@@ -23,10 +24,10 @@
         
         <div class="container_links">
           <div class="item_links">
-            <p><a  [routerLink]="['/forgotPassword']" >olvido su contraseña ?</a></p>
+            <p><a  [routerLink]="['/forgotPassword']" > olvido su contraseña ?</a></p>
           </div>
           <div class="item_links">
-            <p ><a  [routerLink]="['/registerUser']" >crear una cuenta</a></p>
+            <p ><a  [routerLink]="['/registerUser']" > crear cuenta</a></p>
           </div>
         </div>
         
@@ -38,17 +39,17 @@
     <div class="container_social_medias">
       <mat-card>
         <div id="Google">
-          <button (click)="login_with_Google()" class="social_medias_buttons" mat-raised-button><i class="fab fa-google" id="Google"></i> Iniciar sesion con google</button>
+          <button (click)="login_with_Google()" class="social_medias_buttons" mat-raised-button><i class="fab fa-google" id="Google"></i> Iniciar sesión con Google</button>
         </div>
         <div id="Facebok">
-          <button (click)="login_with_Facebook()" class="social_medias_buttons" mat-raised-button><i class="fab fa-facebook" id="Facebook"></i> Iniciar sesion con Facebook</button>
+          <button (click)="login_with_Facebook()" class="social_medias_buttons" mat-raised-button><i class="fab fa-facebook" id="Facebook"></i> Iniciar sesión con Facebook</button>
         </div>
       </mat-card>
     </div>
-
+    
+  
   </div>
 </div>
-  
- 
-  
-  
+</body>
+
+</html>

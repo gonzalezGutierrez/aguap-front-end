@@ -1,3 +1,17 @@
+html {
+    background: url(../../assets/background.svg) no-repeat fixed center center #fff;
+     /**max-height: 100%;**/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+ }
+
 
 @media only screen and (max-width:812px) {
     .main_card{
@@ -5,7 +19,7 @@
         display:block;
     }
     mat-form-field{
-        width:100%;   
+        width:100%;
     }
     .button_enable_fields{
         width:49%;
@@ -14,13 +28,13 @@
     .button_update_data{
         width:49%;
     }
-   
+
 }
 
 
 @media only screen and (min-width:812px){
     .main_card{
-        margin-top:1rem; /* 5 × 16px = 80px */ 
+        margin-top:1rem; /* 5 × 16px = 80px */
         margin-left:37%;
         width:30%;
         display:block;

@@ -1,3 +1,427 @@
+/* gera*/
+
+html {
+    /**background: url(../../assets/background.svg) no-repeat fixed center center #fff;**/
+     /**max-height: 100%;**/
+     background-color: #fff;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+	padding: 60px 0;
+	width: 90%;
+	max-width: 1000px;
+	margin: auto;
+	overflow: hidden;
+}
+
+.title {
+	color: #1D509F;
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 60px;
+}
+
+/*HEADER*/
+
+header {
+	width:100%;
+	height: 600px;
+	 /* fallback for old browsers */
+	background: #1c92d2;
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: -webkit-linear-gradient(to right, #f2fcfe77, #1c92d271), url(../../assets/portada3.jpg);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: linear-gradient(to right, #f2fcfe79, #1c92d271), url(../../assets/portada3.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+}
+
+nav {
+	text-align: right;
+	padding: 30px 50px 0 0;
+}
+
+nav > a{
+	color:#fff;
+	font-weight: 300;
+	text-decoration:none;
+	margin-right: 10px;
+}
+
+nav > a:hover{
+	/*text-decoration:underline;*/
+	color: #9ED16F;
+	border-bottom: 3px solid;
+}
+
+header .texts-header {
+	display: flex;
+	height: 430px;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.texts-header h1 {
+	font-size: 50px;
+	color: #fff;
+}
+
+.texts-header h2 {
+	font-size: 30px;
+	font-weight: 300;
+	color: #fff;
+}
+.wave {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+/* About us */
+
+main .about-us {
+	padding: 30px 0 60px 0;
+}
+
+ .container-about-us {
+ 	display: flex;
+ 	justify-content: space-evenly;
+ }
+
+ .about-us .container-texts{
+ 	width: 58%
+ }
+
+ .container-texts h3 {
+ 	margin-bottom: 15px;
+ }
+
+.container-texts h3 span {
+	background: #9ED16F
+;
+	color: #fff;
+	border-radius: 50%;
+	display: inline-block;
+	text-align:center;
+	width: 35px;
+	height: 35px;
+	padding: 3px;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+	margin-right: 15px;
+}
+
+.container-texts p {
+	padding: 0px 0px 30px 15px;
+	font-weight: 300;
+	text-align: justify;
+}
+
+/* Gallery */
+.portafolio {
+	background: #f2f2f2;
+}
+
+.gallery-port {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+.imagen-port {
+	width: 28%;
+	margin-bottom: 10px;
+	overflow: hidden;
+	position: relative;
+	cursor: pointer;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+}
+
+.imagen-port > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.hover-gallery {
+	position: absolute;
+	width: 100%;
+	height:100%;
+	top: 0;
+	transform: scale(0);
+	background:#4141419c;
+	transition: transform .5s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.hover-gallery img {
+	width: 50px;
+}
+
+.hover-gallery p{
+	color: #fff;
+	font-size: 25px;
+}
+.imagen-port:hover .hover-gallery {
+	transform: scale(1);
+}
+
+
+/* Clients */
+
+.cards {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.cards .card {
+	background: #9ed16fdc;
+	display: flex;
+	width: 46%;
+	height: 200px;
+	align-items: center;
+	justify-content: space-evenly;
+	border-radius: 5px;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.6);
+	margin-left: 5px;
+}
+
+.cards .card img {
+	width: 90px;
+	height: 90px;
+	object-fit: cover;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	display: block;
+}
+
+.cards .card > .content-text-card {
+	width: 60%;
+	color: #fff;
+}
+.cards .card > .content-text-card p{
+	font-weight: 300;
+	padding-top: 5px;
+}
+
+/* Our team */
+
+.about-services {
+	background: #f2f2f2;
+	padding-bottom: 30px;
+}
+
+.service-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.service-ind {
+	width: 20%;
+	text-align: center;
+}
+.service-ind img {
+	width: 90%;
+}
+
+.service-ind h3 {
+	margin: 15px 0;
+}
+.service-ind p {
+	font-weight: 300;
+	text-align: justify;
+}
+
+/* Footer */
+
+footer {
+	background: #414141;
+	padding: 60px 0 30px 0;
+	margin: auto;
+	overflow: hidden;
+}
+
+.container-footer {
+	display: flex;
+	width: 90%;
+	justify-content: space-evenly;
+	margin:auto;
+	padding-bottom: 50px;
+	border-bottom: 1px solid #ccc;
+}
+
+.content-foo {
+	text-align: center;
+}
+
+.content-foo h4 {
+	color: #fff;
+	border-bottom: 3px solid #9ED16F;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+.content-foo p {
+	color: #ccc;
+}
+
+.final-title {
+	text-align: center;
+	font-size: 24px;
+	margin: 20px 0 0 0;
+	color: #9e9797;
+}
+
+@media screen and (max-width: 900px){
+	header{
+		background-position: center;
+	}
+	.container-about-us{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.about-us .container-texts {
+		width: 90%;
+		margin-top: 10px;
+	}
+	.imagen-about-us {
+		width: 90%;
+		margin-bottom: 20px;
+	}
+	/* Gallery */
+
+	.imagen-port {
+		width: 44%;
+	}
+
+	/* Clients */
+	.cards {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.cards .card {
+		width: 90%;
+		margin-bottom: 30px
+	}
+	/*
+	.cards .card:first-child {
+		margin-bottom: 30px;
+	}*/
+
+
+	/* Service Container*/
+	.service-container {
+		justify-content: center;
+		flex-direction: column;
+	}
+	.service-ind {
+		width: 100%;
+		text-align: center;
+	}
+	.service-ind:nth-child(1), .service-ind:nth-child(2){
+		margin-bottom: 60px;
+	}
+	.service-ind img {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width:500px) {
+	nav {
+		text-align: center;
+		padding: 30px 0 0 0;
+	}
+	nav > a {
+		margin-right: 5px;
+	}
+
+	.texts-header h1 {
+		font-size: 35px;
+	}
+	.texts-header h2 {
+		font-size: 20px;
+	}
+
+	/* About us*/
+	.imagen-about-us{
+		margin-bottom: 60px;
+		width: 99%;
+	}
+	.about-us .container-texts {
+		width: 95%;
+	}
+
+	/* Gallery */
+
+	.imagen-port{
+		width: 95%;
+	}
+
+	.hover-gallery p{
+		color: #fff;
+		font-size: 10px;
+	}
+
+
+	/* Clients */
+
+	.cards .card {
+		height: 450px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.cards .card img {
+		width: 90px;
+		height: 90px;
+	}
+
+	/* Footer */
+	.container-footer {
+		flex-direction: column;
+		border: none;
+	}
+	.content-foo {
+		margin-bottom: 20px;
+		text-align: center;
+	}
+	.content-foo h4 {
+		border:none;
+	}
+	.content-foo p {
+		color: #ccc;
+		border-bottom: 2px solid #f2f2f2;
+		padding-bottom: 20px;
+	}
+
+	.final-title {
+		font-size:15px;
+	}
+}
+
 /*PHONE*/
 @media only screen and (max-width:812px){
     .card_main{
