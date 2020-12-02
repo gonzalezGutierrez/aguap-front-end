@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepartidoresService } from 'src/app/services/repartidores.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { OrdenService } from 'src/app/services/orden.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-choose-repartidor',
@@ -13,11 +14,12 @@ export class ChooseRepartidorComponent implements OnInit {
     repartidores: any = [];
     records_numbers: number = 0;
     like: string;
-    
+
     constructor(
         private repartidorService: RepartidoresService,
         private spinner: NgxSpinnerService,
-        private orderService:OrdenService
+        private orderService: OrdenService,
+        private router:Router
     ) { }
 
     ngOnInit() {
@@ -42,6 +44,7 @@ export class ChooseRepartidorComponent implements OnInit {
         this.orderService.updateRepartidor(idRepartidor).subscribe((result:any) => {
             alert(result.msg);
             this.spinner.hide();
+            this.router.navigate(['/order-steps/fecha-hora']);
         });
     }
 

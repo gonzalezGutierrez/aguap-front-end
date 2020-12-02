@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UbicacionesService } from 'src/app/services/ubicaciones.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { OrdenService } from 'src/app/services/orden.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-choose-ubication',
@@ -14,7 +15,8 @@ export class ChooseUbicationComponent implements OnInit {
     constructor(
         private ubicacionService: UbicacionesService,
         private spinner: NgxSpinnerService,
-        private orderService: OrdenService
+        private orderService: OrdenService,
+        private router:Router
     ) { }
 
     ngOnInit() {
@@ -35,6 +37,7 @@ export class ChooseUbicationComponent implements OnInit {
         this.orderService.updateUbicacion(idUbication).subscribe((result:any) => {
             this.spinner.hide();
             alert(result.msg);
+            this.router.navigate(['/order-steps/repartidores']);
         });
     }
 

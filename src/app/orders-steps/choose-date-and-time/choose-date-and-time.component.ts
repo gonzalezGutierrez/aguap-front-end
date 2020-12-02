@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdenService } from 'src/app/services/orden.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,8 +15,8 @@ export class ChooseDateAndTimeComponent implements OnInit {
 
     constructor(
         private orderService: OrdenService,
-        private spinner: NgxSpinnerService
-
+        private spinner: NgxSpinnerService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -26,6 +27,7 @@ export class ChooseDateAndTimeComponent implements OnInit {
         this.spinner.show();
         this.orderService.updateFechaOrden(this.time).subscribe((result) => {
             this.spinner.hide();
+            this.router.navigate(['/order-steps/servicios']);
         });
     }
 
