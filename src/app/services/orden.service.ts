@@ -9,14 +9,20 @@ export class OrdenService {
 
     constructor(private http: HttpClient) { }
 
+    getOrder() {
+        let idUsuario = 11;
+        let endpoint = API_URL_LOCAL + `/orden?idUsuario=${idUsuario}`;
+        return this.http.get(endpoint);
+    }
+
     addOrder() {
-        let idUsuario = 21;
+        let idUsuario = 11;
         let endpoint = API_URL_LOCAL + `/ordenes?idUsuario=${idUsuario}`;
         return this.http.post(endpoint,{});
     }
 
     updateRepartidor(idRepartidor:number) {
-        let idUsuario = 21;
+        let idUsuario = 11;
         let endpoint  = API_URL_LOCAL + `/ordenes/update-repartidor?idUsuario=${idUsuario}`;
         return this.http.patch(endpoint, {
             idRepartidor:idRepartidor
@@ -24,7 +30,7 @@ export class OrdenService {
     }
 
     updateUbicacion(idUbicacion:number) {
-        let idUsuario = 21;
+        let idUsuario = 11;
         let endpoint  = API_URL_LOCAL + `/ordenes/update-ubicacion?idUsuario=${idUsuario}`;
         return this.http.patch(endpoint, {
             idUbicacion:idUbicacion
@@ -32,10 +38,21 @@ export class OrdenService {
     }
 
     updateFechaOrden(fecha: string) {
-        let idUsuario = 21;
+        let idUsuario = 11;
         let endpoint  = API_URL_LOCAL + `/ordenes/update-fecha?idUsuario=${idUsuario}`;
         return this.http.patch(endpoint, {
             fecha:fecha
+        });
+    }
+
+    addServicio(cantidad:number,idServicio:number) {
+        let idUsuario = 11;
+        let endpoint = API_URL_LOCAL + `/orden/add-servicio`;
+
+        return this.http.post(endpoint, {
+            idUsuario: idUsuario,
+            cantidad: cantidad,
+            idServicio: idServicio
         });
     }
 }

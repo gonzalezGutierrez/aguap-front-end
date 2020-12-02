@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable  } from '@angular/core';
-import {environment} from 'src/environments/environment.prod'; 
+import {environment} from 'src/environments/environment.prod';
 import * as Mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { UsuariosService} from 'src/app/usuarios.service';
@@ -22,17 +22,17 @@ export class RequestOrdesComponent implements OnInit {
     ])
 
 });
-  constructor(private usuarioService:UsuariosService) { 
-    
+  constructor(private usuarioService:UsuariosService) {
+
   }
 
   ngOnInit() {
     (Mapboxgl as any).accessToken =environment.mapBoxkey
     this.map = new  Mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-93.1075127,16.7534462], // starting position LNG LT
-    zoom:15.42// starting zoom
+      container: 'map', // container id
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-93.1075127,16.7534462], // starting position LNG LT
+      zoom:15.42// starting zoom
     });
     this.UbicacionCercana()
     this.map.addControl(new Mapboxgl.FullscreenControl());

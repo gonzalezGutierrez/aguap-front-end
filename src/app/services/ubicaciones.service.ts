@@ -10,7 +10,7 @@ export class UbicacionesService {
     constructor(private http: HttpClient) { }
 
     getUbicaciones() {
-        let endpoint = API_URL_LOCAL + '/ubicaciones?idUsuario=21';
+        let endpoint = API_URL_LOCAL + '/ubicaciones?idUsuario=11';
         return this.http.get(endpoint);
     }
 }

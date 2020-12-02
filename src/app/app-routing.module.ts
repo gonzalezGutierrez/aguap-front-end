@@ -20,6 +20,10 @@ import { ChooseDateAndTimeComponent } from './orders-steps/choose-date-and-time/
 import { ChooseServicesComponent } from './orders-steps/choose-services/choose-services.component';
 
 
+//ORDERS ROUTES
+import { OrderCurrentComponent } from './orders/order-current/order-current.component';
+
+
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'registerUser', component: RegisterComponent },
@@ -44,6 +48,9 @@ const routes: Routes = [
     },
     {
         path:'order-steps/servicios',component:ChooseServicesComponent
+    },
+    {
+        path:'orders/order-current',component:OrderCurrentComponent
     },
     { path: '**', component: NotFoundComponent },
 

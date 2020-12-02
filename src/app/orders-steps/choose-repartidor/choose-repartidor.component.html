@@ -28,6 +28,20 @@
             </mat-card>
         </div>
     </div>
+
     <ngx-spinner bdColor="rgba(63,81,181,0.9)"></ngx-spinner>
 
 </html>
+
+</div>
+<div class="container mt-3">
+    <mat-card (click)="onChooseRepartidor(repartidor.id)" class="mb-2 d-flex text-center pointer" *ngFor="let repartidor of repartidores">
+        <img style="width:100px; height: 100px; border-radius: 50%; margin:auto;" src="https://www.flaticon.es/svg/static/icons/svg/3827/3827365.svg" alt=""> <br>
+        <mat-icon matSuffix>person</mat-icon>
+        {{repartidor.attributes.nombre}} <br>
+        <mat-icon matSuffix>phone</mat-icon>
+        {{repartidor.attributes.telefono}}
+    </mat-card>
+</div>
+<ngx-spinner bdColor="rgba(63,81,181,0.9)"></ngx-spinner>
+

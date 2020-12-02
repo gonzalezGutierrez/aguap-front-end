@@ -15,5 +15,16 @@
             </mat-card>
         </div>
     </div>
+
     <ngx-spinner bdColor="rgba(63,81,181,0.9)"></ngx-spinner>
 </html>
+
+</div>
+<div class="container mt-3">
+    <mat-card (click)="onChooseUbication(ubicacion.idUbication)" class="mb-2 d-flex pointer" *ngFor="let ubicacion of ubicaciones">
+        <mat-icon matSuffix>place</mat-icon>
+        {{ubicacion.attributes.address}}
+    </mat-card>
+</div>
+<ngx-spinner bdColor="rgba(63,81,181,0.9)"></ngx-spinner>
+
