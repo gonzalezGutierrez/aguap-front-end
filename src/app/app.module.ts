@@ -38,6 +38,7 @@ import { ChooseUbicationComponent } from './orders-steps/choose-ubication/choose
 import { ChooseRepartidorComponent } from './orders-steps/choose-repartidor/choose-repartidor.component';
 import { ChooseDateAndTimeComponent } from './orders-steps/choose-date-and-time/choose-date-and-time.component';
 import { ChooseServicesComponent } from './orders-steps/choose-services/choose-services.component';
+import { OrderCurrentComponent } from './orders/order-current/order-current.component';
 
 /*
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -82,6 +83,7 @@ export function provideConfig() {
     ChooseRepartidorComponent,
     ChooseDateAndTimeComponent,
     ChooseServicesComponent,
+    OrderCurrentComponent,
 
 
 
