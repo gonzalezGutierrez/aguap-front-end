@@ -6,11 +6,10 @@ import { API_URL_LOCAL } from '../config/API';
   providedIn: 'root'
 })
 export class UbicacionesService {
+  constructor(private http: HttpClient) { }
 
-    constructor(private http: HttpClient) { }
-
-    getUbicaciones() {
-        let endpoint = API_URL_LOCAL + '/ubicaciones?idUsuario=11';
-        return this.http.get(endpoint);
-    }
+  getUbicaciones() {
+    let endpoint = API_URL_LOCAL + '/ubicaciones?idUsuario=11';
+    return this.http.get(endpoint);
+  }
 }

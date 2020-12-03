@@ -7,8 +7,6 @@
 	</div>
 
 	<div class="container p-2 mt-2">
-
-
 	    <mat-card class="mb-2 d-flex text-center pointer" *ngFor="let servicio of servicios">
 	        <img style="width:100px; height: 100px; margin:auto;" src="https://www.flaticon.es/svg/static/icons/svg/1777/1777282.svg" alt=""> <br>
 	        {{servicio.attributes.servicio}} <br>
@@ -25,10 +23,7 @@
             <mat-icon matSuffix>check</mat-icon>
         </mat-form-field>
         <button (click)="onAdd(servicio.id)"  mat-raised-button color="primary">Agregar</button>
-
-    </mat-card>
-</div>
-
-
+	</mat-card>
+	
 	<ngx-spinner bdColor="rgb(63,81,181)"></ngx-spinner>
 </html>
