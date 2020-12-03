@@ -17,6 +17,8 @@ import {MyAcountsComponent} from './my-acounts/my-acounts.component';
 import {MenuComponent} from './admin/menu/menu.component';
 import {DelivererListComponent}from './admin/deliverer-list/deliverer-list.component';
 import {RegisterDelivererComponent} from './admin/register-deliverer/register-deliverer.component'
+import{DelivererMenuComponent} from '../app/deliverer/deliverer-menu/deliverer-menu.component'; 
+import {DeliveriesComponent} from '../app/deliverer/deliveries/deliveries.component'
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -36,6 +38,8 @@ const routes: Routes = [
   {path:'admin/menu',component:MenuComponent},
   {path:'admin/menu/delivererRegister',component:RegisterDelivererComponent},
   {path:'admin/menu/delivererList',component:DelivererListComponent},
+  {path:'deliverer/menu',component:DelivererMenuComponent},
+  {path:'deliverer/deliveries',component:DeliveriesComponent},
   {path: '**',component:NotFoundComponent}, 
   
 ];

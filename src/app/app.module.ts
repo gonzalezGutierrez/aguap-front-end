@@ -27,9 +27,8 @@ import { MyAcountsComponent } from './my-acounts/my-acounts.component';
 import { MenuComponent } from './admin/menu/menu.component';
 import { DelivererListComponent } from './admin/deliverer-list/deliverer-list.component';
 import { RegisterDelivererComponent } from './admin/register-deliverer/register-deliverer.component';
-
-
-
+import { DelivererMenuComponent } from './deliverer/deliverer-menu/deliverer-menu.component';
+import { DeliveriesComponent } from './deliverer/deliveries/deliveries.component';
 
 
 const config = new AuthServiceConfig([
@@ -70,7 +69,8 @@ export function provideConfig() {
     MenuComponent,
     DelivererListComponent,
     RegisterDelivererComponent,
-  
+    DelivererMenuComponent,
+    DeliveriesComponent,
   ],
   imports: [
     BrowserModule,
