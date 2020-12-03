@@ -33,18 +33,19 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { PostRegisterComponent } from './post-register/post-register.component';
 import {MatCardModule} from '@angular/material/card';
 
-
 import { ChooseUbicationComponent } from './orders-steps/choose-ubication/choose-ubication.component';
 import { ChooseRepartidorComponent } from './orders-steps/choose-repartidor/choose-repartidor.component';
 import { ChooseDateAndTimeComponent } from './orders-steps/choose-date-and-time/choose-date-and-time.component';
 import { ChooseServicesComponent } from './orders-steps/choose-services/choose-services.component';
 import { OrderCurrentComponent } from './orders/order-current/order-current.component';
 
-/*
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SessionService } from './session.service';
-import { HttpReqInterceptor } from './http-req-interceptor';*/
-
+import { AccountActivationComponent } from './account-activation/account-activation.component';
+import { MyAcountsComponent } from './my-acounts/my-acounts.component';
+import { MenuComponent } from './admin/menu/menu.component';
+import { DelivererListComponent } from './admin/deliverer-list/deliverer-list.component';
+import { RegisterDelivererComponent } from './admin/register-deliverer/register-deliverer.component';
+import { DelivererMenuComponent } from './deliverer/deliverer-menu/deliverer-menu.component';
+import { DeliveriesComponent } from './deliverer/deliveries/deliveries.component';
 
 const config = new AuthServiceConfig([
   {
@@ -84,9 +85,13 @@ export function provideConfig() {
     ChooseDateAndTimeComponent,
     ChooseServicesComponent,
     OrderCurrentComponent,
-
-
-
+    AccountActivationComponent,
+    MyAcountsComponent,
+    MenuComponent,
+    DelivererListComponent,
+    RegisterDelivererComponent,
+    DelivererMenuComponent,
+    DeliveriesComponent,
   ],
   imports: [
     BrowserModule,

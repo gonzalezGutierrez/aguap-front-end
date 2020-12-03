@@ -1,29 +1,46 @@
 
-<app-toolbar></app-toolbar>
+<div class="header">
+    <app-toolbar></app-toolbar>
+</div>
+
 
 <div class="container">
-
     <div class="item" *ngFor="let ubication of ubications; index as i">
         <mat-card>
             <mat-card-header>
                 <div mat-card-avatar >
                     <i class="fas fa-home icon_home"></i>
                 </div>
-                <mat-card-title>alexis</mat-card-title>
-                <mat-card-subtitle>direccion</mat-card-subtitle>
+
+                <mat-card-title>{{nombre}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
+                <mat-card-subtitle>direccion</mat-card-subtitle>
                 <p>
                   {{ubication.address}}
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button ><i class="far fa-edit icon_edit"></i></button>
-                <button mat-raised-button (click)="delete_ubication(ubication)" ><i class="far fa-trash-alt icon_delete"></i></button>
-                <button mat-button><i class="fas fa-star icon_start"></i></button>    
+
+                <div class="father">
+                    <div class="son">
+                        <button 
+                            mat-raised-button 
+                            color="warn"
+                            (click)="delete_ubication(ubication)" >
+                            <i class="far fa-trash-alt icon_delete"></i>
+                        </button>
+                    </div>
+                    <div class="son">
+                        <button 
+                            mat-raised-button
+                            color="primary"
+                            >
+                            <i class="fas fa-star icon_start"></i>
+                        </button> 
+                    </div>
+                </div>
             </mat-card-actions> 
         </mat-card>
-    </div>
-    
-
+    </div>      
 </div>

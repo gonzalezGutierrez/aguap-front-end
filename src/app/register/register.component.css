@@ -60,6 +60,7 @@ html {
         display: flex;
         flex-direction:column;
         justify-content:flex-start;
+
     }
     .item_buttons{
         width:100%;

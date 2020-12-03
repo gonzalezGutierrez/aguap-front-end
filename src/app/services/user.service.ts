@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators'
+import { Observable} from 'rxjs';
 import {User} from 'src/app/models/user';
 import {Iuser} from 'src/app/models/InterfaceUser'
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +17,92 @@ export class UserService {
   }
 
   registerUser(user:User){
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type','application/json');
     return this.http.post(this.url +"register",user, {headers:headers});
+  }
+  
+  userAccountActivation(token:string,id:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
+    return  this.http.get<any>(this.url+"user/activate/"+id,{headers:headers});
   }
 
   userById(id:number,token:string):Observable<Iuser>{
-    const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
     return this.http.get<Iuser>(this.url+"user/"+id,{headers:headers});
+  }
+
+  usersCurrentpassword(token:string,id:Number):Observable<any>{
+    const headers=new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
+    return this.http.get<any>(this.url+"user/verificationPassword/"+id,{headers:headers});
+  }
+
+  updateUser(token:string,user:User,id:Number):Observable<Iuser>{
+    const headers=new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization','Bearer '+token);
+    return this.http.put<Iuser>(this.url+"user/updateUser/"+id,user,{headers:headers});
+  }
+
+  changeUserPassword(token:string,newPassword:string,id:number,key:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
+    var user={
+      'newPassword':CryptoJS.AES.decrypt(newPassword.trim(),key.trim()).toString(CryptoJS.enc.Utf8),
+    }
+    return this.http.put<any>(this.url+"user/updatePassword/"+id,user,{headers:headers});
+  }
+  
+  accountRecoveryEmail(email:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    const user={
+      'email':email,
+    }
+    return this.http.post<any>(this.url+"user/recoverAccount",user,{headers:headers});
+  }
+
+  delete_user(token:string,id:number):Observable<any>{
+    const headers=new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization','Bearer '+token);
+    return this.http.delete<any>(this.url+"user/delete/"+id,{headers:headers});
+  }
+
+  addNewEmail(user_id:any,token:string,email:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
+    var user={
+      'email':email,
+      'user_id':user_id,
+    }
+    return this.http.post<any>(this.url+"account",user,{headers:headers});
+  }
+
+  get_emails(user_id:number,token:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
+    return this.http.get<any>(this.url+"account/"+user_id,{headers:headers});
+  }
+
+  delete_email(id:number,token:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Authorization', 'Bearer '+token);
+    return this.http.delete<any>(this.url+"account/"+id,{headers:headers});
+  }
+
+  get_ubications(id:number,token:string):Observable<any>{
+    const headers=new HttpHeaders().set('Authorization','Bearer '+token);
+    return this.http.get<any>(this.url+"ubication/"+id,{headers:headers});
+  }
+
+  delete_ubication(ubication:any,token:string):Observable<any>{
+    const headers=new HttpHeaders().set('Authorization','Bearer '+token);
+    return this.http.delete<any>(this.url+"ubication/"+ubication.id,{headers:headers});
+  }
+
+  get_deliverers(token:string,role_id:number){
+    const headers=new HttpHeaders().set('Authorization','Bearer '+token);
+    return this.http.get<any>(this.url+"rol/"+role_id,{headers:headers});
   }
 
   findEmail(email:any):Observable<any>{
@@ -32,21 +111,9 @@ export class UserService {
     return this.http.get<any>(this.url+"user/email?email="+email);
   }
 
-  updateUserById(id:number,token:string,user:User):Observable<Iuser>{
-    const headers=new HttpHeaders().set('Authorization','Bearer '+token);
-    return this.http.put<Iuser>(this.url+"user/"+id,user,{headers:headers});
-  }
+  
 
-  get_ubications(id:number,token:string):Observable<any>{
-    console.log("estoy en el servicio de ubicaciones xd xd ");
-    const headers=new HttpHeaders().set('Authorization','Bearer '+token);
-    return this.http.get<any>(this.url+"ubication",{headers:headers});
-  }
-
-  delete_ubication(ubication:any,token:string):Observable<any>{
-    const headers=new HttpHeaders().set('Authorization','Bearer '+token);
-    return this.http.delete<any>(this.url+"ubication/"+ubication.id,{headers:headers});
-  }
+  
 
 
 
