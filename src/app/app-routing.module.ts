@@ -41,7 +41,6 @@ const routes: Routes = [
   {path:'deliverer/menu',component:DelivererMenuComponent},
   {path:'deliverer/deliveries',component:DeliveriesComponent},
   {path: '**',component:NotFoundComponent}, 
-  
 ];
 
 
