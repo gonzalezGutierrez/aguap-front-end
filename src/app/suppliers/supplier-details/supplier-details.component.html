@@ -1,0 +1,21 @@
+<h2>Detalles del proveedor</h2> 
+
+<hr/>
+<div *ngIf="supplier">
+  <div>
+    <label><b>Proveedor </b></label> {{supplier.nombre}}
+  </div>
+  <div>
+    <label><b>Correo: </b></label> {{supplier.correo}}
+  </div>
+  <div>
+    <label><b>Telefono: </b></label> {{supplier.telefono}}
+  </div>
+  <div>
+    <label><b>Dirección: </b></label> {{supplier.direccion}}
+  </div>  
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Regresar a la lista de proveedores</button><br>
