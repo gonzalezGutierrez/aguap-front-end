@@ -12,6 +12,9 @@
                 <div class="items">
                     <mat-card-subtitle>informacion personal</mat-card-subtitle>
                 </div>
+                <div class="items">
+                    <i class="far fa-edit icon" (click)="profile_edit()"></i>
+                </div>
             </div>
             <form [formGroup]="profile" (ngSubmit)="change_data()">
                 <mat-form-field appearance="fill">
