@@ -19,5 +19,10 @@ export class MenuComponent implements OnInit {
   list_deliver_man(){
     this.router.navigate(['admin/menu/delivererList']);
   }
-
+  proveedores(){
+    this.router.navigate(['/admin/menu/suppliersList']);
+  }
+  insumos(){
+    this.router.navigate(['/admin/menu/suppliesList_']);
+  }
 }

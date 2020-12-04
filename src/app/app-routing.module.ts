@@ -28,6 +28,14 @@ import { ChooseServicesComponent } from './orders-steps/choose-services/choose-s
 
 //ORDERS ROUTES
 import { OrderCurrentComponent } from './orders/order-current/order-current.component';
+import {SupplierListComponent} from 'src/app/admin/suppliers/supplier-list/supplier-list.component';
+import {CreateSupplierComponent} from 'src/app/admin/suppliers/create-supplier/create-supplier.component';
+import {UpdateSupplierComponent} from 'src/app/admin/suppliers/update-supplier/update-supplier.component';
+
+import {SupplieListComponent} from 'src/app/admin/supplies/supplie-list/supplie-list.component';
+import {CreateSupplieComponent} from 'src/app/admin/supplies/create-supplie/create-supplie.component';
+import {UpdateSupplieComponent} from 'src/app/admin/supplies/update-supplie/update-supplie.component';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -54,9 +62,18 @@ const routes: Routes = [
   {path:'order-steps/fecha-hora',component:ChooseDateAndTimeComponent},
   {path:'order-steps/servicios',component:ChooseServicesComponent},
   {path:'orders/order-current',component:OrderCurrentComponent},
-  {path: '**', component: NotFoundComponent },
+  
  
 
+  {path: 'postRegister',component:PostRegisterComponent},
+  {path: 'admin/menu/suppliersList',component:SupplierListComponent},
+  {path: 'admin/menu/addSupplier', component:CreateSupplierComponent},
+  {path: 'admin/menu/updateSupplier/:id', component:UpdateSupplierComponent},
+
+  {path: 'admin/menu/suppliesList_',component:SupplieListComponent},
+  {path: 'admin/menu/addSupplie_', component:CreateSupplieComponent},
+  {path: 'admin/menu/updateSupplie_/:id', component:UpdateSupplieComponent},
+  {path: '**',component:NotFoundComponent}, 
 ];
 
 

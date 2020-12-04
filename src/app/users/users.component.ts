@@ -39,6 +39,12 @@ export class UsersComponent implements OnInit {
   coupon():void{
     console.log("estoy en solicitando cupon")
   }
+  proveedores(){
+    this.router.navigate(['/suppliersList'])
+  }
 
+  insumos(){
+    this.router.navigate(['/suppliesList_'])
+  }
 
 }

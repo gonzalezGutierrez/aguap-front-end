@@ -32,6 +32,13 @@ import { RequestOrdesComponent } from './request-ordes/request-ordes.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { PostRegisterComponent } from './post-register/post-register.component';
 import {MatCardModule} from '@angular/material/card';
+import { CreateSupplieComponent } from 'src/app/admin/supplies/create-supplie/create-supplie.component';
+import { SupplieListComponent } from 'src/app/admin/supplies/supplie-list/supplie-list.component';
+import { CreateSupplierComponent } from 'src/app/admin/suppliers/create-supplier/create-supplier.component';
+import { SupplierListComponent } from 'src/app/admin/suppliers/supplier-list/supplier-list.component';
+import { UpdateSupplierComponent } from 'src/app/admin/suppliers/update-supplier/update-supplier.component';
+import { UpdateSupplieComponent } from 'src/app/admin/supplies/update-supplie/update-supplie.component';
+
 
 import { ChooseUbicationComponent } from './orders-steps/choose-ubication/choose-ubication.component';
 import { ChooseRepartidorComponent } from './orders-steps/choose-repartidor/choose-repartidor.component';
@@ -92,6 +99,15 @@ export function provideConfig() {
     RegisterDelivererComponent,
     DelivererMenuComponent,
     DeliveriesComponent,
+    CreateSupplieComponent,
+    SupplieListComponent,
+    CreateSupplierComponent,
+    SupplierListComponent,
+    UpdateSupplierComponent,
+    UpdateSupplieComponent,
+    
+
+    
   ],
   imports: [
     BrowserModule,

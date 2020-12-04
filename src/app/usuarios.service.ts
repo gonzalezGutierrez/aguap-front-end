@@ -10,6 +10,7 @@ import {environment} from 'src/environments/environment';
 export class UsuariosService {
 
   public email;
+  public email_;
   public firstName;
   public lastName;
   constructor(private http: HttpClient) { }
@@ -28,5 +29,7 @@ export class UsuariosService {
     this.firstName = firstName;
     this.lastName = lastName;
   }
-
+  Email(email_){
+    this.email_ = email_;
+  }
 }
