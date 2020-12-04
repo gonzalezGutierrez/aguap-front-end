@@ -22,6 +22,15 @@ import { RequestOrdesComponent } from './request-ordes/request-ordes.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { PostRegisterComponent } from './post-register/post-register.component';
 import {MatCardModule} from '@angular/material/card';
+import { CreateSupplieComponent } from './supplies/create-supplie/create-supplie.component';
+import { SupplieDetailsComponent } from './supplies/supplie-details/supplie-details.component';
+import { SupplieListComponent } from './supplies/supplie-list/supplie-list.component';
+import { CreateSupplierComponent } from './suppliers/create-supplier/create-supplier.component';
+import { SupplierDetailsComponent } from './suppliers/supplier-details/supplier-details.component';
+import { SupplierListComponent } from './suppliers/supplier-list/supplier-list.component';
+import { UpdateSupplierComponent } from './suppliers/update-supplier/update-supplier.component';
+import { UpdateSupplieComponent } from './supplies/update-supplie/update-supplie.component';
+
 
 /*
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -62,6 +71,15 @@ export function provideConfig() {
     RequestOrdesComponent,
     OrderListComponent,
     PostRegisterComponent,
+    CreateSupplieComponent,
+    SupplieDetailsComponent,
+    SupplieListComponent,
+    CreateSupplierComponent,
+    SupplierDetailsComponent,
+    SupplierListComponent,
+    UpdateSupplierComponent,
+    UpdateSupplieComponent,
+    
 
     
   ],

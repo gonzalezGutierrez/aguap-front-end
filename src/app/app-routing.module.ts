@@ -11,7 +11,18 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import {MyUbicationsComponent} from './my-ubications/my-ubications.component';
 import {RequestOrdesComponent} from './request-ordes/request-ordes.component';
 import {OrderListComponent} from './order-list/order-list.component';
-import {PostRegisterComponent} from './post-register/post-register.component'
+import {PostRegisterComponent} from './post-register/post-register.component';
+import {SupplierListComponent} from './suppliers/supplier-list/supplier-list.component';
+import {CreateSupplierComponent} from './suppliers/create-supplier/create-supplier.component';
+import {UpdateSupplierComponent} from './suppliers/update-supplier/update-supplier.component';
+import {SupplierDetailsComponent} from './suppliers/supplier-details/supplier-details.component';
+
+import {SupplieListComponent} from './supplies/supplie-list/supplie-list.component';
+import {CreateSupplieComponent} from './supplies/create-supplie/create-supplie.component';
+import {UpdateSupplieComponent} from './supplies/update-supplie/update-supplie.component';
+import {SupplieDetailsComponent} from './supplies/supplie-details/supplie-details.component';
+import { from } from 'rxjs';
+
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'registerUser',component:RegisterComponent},
@@ -25,6 +36,15 @@ const routes: Routes = [
   {path:'orderList',component:OrderListComponent},
   {path:'menubar',component:MenuBarComponent},
   {path: 'postRegister',component:PostRegisterComponent},
+  {path: 'suppliersList',component:SupplierListComponent},
+  {path: 'addSupplier', component:CreateSupplierComponent},
+  {path: 'updateSupplier/:id', component:UpdateSupplierComponent},
+  {path: 'detailSupplier/:id', component:SupplierDetailsComponent},
+
+  {path: 'suppliesList_',component:SupplieListComponent},
+  {path: 'addSupplie_', component:CreateSupplieComponent},
+  {path: 'updateSupplie_/:id', component:UpdateSupplieComponent},
+  {path: 'detailSupplie_/:id', component:SupplieDetailsComponent},
   {path: '**',component:NotFoundComponent}, 
 ];
 

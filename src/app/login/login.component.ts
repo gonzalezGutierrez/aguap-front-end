@@ -4,7 +4,7 @@ import { FormControl ,FormGroup,Validators} from '@angular/forms';
 import { AuthService,SocialUser } from "angularx-social-login";
 import { UsuariosService} from 'src/app/usuarios.service';
 import { FacebookLoginProvider,GoogleLoginProvider } from "angularx-social-login";
-
+import {UserService} from 'src/app/services/user.service'
 
 
 @Component({
@@ -14,7 +14,8 @@ import { FacebookLoginProvider,GoogleLoginProvider } from "angularx-social-login
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router,private authService:AuthService, private usuarioService:UsuariosService) {}
+  constructor(private router:Router,private authService:AuthService, private usuarioService:UsuariosService,
+    private userService:UserService) {}
   user: SocialUser;
   loggedIn: boolean;
   ngOnInit(){
@@ -33,7 +34,8 @@ export class LoginComponent implements OnInit {
     console.log(this.profileForm.get('password').value);
     console.log(this.profileForm.get('email_o_phoneNumber').value); 
     localStorage.setItem('send_email',this.profileForm.get('email_o_phoneNumber').value);
-    this.router.navigate(['user'])
+    this.usuarioService.Email(this.profileForm.get('email_o_phoneNumber').value);
+    this.router.navigate(['user']);
   }
 
   login_with_Google():void{
@@ -44,8 +46,16 @@ export class LoginComponent implements OnInit {
       this.loggedIn = (user != null);
       console.log("el usuario es ",this.user);
       this.usuarioService.upDates(this.user.email, this.user.firstName, this.user.lastName);
-      this.router.navigate(['user'])
+      this.userService.findEmail(this.user.email).subscribe( 
+        response => {
+          console.log("Email registrado",response);
+          this.router.navigate(['user'])
+        },error=>{
+          console.log("Email no registrado",error);
+          this.router.navigate(['postRegister'])
+        });
       });
+      
   }
 
   login_with_Facebook():void{
@@ -57,7 +67,7 @@ export class LoginComponent implements OnInit {
     console.log("instagram")
   }
 
-  login_with_Titter():void{
+  login_with_Twitter():void{
     console.log("twitter");
   }
 
