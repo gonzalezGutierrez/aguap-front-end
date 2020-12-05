@@ -13,6 +13,7 @@ export class UsuariosService {
   public email_;
   public firstName;
   public lastName;
+  private token;
   constructor(private http: HttpClient) { }
 
   set provando(p:String){
@@ -24,10 +25,11 @@ export class UsuariosService {
     +environment.mapBoxkey)
   }
 
-  upDates(email, firstName, lastName){
+  upDates(email, firstName, lastName, token){
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.token = token;
   }
   Email(email_){
     this.email_ = email_;

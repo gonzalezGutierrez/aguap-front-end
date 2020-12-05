@@ -44,8 +44,8 @@ export class LoginComponent implements OnInit {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
-      console.log("el usuario es ",this.user);
-      this.usuarioService.upDates(this.user.email, this.user.firstName, this.user.lastName);
+      console.log("el USUARIO es ",this.user);
+      this.usuarioService.upDates(this.user.email, this.user.firstName, this.user.lastName, this.user.idToken);
       this.userService.findEmail(this.user.email).subscribe( 
         response => {
           console.log("Email registrado",response);
