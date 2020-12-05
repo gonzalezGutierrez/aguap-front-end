@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators, FormGroup} from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {Validators,FormBuilder} from '@angular/forms';
+import {Router,ActivatedRoute} from '@angular/router';
+import{regex} from 'src/environments/environment.prod';
+import {MustMatch} from 'src/app/register/confirm-password.validator';
+import {UserMethods} from 'src/app/models/globalUserMethods';
+import * as CryptoJS from 'crypto-js';
+import {UserService} from 'src/app/services/user.service';
+import {Alert} from 'src/app/alerts/alert';
+import {Validation} from '../formValidations/validation';
 
 @Component({
   selector: 'app-recover-account',
@@ -9,20 +16,60 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class RecoverAccountComponent implements OnInit {
   hide= true;
+  token:string='';
+  id:any;
+  data:string='';
+  Alert=new Alert();
+  userMethods=new UserMethods(); 
+  validation=new Validation();
+  profile=this.f.group({
+    password:['',[Validators.required,Validators.pattern(regex.validate_password)]],
+    confirmation_password:['',[Validators.required]]
+  },
+  {
+    validator: MustMatch('password', 'confirmation_password')
+  });
 
-  password=new FormControl('',Validators.required);
-  verify_password=new FormControl('',Validators.required);
-  
+  constructor(private router:Router,private f:FormBuilder,
+    private userService:UserService,
+    private activatedRoute: ActivatedRoute){ 
 
-  constructor(private router:Router) { }
+  }
 
   ngOnInit() {
+    this.data=this.activatedRoute.snapshot.params.token;
+    var str=this.data.split('&');
+    this.token=str[0];
+    this.id=str[1];
+    console.log("el token es ",this.token);
+    console.log("el id es ",this.id);
+  }
+
+  isValidField(field:string):boolean{
+    return this.validation.isValidField_V(this.profile,field);
+  }
+  getErrorMessage(field:string):string{
+    return this.validation.getErrorMessage_V(this.profile,field);
   }
 
   send_data():void{
-    console.log("password recover count  ",this.password.value);
-    console.log("password recover count  ",this.verify_password.value);
-    //this.router.navigate(['login']);
+    if(this.profile.valid){
+      const generate_key=this.userMethods.generateKey();
+      const NewPassword=CryptoJS.AES.encrypt(this.profile.get('confirmation_password')
+      .value.trim(),generate_key.trim()).toString();
+      this.userService.changeUserPassword(this.token,NewPassword,this.id,generate_key)
+      .subscribe(response=>{
+        console.log("respuesta response ",response);
+        this.profile.reset();
+        this.Alert.successful_account_message();
+        this.router.navigate(['/login']);
+      },error=>{
+        console.log("error ",error);
+        this.profile.reset();
+        this.Alert.message_error('Oops...','','intentelo mas tarde');
+      });
+    }
+    
   }
 
 }

@@ -15,6 +15,7 @@ export class PostRegisterComponent implements OnInit {
   hide = true;
   email_value:string;
   name_value:string;
+  lastname_value:string;
   email = new FormControl('', [Validators.required, Validators.email]);
   
   user=new FormGroup({
@@ -30,6 +31,7 @@ export class PostRegisterComponent implements OnInit {
   ngOnInit() {
     //this.email_value=localStorage.getItem('send_email');
     this.email_value = this.usuarioService.email;
+    this.lastname_value = this.usuarioService.lastName;
     this.name_value = this.usuarioService.firstName;
     console.log("datos de usuario = ",this.usuarioService.email, this.usuarioService.firstName);
   }
@@ -53,7 +55,7 @@ export class PostRegisterComponent implements OnInit {
     let idRol:number=1;
     let password:string=this.user.get('password').value;
     let password_confirmation:string=this.user.get('password_confirmation').value;
-    let status:number=0;
+    let status:string='inactive';
     
     let person=new User(name,lastName,email,phone,idRol,password,password_confirmation,status);
     console.log(person)

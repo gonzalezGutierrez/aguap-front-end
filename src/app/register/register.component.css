@@ -1,6 +1,5 @@
 html {
     background: url(../../assets/background.svg) no-repeat fixed center center #fff;
-     /**max-height: 100%;**/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -10,8 +9,7 @@ html {
 html {
     overflow-y: scroll;
     overflow-x: hidden;
- }
-
+}
 
 @media only screen and (max-width:812px){
     .container{
@@ -60,7 +58,8 @@ html {
     .container_buttons{
         display: flex;
         flex-direction:column;
-        justify-content:start;
+        justify-content:flex-start;
+
     }
     .item_buttons{
         width:100%;

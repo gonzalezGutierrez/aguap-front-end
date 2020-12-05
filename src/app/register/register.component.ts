@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators, FormGroup} from '@angular/forms';
+import { Component, OnInit,Input} from '@angular/core';
+import {Validators,FormBuilder} from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { User } from 'src/app/models/user';
-import {UserService} from 'src/app/services/user.service'
+import {UserService} from 'src/app/services/user.service';
+import {MustMatch} from 'src/app/register/confirm-password.validator';
+import {Alert} from 'src/app/alerts/alert';
+import {regex} from 'src/environments/environment.prod';
+import {Validation} from '../formValidations/validation';
 
 @Component({
   selector: 'app-register',
@@ -10,60 +13,54 @@ import {UserService} from 'src/app/services/user.service'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  @Input('user') role_id:number=1;
+  status:boolean=true;
+  hide=true;
+  email_Value:string='';
+  validation=new Validation();
+  registerForm=this.fb.group({
+    name: ['',Validators.required],
+    last_name: ['',Validators.required],
+    email:['',[Validators.required,Validators.pattern(regex.validate_email)]],
+    cell_phone: ['',[Validators.required,Validators.maxLength(10),Validators.pattern(regex.validate_cell_phone),Validators.maxLength(10)]],
+    password:['',[Validators.required,Validators.pattern(regex.validate_password)]],
+    password_confirmation:['',[Validators.required]]
+  },{
+    validator: MustMatch('password', 'password_confirmation')
+  });
   
-  hide = true;
-  email_Value:string;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  user=new FormGroup({
-    name:new FormControl('',Validators.required),
-    last_name:new FormControl('',Validators.required),
-    cellphone:new FormControl('',Validators.required),
-    password:new FormControl('',[Validators.required,Validators.maxLength(15),Validators.minLength(6)]),
-    password_confirmation:new FormControl('',[Validators.required,Validators.maxLength(15),Validators.minLength(6)]),
-  })
-  constructor(private router: Router,private userService:UserService) { 
-
+  constructor(private router: Router,private userService:UserService,private fb: FormBuilder) { 
   }
-  
+
   ngOnInit() {
     this.email_Value=localStorage.getItem('send_email');
-    console.log("el valor del email es ",this.email_Value);
   }
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'ingresa una dirección electronica';
-    }
-    if(this.email.hasError('email')){
-      return 'invalida dirección electronica'; 
-    }
+  isValidField(field:string):boolean{
+    return this.validation.isValidField_V(this.registerForm,field);
   }
 
-  sending_data():void{
+  getErrorMessage(field:string):string{
+    return this.validation.getErrorMessage_V(this.registerForm,field);
+  }
+
+  sendingData():void{
     localStorage.removeItem('send_email');
     this.email_Value="";
-    let name:string=this.user.get('name').value;
-    let lastName:string=this.user.get('last_name').value;
-    let email:string=this.email.value;
-    let phone:number=this.user.get('cellphone').value;
-    let idRol:number=1;
-    let password:string=this.user.get('password').value;
-    let password_confirmation:string=this.user.get('password_confirmation').value;
-    let status:number=0;
-    
-    let person=new User(name,lastName,email,phone,idRol,password,password_confirmation,status);
-    console.log(person)
+    var person=this.validation.get_person_V(this.registerForm,this.role_id);
+    let alert=new Alert();
+    console.log("persona ",person);
     this.userService.registerUser(person)
     .subscribe( response=>{
       console.log("respuesta ",response);
-      this.route_login();
+      alert.successfulRegistration();
+      this.routeLogin();
     },error=>{
       console.log("error resepuesta",error);
     });
-
   }
 
-  route_login():void{
+  routeLogin():void{
     this.router.navigate(['login']);
   }
 

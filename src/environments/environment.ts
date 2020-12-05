@@ -7,6 +7,12 @@ export const environment = {
   mapBoxkey:'pk.eyJ1Ijoic2FsdmFkb3JsZyIsImEiOiJja2U3cTFwMWExam4zMnVxaGkwdG40NDllIn0.y4aRDL9KIhxo0qKamIzyxA'
 }
 
+export const regex={
+  validate_email:/\S+@\S+\.\S+/,
+  validate_cell_phone:/(9)[0-9]{9}/,
+  validate_password:/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/,
+};
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
