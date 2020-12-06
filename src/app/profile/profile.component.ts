@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
       var lastName=this.profile.get('last_name').value;
       var email=this.profile.get('email').value;
       var phone=this.profile.get('cell_phone').value;
-      var user =new User(name,lastName,email,phone);
+     /*var user =new User(name,lastName,email,phone);
       this.userService.updateUser(this.token,user,this.id)
       .subscribe(response=>{
         this.Iuser=response;
@@ -110,7 +110,7 @@ export class ProfileComponent implements OnInit {
         this.deactivateProfileFields();
       },error=>{
         console.log("error ",error);
-      });
+      });*/
     }
 
   }    

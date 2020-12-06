@@ -32,6 +32,7 @@ export class ForgotPasswordComponent implements OnInit {
   submitForm():void{
     if(this.profile.valid){
       const email=this.profile.get('email').value;
+      console.log("email es ",email);
       this.userService.accountRecoveryEmail(email)
       .subscribe(response=>{
         console.log("response ",response);
