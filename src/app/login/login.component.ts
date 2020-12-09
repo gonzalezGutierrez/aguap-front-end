@@ -4,9 +4,6 @@ import { FormControl ,FormGroup,Validators} from '@angular/forms';
 import { AuthService,SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider,GoogleLoginProvider } from "angularx-social-login";
 
-import {UserService} from 'src/app/services/user.service'
-
-
 
 import {Validation} from '../formValidations/validation';
 import { FormBuilder } from '@angular/forms'
@@ -17,6 +14,7 @@ import {UserService} from 'src/app/services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
@@ -34,6 +32,7 @@ export class LoginComponent implements OnInit {
     email:['',[Validators.required]],
     password:['',[Validators.required]],
   })
+
   constructor(
     private router:Router,private authService:AuthService, 
     private userService:UserService,private fb: FormBuilder){
