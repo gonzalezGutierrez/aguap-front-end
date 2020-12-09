@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder,Validators} from '@angular/forms';
 import {regex} from 'src/environments/environment.prod'
-import {UserService} from 'src/app/services/user.service';
+import {AccountService} from '../services/account.service';
 import{Validation} from '../formValidations/validation';
 
 @Component({
@@ -14,19 +14,18 @@ export class MyAcountsComponent implements OnInit {
   name="Alexis Perez gomez";//recuperar el nombre del usuario actual
   user_data:any;
   token:string='';//el token del usuario actual
-  id:number;//obtener el id del usuario actual
   validation=new Validation();
 
   emailForm = this.fb.group({
     email: ['',[Validators.required,Validators.pattern(regex.validate_email)]],
   });
 
-  constructor(private fb: FormBuilder,private userService:UserService) { }
+  constructor(private fb: FormBuilder,private accountService:AccountService) { }
 
   ngOnInit() {
     this.user_data= JSON.parse(localStorage.getItem('usuario'));
-    this.id=this.user_data.id;
     this.token=this.user_data.token; 
+    console.log("token",this.user_data.token);
     this.get_emails();
   }
   isValidField(field:string):boolean{
@@ -39,10 +38,12 @@ export class MyAcountsComponent implements OnInit {
   send_email():void{
     if(this.emailForm.valid){
       const email=this.emailForm.get('email').value;
-      this.emailForm.reset();
-      this.userService.addNewEmail(this.id,this.token,email)
+      console.log("el email es ",email);
+      this.accountService.add_email(this.token,email)
       .subscribe(response=>{
+        this.emailForm.reset();
         this.get_emails();
+        console.log("respuesta ",response);
       },error=>{
         console.log("error ",error);
       });
@@ -51,7 +52,7 @@ export class MyAcountsComponent implements OnInit {
   }
 
   get_emails(){
-    this.userService.get_emails(this.id,this.token)
+    this.accountService.get_mails(this.token)
     .subscribe(response=>{
       this.emails=response;
     },error=>{
@@ -60,7 +61,8 @@ export class MyAcountsComponent implements OnInit {
   }
 
   delete_email(email:any){
-    this.userService.delete_email(email.id,this.token)
+    console.log("email ",email);
+    this.accountService.delete_mail(this.token,email.id)
     .subscribe(response=>{
       this.get_emails();
     },error=>{

@@ -19,6 +19,8 @@ import {DelivererListComponent}from './admin/deliverer-list/deliverer-list.compo
 import {RegisterDelivererComponent} from './admin/register-deliverer/register-deliverer.component'
 import{DelivererMenuComponent} from '../app/deliverer/deliverer-menu/deliverer-menu.component'; 
 import {DeliveriesComponent} from '../app/deliverer/deliveries/deliveries.component'
+import{ActivarCuentaComponent} from '../app/activar-cuenta/activar-cuenta.component';
+
 
 import { ChooseUbicationComponent } from './orders-steps/choose-ubication/choose-ubication.component';
 import { ChooseRepartidorComponent } from './orders-steps/choose-repartidor/choose-repartidor.component';
@@ -45,6 +47,7 @@ const routes: Routes = [
   {path:'postRegister',component:PostRegisterComponent},
   {path:'accounts',component:MyAcountsComponent},
   {path:'admin/menu',component:MenuComponent},
+  {path:'recordar/activar/cuenta',component:ActivarCuentaComponent},
   {path:'admin/menu/delivererRegister',component:RegisterDelivererComponent},
   {path:'admin/menu/delivererList',component:DelivererListComponent},
   {path:'deliverer/menu',component:DelivererMenuComponent},
@@ -57,6 +60,8 @@ const routes: Routes = [
   {path: '**', component: NotFoundComponent },
  
 
+
+  
 ];
 
 

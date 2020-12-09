@@ -6,9 +6,8 @@ import {User} from 'src/app/models/user';
 import {regex} from 'src/environments/environment.prod';
 import {Alert} from 'src/app/alerts/alert';
 import {myCurrentPassword,ValidateOldPassword} from 'src/app/profile/customvalidator';
-import * as CryptoJS from 'crypto-js';
-import {UserMethods} from 'src/app/models/globalUserMethods';
 import {Validation} from '../formValidations/validation';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -26,9 +25,10 @@ export class ProfileComponent implements OnInit {
   idRol:number=0;
   hide = true;
   alert=new Alert();
-  userMethods=new UserMethods();
   validation=new Validation();
   user_data:any;
+  password:string="";
+  change_password_is_valid=false;
   profile=this.profileForm.group({
     name:['',[Validators.required]],
     last_name:['',[Validators.required]],
@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
   })
 
   profilePassword=this.passwordForm.group({
-    before_password:['',[Validators.required,ValidateOldPassword]],
+    before_password:['',[Validators.required]],
     new_password:['',[Validators.required,Validators.pattern(regex.validate_password)]]
   });
 
@@ -49,17 +49,16 @@ export class ProfileComponent implements OnInit {
     this.profile.disable();
     this.profilePassword.disable();
     this.user_data= JSON.parse(localStorage.getItem('usuario'));
-    this.id=this.user_data.id;
     this.token=this.user_data.token; 
-    this.oldPasword();
-    this.userService.userById(this.id,this.token)
+    console.log("token es ",this.token);
+    this.userService.getUser(this.token)
     .subscribe(response=>{
+      console.log("respuesta ",response);
       this.Iuser=response;
       this.initialize_data();
     },error=>{
       console.log("error ",error);
     });
-
   }
   initialize_data(){
     let user_name=this.Iuser.name;
@@ -102,35 +101,24 @@ export class ProfileComponent implements OnInit {
       var lastName=this.profile.get('last_name').value;
       var email=this.profile.get('email').value;
       var phone=this.profile.get('cell_phone').value;
-     /*var user =new User(name,lastName,email,phone);
-      this.userService.updateUser(this.token,user,this.id)
+      var user =new User(name,lastName,email,phone);
+      this.userService.updateUser(this.token,user)
       .subscribe(response=>{
         this.Iuser=response;
         this.alert.sucessful("actualizado",true);
         this.deactivateProfileFields();
       },error=>{
         console.log("error ",error);
-      });*/
+      });
     }
 
   }    
   
   change_password():void{
     if(this.profilePassword.valid){
-      const generate_key=this.userMethods.generateKey();
-      const newPassword=CryptoJS.AES.encrypt(this.profilePassword.get('new_password').value.trim(),
-      generate_key.trim()).toString();
-      this.userService.changeUserPassword(this.token,newPassword,this.id,generate_key)
-      .subscribe(response=>{
-        this.alert.sucessful("contrasañe actualizada",true);
-        this.deactivatePasswordFields();
-        this.oldPasword();
-      },
-      error=>{
-        console.log("error ",error);
-      });
-    }
-     
+      var password=this.profilePassword.get('before_password').value
+      this.oldPasword(password);
+    } 
   }
 
   isValidField(field:string,myForm:FormGroup){
@@ -141,25 +129,53 @@ export class ProfileComponent implements OnInit {
     return this.validation.getErrorMessage_V(myForm,field);
   }
 
-  oldPasword():void{
-    this.userService.usersCurrentpassword(this.token,this.id)
+  oldPasword(password:string):void{
+    this.userService.usersCurrentpassword(this.token,password)
     .subscribe(response=>{
-      const generate_key=this.userMethods.generateKey();
-      const encrypted=CryptoJS.AES.encrypt(response.password.trim(),generate_key.trim()).toString();
-      myCurrentPassword(encrypted,generate_key);
+      console.log("repuesta ",response);
+      this.updatePassword(response,password);
     },
     error=>{
       console.log("error",error);
     });
-
+    
   }
-
+  updatePassword(response:string,password:string):void{
+    if(response==="true"){
+      this.change_password_is_valid=false;
+      console.log("cambiar contraseña concidio ",this.change_password_is_valid);
+      this.userService.changeUserPassword(this.token,password)
+      .subscribe(response=>{
+        console.log("respuesta ",response);
+        this.profilePassword.reset();
+        this.deactivatePasswordFields();
+        this.alert.sucessful("actualizado",true);
+      },error=>{
+        console.log("error",error);
+      });
+    }
+    else{
+      this.change_password_is_valid=true;
+      console.log("no cambiar contraseña concidio ",this.change_password_is_valid);
+    }
+  }
+  delete_user(){
+    console.log("delete user");
+    this.userService.deleteUser(this.token)
+    .subscribe(response=>{
+      console.log("response ",response);
+    },error=>{
+      console.log("error ",error);
+    })
+  }
+ 
   deactivateProfileFields():void{
     this.status=false;
     this.button_status_profile=true;
     this.profile.disable();
     this.initialize_data();
   }
+
   deactivatePasswordFields():void{
     this.status_password=false;
     this.button_status_password=true;

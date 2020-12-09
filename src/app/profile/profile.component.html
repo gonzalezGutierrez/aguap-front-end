@@ -85,7 +85,7 @@
             </div>
             <form [formGroup]="profilePassword">
                 <mat-form-field appearance="fill"> 
-                    <mat-label>Contraseña</mat-label> 
+                    <mat-label>Contraseña Actual</mat-label> 
                     <input 
                         matInput [type]="hide ? 'password' : 'text'" 
                         formControlName="before_password"
@@ -100,6 +100,11 @@
                     </mat-error>
                 </mat-form-field>
 
+                <mat-error *ngIf="change_password_is_valid">
+                    contrasena actual erronea
+                </mat-error>
+                <br>
+                
                 <mat-form-field appearance="fill">
                     <mat-label>Contraseña Nueva</mat-label>
                     <input 
@@ -128,6 +133,18 @@
                     </div> 
                 </div>
             </form>
+        </mat-card>
+    </div>
+    <div class="item">
+        <mat-card>
+            <div>
+                <button 
+                mat-raised-button color="warn"
+                (click)="delete_user()"
+                >
+                Eliminar Cuenta
+            </button>
+            </div>
         </mat-card>
     </div>
 </div>

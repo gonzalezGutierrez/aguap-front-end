@@ -1,44 +1,34 @@
 import {AbstractControl } from "@angular/forms";
 import * as CryptoJS from 'crypto-js';
 export class CurrentPassword{
-    encrypted="";
-    key="";
+    isValidPassword="";
     constructor(){}
 
-    set_encrypted(encrypted:any){
-        this.encrypted=encrypted;
+    set_isValidPassword(isValidPassword:any){
+        this.isValidPassword=isValidPassword;
     }
 
-    get_encrypted(){
-        return this.encrypted;
+    get_isValidaPassword(){
+        return this.isValidPassword;
     }
-
-    set_key(key:any){
-        this.key=key
-    }
-    get_key(){
-        return this.key;
-    }
-
 }
 
 var current =new CurrentPassword();
 
-export function myCurrentPassword(encrypted:any,key:any){
-    var encrypted=encrypted;
-    var key=key;
-    current.set_encrypted(encrypted);
-    current.set_key(key);
+export function myCurrentPassword(isValidPassword:string){
+    console.log("password ",isValidPassword);
+    current.set_isValidPassword(isValidPassword);
 }
 
 export function ValidateOldPassword(control: AbstractControl){
-    var encrypted=current.get_encrypted();
-    var key=current.get_key();
-    if (control.value===(CryptoJS.AES.decrypt(encrypted.trim(),key.trim()).toString(CryptoJS.enc.Utf8))) {
-        return null;
+    var isValidPassword=current.get_isValidaPassword();
+    console.log("hola mundo xdxd ",isValidPassword)
+    if(isValidPassword==="false"){
+        console.log("entro en el if perro")
+        return {CurrentPassword:true};  
     }
     else{
-        return {CurrentPassword:true};
+        return null;
     }
     
 }
