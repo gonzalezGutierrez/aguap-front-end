@@ -24,7 +24,7 @@ export class AccountActivationComponent implements OnInit {
     const alert=new Alert();
     this.userService.userAccountActivation(token) 
     .subscribe(response=>{
-      alert.sucessful("cuanta activada",false);
+      alert.sucessful("cuenta activada",false);
       this.router.navigate(['login']);
     },error=>{
       alert.error("intentelo mas tarde",false);

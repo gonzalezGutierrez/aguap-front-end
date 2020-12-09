@@ -3,8 +3,6 @@ import {Validators,FormBuilder} from '@angular/forms';
 import {Router,ActivatedRoute} from '@angular/router';
 import{regex} from 'src/environments/environment.prod';
 import {MustMatch} from 'src/app/register/confirm-password.validator';
-import {UserMethods} from 'src/app/models/globalUserMethods';
-import * as CryptoJS from 'crypto-js';
 import {UserService} from 'src/app/services/user.service';
 import {Alert} from 'src/app/alerts/alert';
 import {Validation} from '../formValidations/validation';
@@ -17,10 +15,7 @@ import {Validation} from '../formValidations/validation';
 export class RecoverAccountComponent implements OnInit {
   hide= true;
   token:string='';
-  id:any;
-  data:string='';
   Alert=new Alert();
-  userMethods=new UserMethods(); 
   validation=new Validation();
   profile=this.f.group({
     password:['',[Validators.required,Validators.pattern(regex.validate_password)]],
@@ -37,12 +32,8 @@ export class RecoverAccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data=this.activatedRoute.snapshot.params.token;
-    var str=this.data.split('&');
-    this.token=str[0];
-    this.id=str[1];
+    this.token=this.activatedRoute.snapshot.params.token;
     console.log("el token es ",this.token);
-    console.log("el id es ",this.id);
   }
 
   isValidField(field:string):boolean{
@@ -54,10 +45,9 @@ export class RecoverAccountComponent implements OnInit {
 
   send_data():void{
     if(this.profile.valid){
-      const generate_key=this.userMethods.generateKey();
-      const NewPassword=CryptoJS.AES.encrypt(this.profile.get('confirmation_password')
-      .value.trim(),generate_key.trim()).toString();
-      this.userService.changeUserPassword(this.token,NewPassword,this.id,generate_key)
+      const password=this.profile.get('password').value;
+      console.log("la contraseña es ",password);
+      this.userService.changeUserPassword(this.token,password)
       .subscribe(response=>{
         console.log("respuesta response ",response);
         this.profile.reset();
@@ -68,6 +58,9 @@ export class RecoverAccountComponent implements OnInit {
         this.profile.reset();
         this.Alert.message_error('Oops...','','intentelo mas tarde');
       });
+    }
+    else{
+      console.log("erro debe de llenar los campos perro");
     }
     
   }

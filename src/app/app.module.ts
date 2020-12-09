@@ -53,6 +53,7 @@ import { DelivererListComponent } from './admin/deliverer-list/deliverer-list.co
 import { RegisterDelivererComponent } from './admin/register-deliverer/register-deliverer.component';
 import { DelivererMenuComponent } from './deliverer/deliverer-menu/deliverer-menu.component';
 import { DeliveriesComponent } from './deliverer/deliveries/deliveries.component';
+import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.component';
 
 
 const config = new AuthServiceConfig([
@@ -100,6 +101,7 @@ export function provideConfig() {
     RegisterDelivererComponent,
     DelivererMenuComponent,
     DeliveriesComponent,
+<<<<<<< HEAD
     CreateSupplieComponent,
     SupplieListComponent,
     CreateSupplierComponent,
@@ -107,6 +109,9 @@ export function provideConfig() {
     UpdateSupplierComponent,
     UpdateSupplieComponent,
 
+=======
+    ActivarCuentaComponent,
+>>>>>>> cb1b74960740e71452dd696e95615b5620beb7e9
   ],
   imports: [
     BrowserModule,

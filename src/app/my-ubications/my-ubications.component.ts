@@ -23,23 +23,23 @@ export class MyUbicationsComponent implements OnInit {
   }
 
   delete_ubication(ubication:any):void{
-    this.userService.delete_ubication(ubication,this.token)
+    /*this.userService.delete_ubication(ubication,this.token)
     .subscribe(response=>{
       console.log("respuesta ",response);
       this.get_ubications();
     },error=>{
       console.log("error ",error);
-    });
+    });*/
   }
 
   get_ubications():void{
-    this.userService.get_ubications(this.id,this.token)
+    /*this.userService.get_ubications(this.id,this.token)
     .subscribe(response=>{
       console.log("respuesta ",response);
       this.ubications=response;
     },error=>{
       console.log("error ",error);
-    });
+    });*/
   }
 
 }

@@ -23,7 +23,7 @@ export class DelivererListComponent implements OnInit {
   }
 
   get_deliverers(){
-    this.userService.get_deliverers(this.token,this.role_id)
+    /*this.userService.get_deliverers(this.token,this.role_id)
     .subscribe(
       response=>{
         console.log("respuesta ",response);
@@ -31,11 +31,11 @@ export class DelivererListComponent implements OnInit {
       },error=>{
         console.log("error ",error);
       },
-    );
+    );*/
   }
 
   delete():void{
-    this.userService.delete_user(this.token,this.id)
+    /*this.userService.delete_user(this.token,this.id)
     .subscribe(
       response=>{
         console.log("respuesta ",response);
@@ -43,7 +43,7 @@ export class DelivererListComponent implements OnInit {
       },error=>{
         console.log("error",error);
       }
-    );
+    );*/
 
   }
 

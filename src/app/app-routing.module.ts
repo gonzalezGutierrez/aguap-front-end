@@ -19,6 +19,8 @@ import {DelivererListComponent}from './admin/deliverer-list/deliverer-list.compo
 import {RegisterDelivererComponent} from './admin/register-deliverer/register-deliverer.component'
 import{DelivererMenuComponent} from '../app/deliverer/deliverer-menu/deliverer-menu.component'; 
 import {DeliveriesComponent} from '../app/deliverer/deliveries/deliveries.component'
+import{ActivarCuentaComponent} from '../app/activar-cuenta/activar-cuenta.component';
+
 
 import { ChooseUbicationComponent } from './orders-steps/choose-ubication/choose-ubication.component';
 import { ChooseRepartidorComponent } from './orders-steps/choose-repartidor/choose-repartidor.component';
@@ -53,6 +55,7 @@ const routes: Routes = [
   {path:'postRegister',component:PostRegisterComponent},
   {path:'accounts',component:MyAcountsComponent},
   {path:'admin/menu',component:MenuComponent},
+  {path:'recordar/activar/cuenta',component:ActivarCuentaComponent},
   {path:'admin/menu/delivererRegister',component:RegisterDelivererComponent},
   {path:'admin/menu/delivererList',component:DelivererListComponent},
   {path:'deliverer/menu',component:DelivererMenuComponent},
@@ -64,6 +67,7 @@ const routes: Routes = [
   {path:'orders/order-current',component:OrderCurrentComponent},
 
 
+<<<<<<< HEAD
   {path: 'postRegister',component:PostRegisterComponent},
   {path: 'admin/menu/suppliersList',component:SupplierListComponent},
   {path: 'admin/menu/addSupplier', component:CreateSupplierComponent},
@@ -73,6 +77,9 @@ const routes: Routes = [
   {path: 'admin/menu/addSupplie_', component:CreateSupplieComponent},
   {path: 'admin/menu/updateSupplie_/:id', component:UpdateSupplieComponent},
   {path: '**',component:NotFoundComponent},
+=======
+  
+>>>>>>> cb1b74960740e71452dd696e95615b5620beb7e9
 ];
 
 
