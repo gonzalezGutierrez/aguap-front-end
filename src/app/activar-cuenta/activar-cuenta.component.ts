@@ -5,7 +5,6 @@ import { Router} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {Alert} from '../alerts/alert';
 import {Validation} from '../formValidations/validation';
-
 @Component({
   selector: 'app-activar-cuenta',
   templateUrl: './activar-cuenta.component.html',
@@ -14,11 +13,11 @@ import {Validation} from '../formValidations/validation';
 export class ActivarCuentaComponent implements OnInit {
 
   validate=new Validation();
-  
+  alert=new Alert();
   profile=this.fb.group({
     email:['',[Validators.required,Validators.pattern(regex.validate_email)]]
   })
-  constructor(private fb:FormBuilder,private userService:UserService){
+  constructor(private fb:FormBuilder,private userService:UserService,private router:Router){
 
   }
   ngOnInit() {
@@ -36,9 +35,10 @@ export class ActivarCuentaComponent implements OnInit {
       console.log("el email es ",email);
       this.userService.sendEmail(email)
       .subscribe(response=>{
-        console.log("respuesta ",response);
+        this.alert.sucessful('email enviado',true);
+        this.router.navigate(['login']);
       },error=>{
-        console.log("error ",error);
+        this.alert.error("intentelo mas tarde",false);
       });
     }
     

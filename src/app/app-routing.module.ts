@@ -67,7 +67,7 @@ const routes: Routes = [
   {path:'orders/order-current',component:OrderCurrentComponent},
 
 
-<<<<<<< HEAD
+
   {path: 'postRegister',component:PostRegisterComponent},
   {path: 'admin/menu/suppliersList',component:SupplierListComponent},
   {path: 'admin/menu/addSupplier', component:CreateSupplierComponent},
@@ -77,9 +77,8 @@ const routes: Routes = [
   {path: 'admin/menu/addSupplie_', component:CreateSupplieComponent},
   {path: 'admin/menu/updateSupplie_/:id', component:UpdateSupplieComponent},
   {path: '**',component:NotFoundComponent},
-=======
-  
->>>>>>> cb1b74960740e71452dd696e95615b5620beb7e9
+
+
 ];
 
 

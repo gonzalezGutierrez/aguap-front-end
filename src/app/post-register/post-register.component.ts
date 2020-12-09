@@ -18,12 +18,6 @@ import { AuthService,SocialUser } from "angularx-social-login";
 export class PostRegisterComponent implements OnInit {
   alert =new Alert();
   hide = true;
-<<<<<<< HEAD
-  email_value:string;
-  name_value:string;
-  lastname_value:string;
-  email = new FormControl('', [Validators.required, Validators.email]);
-=======
   email_value:string='';
   name_value:string='';
   validate=new Validation();
@@ -36,24 +30,15 @@ export class PostRegisterComponent implements OnInit {
   },{
     validator: MustMatch('password', 'password_confirmation')
   });
->>>>>>> cb1b74960740e71452dd696e95615b5620beb7e9
   
   constructor(private router: Router,private userService:UserService,
     private fb:FormBuilder,private route:ActivatedRoute,private authService:AuthService) { }
   
   ngOnInit() {
-<<<<<<< HEAD
-    //this.email_value=localStorage.getItem('send_email');
-    this.email_value = this.usuarioService.email;
-    this.lastname_value = this.usuarioService.lastName;
-    this.name_value = this.usuarioService.firstName;
-    console.log("datos de usuario = ",this.usuarioService.email, this.usuarioService.firstName);
-=======
     this.email_value=this.route.snapshot.paramMap.get('email');
     this.name_value=this.route.snapshot.paramMap.get('name');
     console.log("datos de usuario = ",this.email_value, this.name_value);
     this.signOut();
->>>>>>> cb1b74960740e71452dd696e95615b5620beb7e9
   }
 
   isValidField(field:string):boolean{
@@ -92,6 +77,10 @@ export class PostRegisterComponent implements OnInit {
     this.userService.userAccountActivation(token)
     .subscribe(response=>{
       this.alert.sucessful('cuenta activa',false);
+      let token=response['token'];
+      let user=response;
+      localStorage.setItem('usuario', JSON.stringify(user));
+      localStorage.setItem('token',token);
       this.route_menu();
     },error=>{
       console.log("error activar cuenta ",error);

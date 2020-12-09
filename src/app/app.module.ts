@@ -101,7 +101,7 @@ export function provideConfig() {
     RegisterDelivererComponent,
     DelivererMenuComponent,
     DeliveriesComponent,
-<<<<<<< HEAD
+
     CreateSupplieComponent,
     SupplieListComponent,
     CreateSupplierComponent,
@@ -109,9 +109,9 @@ export function provideConfig() {
     UpdateSupplierComponent,
     UpdateSupplieComponent,
 
-=======
+
     ActivarCuentaComponent,
->>>>>>> cb1b74960740e71452dd696e95615b5620beb7e9
+
   ],
   imports: [
     BrowserModule,
