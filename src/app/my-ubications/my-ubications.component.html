@@ -17,29 +17,15 @@
             <mat-card-content>
                 <mat-card-subtitle>direccion</mat-card-subtitle>
                 <p>
-                  {{ubication.address}}
+                    {{ubication.attributes.address}}
                 </p>
             </mat-card-content>
             <mat-card-actions>
-
-                <div class="father">
-                    <div class="son">
-                        <button 
-                            mat-raised-button 
-                            color="warn"
-                            (click)="delete_ubication(ubication)" >
-                            <i class="far fa-trash-alt icon_delete"></i>
-                        </button>
-                    </div>
-                    <div class="son">
-                        <button 
-                            mat-raised-button
-                            color="primary"
-                            >
-                            <i class="fas fa-star icon_start"></i>
-                        </button> 
-                    </div>
-                </div>
+                <button  
+                    (click)="delete_ubication(ubication)" 
+                    mat-raised-button color="warn">
+                    eliminar
+                </button>
             </mat-card-actions> 
         </mat-card>
     </div>      
