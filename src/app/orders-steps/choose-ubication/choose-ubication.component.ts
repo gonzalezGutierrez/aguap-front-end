@@ -26,10 +26,10 @@ export class ChooseUbicationComponent implements OnInit {
 
     getUbicaciones() {
         this.spinner.show();
-        this.ubicacionService.getUbicaciones().subscribe((result: any) => {
+        /*this.ubicacionService.getUbicaciones().subscribe((result: any) => {
             this.ubicaciones = result.ubicaciones;
             this.spinner.hide();
-        });
+        });*/
     }
 
     onChooseUbication(idUbication) {

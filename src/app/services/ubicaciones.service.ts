@@ -8,11 +8,14 @@ import { API_URL_LOCAL } from '../config/API';
 export class UbicacionesService {
   constructor(private http: HttpClient) { }
 
-  getUbicaciones() {
-    let endpoint = API_URL_LOCAL + '/ubicaciones?idUsuario=11';
+  getUbicaciones(token:string,idUser:number) {
+
+    let endpoint = API_URL_LOCAL + '/ubicaciones?idUsuario='+idUser;
     return this.http.get(endpoint);
   }
-  deleteUbicaciones(){
-    
+  deleteUbicaciones(token:string,idUbicacion:number){
+    let endpoint = API_URL_LOCAL + '/ubicaciones?idUbicacion='+idUbicacion;
+    return this.http.delete(endpoint);
   }
+  
 }

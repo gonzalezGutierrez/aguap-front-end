@@ -13,18 +13,8 @@
     .icon_home{
         font-size:20px;
     }
-    .icon_delete{
-        color:white;
-        font-size:13px;
-    }
-    .icon_start{
-        color: yellow;
-        font-size:13px;
-    }
-    .father{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+    button{
+        width: 100%;
     }
 
 }
@@ -46,18 +36,9 @@
     .icon_home{
         font-size:30px;
     }
+    button{
+        width:100%;
+    }
     
-    .icon_delete{
-        color:white;
-        font-size:17px;
-    }
-    .icon_start{
-        color: yellow;
-        font-size:17px;
-    }
-    .father{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
+    
 }
