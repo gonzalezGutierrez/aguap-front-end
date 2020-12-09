@@ -46,5 +46,8 @@ export class UsersComponent implements OnInit {
   insumos(){
     this.router.navigate(['/suppliesList_'])
   }
+  accounts(){
+    this.router.navigate(['accounts']);
+  }
 
 }

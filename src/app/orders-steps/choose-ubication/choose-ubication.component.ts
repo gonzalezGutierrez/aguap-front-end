@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./choose-ubication.component.css']
 })
 export class ChooseUbicationComponent implements OnInit {
-
+    user_data:any;
+    token:string;
+    idUser:number;
     ubicaciones: any = [];
     constructor(
         private ubicacionService: UbicacionesService,
@@ -20,16 +22,22 @@ export class ChooseUbicationComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getUbicaciones();
+        this.user_data= JSON.parse(localStorage.getItem('usuario'));
+        this.token=this.user_data.token;
+        this.idUser=this.user_data.id;
+        console.log("el token es ",this.token);
+        console.log("el id es",this.user_data.id);
+        this.getUbicaciones(this.token,this.idUser);
     }
 
 
-    getUbicaciones() {
+    getUbicaciones(token:string,idUser:number) {
         this.spinner.show();
-        /*this.ubicacionService.getUbicaciones().subscribe((result: any) => {
+        this.ubicacionService.getUbicaciones(token,idUser).subscribe((result: any) => {
             this.ubicaciones = result.ubicaciones;
+            console.log("ubicaciones");
             this.spinner.hide();
-        });*/
+        });
     }
 
     onChooseUbication(idUbication) {
