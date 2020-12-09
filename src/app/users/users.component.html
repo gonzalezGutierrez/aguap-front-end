@@ -15,12 +15,10 @@
 		  <input type="checkbox" id="nav-toggle" class="nav-toggle">
 		  <nav>
 		    <ul>
-		      <li><a  [routerLink]="['/profile']" (click)="see_profile()" >Perfil</a></li>
-		      <li><a  [routerLink]="['/ubications']" (click)="view_saved_locations()" >Ubicaciones</a></li>
-		      <li><a  [routerLink]="['/postRegister']" (click)="postRegister()" >Terminar registro</a></li>
-		      <li><a  [routerLink]="['/requestOrders']" (click)="request_orders()" >Guardar ubicación</a></li>
-		      <li><a  [routerLink]="['/orderList']" (click)="see_my_orders()" >Pedidos</a></li>
-		      <li><a  [routerLink]="['/accounts']" >Vincular cuenta</a></li>
+			  <li><a  (click)="see_profile()" >Perfil</a></li>
+			  <li><a  (click)="accounts()" >Vincular cuenta</a></li>
+		      <li><a  (click)="view_saved_locations()" >Ubicaciones</a></li>
+		      <li><a  (click)="request_orders()" >Guardar ubicación</a></li>
 		    </ul>
 		  </nav>
 		  <label for="nav-toggle" class="nav-toggle-label">
@@ -48,7 +46,7 @@
 
 				<div class="gallery-port">
 					<div class="imagen-port">
-						<a href="/profile" (click)="see_profile()">
+						<a (click)="see_profile()">
 							<img src="../../assets/profile.svg" alt="">
 							<div class="hover-gallery">
 								<img src="../../assets/icon.png" alt="">
@@ -58,27 +56,7 @@
 					</div>
 
 					<div class="imagen-port">
-						<a href="/ubications" (click)="view_saved_locations()">
-							<img src="../../assets/ubications.svg" alt="">
-							<div class="hover-gallery">
-								<img src="../../assets/icon.png" alt="">
-									<p>Ubicaciones Guardadas</p>
-							</div>
-						</a>
-					</div>
-
-					<div class="imagen-port">
-						<a href="/postRegister" (click)="postRegister()">
-							<img src="../../assets/register.svg" alt="">
-							<div class="hover-gallery">
-								<img src="../../assets/icon.png" alt="">
-									<p>Terminar Registro</p>
-							</div>
-						</a>
-					</div>
-
-					<div class="imagen-port">
-						<a  [routerLink]="['/acoounts']" >
+						<a  (click)="accounts()" >
 							<img src="../../assets/vincular.svg" alt="">
 							<div class="hover-gallery">
 								<img src="../../assets/icon.png" alt="">
@@ -88,18 +66,18 @@
 					</div>
 
 					<div class="imagen-port">
-						<a href="/orderList" (click)="see_my_orders()">
-							<img src="../../assets/orders.svg" alt="">
+						<a (click)="view_saved_locations()">
+							<img src="../../assets/ubications.svg" alt="">
 							<div class="hover-gallery">
 								<img src="../../assets/icon.png" alt="">
-									<p>Pedidos</p>
+									<p>Ubicaciones Guardadas</p>
 							</div>
 						</a>
 					</div>
 
 					<div class="imagen-port">
 						
-						<a  [routerLink]="['/requestOrders']" (click)="request_orders()" >
+						<a  (click)="request_orders()" >
 							<img src="../../assets/saveUbication.svg" alt="">
 							<div class="hover-gallery">
 								<img src="../../assets/icon.png" alt="">
