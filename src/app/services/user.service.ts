@@ -12,19 +12,29 @@ export class UserService {
   
   url:string="http://127.0.0.1:8000/api/v1/"; 
   
-  constructor(private http:HttpClient) {
-
-  }
+  constructor(private http:HttpClient) {}
 
   registerUser(user:User){
     const headers = new HttpHeaders().set('Content-Type','application/json');
     return this.http.post(this.url +"register",user, {headers:headers});
   }
-  
-  userAccountActivation(token:string,id:string):Observable<any>{
+  login(email:string,password:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type','application/json');
+    return this.http.post<any>(this.url +"login",{email,password},{headers:headers});
+  }
+  sendEmail(email:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type','application/json');
+    return this.http.get<any>(this.url+"sendEmail/email?email="+email,{headers:headers});
+  }  
+  userAccountActivation(token:string):Observable<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json')
     .set('Authorization', 'Bearer '+token);
-    return  this.http.get<any>(this.url+"user/activate/"+id,{headers:headers});
+    return  this.http.get<any>(this.url+"user/activate",{headers:headers});
+  }
+
+  accountRecoveryEmail(email:string):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    return this.http.get<any>(this.url+"sendEmail/recoverAccount/email?email="+email,{headers:headers});
   }
 
   userById(id:number,token:string):Observable<Iuser>{
@@ -54,13 +64,7 @@ export class UserService {
     return this.http.put<any>(this.url+"user/updatePassword/"+id,user,{headers:headers});
   }
   
-  accountRecoveryEmail(email:string):Observable<any>{
-    const headers = new HttpHeaders().set('Content-Type', 'application/json')
-    const user={
-      'email':email,
-    }
-    return this.http.post<any>(this.url+"user/recoverAccount",user,{headers:headers});
-  }
+  
 
   delete_user(token:string,id:number):Observable<any>{
     const headers=new HttpHeaders().set('Content-Type', 'application/json')

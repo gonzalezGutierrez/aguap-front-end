@@ -17,10 +17,10 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Apellidos</mat-label>
-                        <input matInput formControlName="last_name">
+                        <input matInput formControlName="lastName">
                         <mat-icon matSuffix>account_circle</mat-icon>
-                        <mat-error *ngIf="isValidField('last_name')">
-                            {{getErrorMessage("last_name")}}
+                        <mat-error *ngIf="isValidField('lastName')">
+                            {{getErrorMessage("lastName")}}
                         </mat-error>
                     </mat-form-field>
                     
@@ -30,11 +30,11 @@
                             type="tel" 
                             matInput 
                             placeholder="numero telefónico" 
-                            formControlName="cell_phone"
+                            formControlName="phone"
                         >
                         <mat-icon matSuffix>phone_enabled</mat-icon>
-                        <mat-error *ngIf="isValidField('cell_phone')">
-                            {{getErrorMessage("cell_phone")}}
+                        <mat-error *ngIf="isValidField('phone')">
+                            {{getErrorMessage("phone")}}
                         </mat-error>  
                     </mat-form-field>
 

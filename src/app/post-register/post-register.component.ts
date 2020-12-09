@@ -57,7 +57,7 @@ export class PostRegisterComponent implements OnInit {
     let password_confirmation:string=this.user.get('password_confirmation').value;
     let status:string='inactive';
     
-    let person=new User(name,lastName,email,phone,idRol,password,password_confirmation,status);
+    /*let person=new User(name,lastName,email,phone,idRol,password,password_confirmation,status);
     console.log(person)
     this.userService.registerUser(person)
     .subscribe( response=>{
@@ -65,7 +65,7 @@ export class PostRegisterComponent implements OnInit {
       this.route_menu();
     },error=>{
       console.log("error resepuesta",error);
-    });
+    });*/
 
   }
 

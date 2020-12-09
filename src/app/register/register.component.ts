@@ -13,16 +13,16 @@ import {Validation} from '../formValidations/validation';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @Input('user') role_id:number=1;
+  @Input('user') idrol:number=1;
   status:boolean=true;
   hide=true;
   email_Value:string='';
   validation=new Validation();
   registerForm=this.fb.group({
     name: ['',Validators.required],
-    last_name: ['',Validators.required],
+    lastName: ['',Validators.required],
     email:['',[Validators.required,Validators.pattern(regex.validate_email)]],
-    cell_phone: ['',[Validators.required,Validators.maxLength(10),Validators.pattern(regex.validate_cell_phone),Validators.maxLength(10)]],
+    phone: ['',[Validators.required,Validators.maxLength(10),Validators.pattern(regex.validate_cell_phone),Validators.maxLength(10)]],
     password:['',[Validators.required,Validators.pattern(regex.validate_password)]],
     password_confirmation:['',[Validators.required]]
   },{
@@ -45,19 +45,28 @@ export class RegisterComponent implements OnInit {
   }
 
   sendingData():void{
-    localStorage.removeItem('send_email');
-    this.email_Value="";
-    var person=this.validation.get_person_V(this.registerForm,this.role_id);
+    let idRol=3;
+    var person=this.validation.get_person_V(this.registerForm,idRol);
     let alert=new Alert();
-    console.log("persona ",person);
+    console.log(person)
     this.userService.registerUser(person)
     .subscribe( response=>{
       console.log("respuesta ",response);
+      this.sendEmail(person.email);
       alert.successfulRegistration();
       this.routeLogin();
     },error=>{
       console.log("error resepuesta",error);
     });
+  }
+  
+  sendEmail(email:string){
+    this.userService.sendEmail(email)
+    .subscribe(response=>{
+      console.log("respuesta ",response)
+    },error=>{
+      console.log("error ",error);
+    })
   }
 
   routeLogin():void{

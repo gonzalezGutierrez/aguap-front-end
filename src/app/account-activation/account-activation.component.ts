@@ -11,24 +11,21 @@ import {Alert}from 'src/app/alerts/alert';
 export class AccountActivationComponent implements OnInit {
 
   data:string='';
-  token:string=''
-  id:string='';
-  
-  constructor(private activateRoute:ActivatedRoute,private userService:UserService) { }
+  token:string=''  
+  constructor(private router:Router,private activateRoute:ActivatedRoute,private userService:UserService) { }
 
   ngOnInit() {
-    this.data=this.activateRoute.snapshot.params.token;
-    var str=this.data.split('&');
-    this.token=str[0];
-    this.id=str[1];
-    this.accountActivation(this.token,this.id);
+    this.token=this.activateRoute.snapshot.params.token;
+    console.log("token ",this.token);
+    this.accountActivation(this.token);
   }
 
-  accountActivation(token:string,id:string):void{
+  accountActivation(token:string):void{
     const alert=new Alert();
-    this.userService.userAccountActivation(token,id) 
+    this.userService.userAccountActivation(token) 
     .subscribe(response=>{
       alert.sucessful("cuanta activada",false);
+      this.router.navigate(['login']);
     },error=>{
       alert.error("intentelo mas tarde",false);
     });

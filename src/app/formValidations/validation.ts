@@ -25,7 +25,7 @@ export class Validation{
             if(control.get(field)===control.get('email')){
               return "dirección electrónica invalido";
             } 
-            if(control.get(field)===control.get('cell_phone')){
+            if(control.get(field)===control.get('phone')){
               return "teléfono móvil invalido";
             }
             else{
@@ -40,18 +40,14 @@ export class Validation{
         }
         
     }
-    get_person_V(register:FormGroup,role_id:number):User{
-        var user_name=register.get('name').value;
-        var user_last_name=register.get('last_name').value;
-        var user_email=register.get('email').value;
-        var user_cellphone=register.get('cell_phone').value;
-        var role_id=role_id;
-        var user_password=register.get('password').value;
-        var user_password_confirmation=register.get('password_confirmation').value;
-        var user_status="inactive";
-        let person=new User(user_name,user_last_name,user_email,user_cellphone,
-            role_id,user_password,user_password_confirmation,user_status);
-
+    get_person_V(register:FormGroup,idRol:number):User{
+        var name=register.get('name').value;
+        var lastName=register.get('lastName').value;
+        var email=register.get('email').value;
+        var phone=register.get('phone').value;
+        var idRol=idRol;
+        var password=register.get('password').value;
+        let person=new User(name,lastName,email,phone,idRol,password);
         return person;
     }
 
