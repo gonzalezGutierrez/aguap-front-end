@@ -48,8 +48,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.profile.disable();
     this.profilePassword.disable();
-    this.user_data= JSON.parse(localStorage.getItem('usuario'));
-    this.token=this.user_data.token; 
+    this.token=localStorage.getItem('token');
     console.log("token es ",this.token);
     this.userService.getUser(this.token)
     .subscribe(response=>{

@@ -12,34 +12,28 @@ export class MyUbicationsComponent implements OnInit {
   ubications:[];
   nombre="Alexis Perez Gomez"; //se encesita el nombre recuperado del componente login
   user_data:any;
+  name:string='';
+  lastName:string='';
   
   constructor(private userService:UserService) { }
 
   ngOnInit() {
     this.user_data= JSON.parse(localStorage.getItem('usuario'));
-    this.id=this.user_data.id;
     this.token=this.user_data.token; 
+    this.name=this.user_data.name;
+    this.lastName=this.user_data.lastName;
+    this.nombre=this.name+" "+this.lastName;
+    console.log("el nombre es ",this.nombre);
+    console.log("el token es ",this.token);
     this.get_ubications();
   }
 
   delete_ubication(ubication:any):void{
-    /*this.userService.delete_ubication(ubication,this.token)
-    .subscribe(response=>{
-      console.log("respuesta ",response);
-      this.get_ubications();
-    },error=>{
-      console.log("error ",error);
-    });*/
+    
   }
 
   get_ubications():void{
-    /*this.userService.get_ubications(this.id,this.token)
-    .subscribe(response=>{
-      console.log("respuesta ",response);
-      this.ubications=response;
-    },error=>{
-      console.log("error ",error);
-    });*/
+  
   }
 
 }

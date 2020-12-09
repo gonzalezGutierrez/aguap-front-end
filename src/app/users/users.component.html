@@ -9,12 +9,11 @@
 	<body>
 		<header>
 			<nav>
-				<a href="/profile" (click)="see_profile()">Perfil</a>
-				<a href="/ubications" (click)="view_saved_locations()">Ubicaciones</a>
-				<a href="/postRegister" (click)="postRegister()" *ngIf="this.isButtonVisible">Terminar registro</a>
-				<a href="/requestOrders" (click)="request_orders()">Solicitar pedido</a>
-				<a href="/orderList" (click)="see_my_orders()">Mis pedidos</a>
-				<a href="/coupon" (click)="coupon()">Cupón</a>
+				<a (click)="see_profile()">Perfil</a>
+				<a (click)="view_saved_locations()">Ubicaciones</a>
+				<a (click)="request_orders()">Solicitar pedido</a>
+				<a (click)="see_my_orders()">Mis pedidos</a>
+				<a (click)="coupon()">Cupón</a>
 			</nav>
 			<section class="texts-header">
 				<h1>Hidrata tu cuerpo con agua osmopurificada</h1>
@@ -51,7 +50,7 @@
 						<h2 class="title">Selecciona un opción</h2>
 						<div class="gallery-port">
 							<div class="imagen-port">
-								<a href="/profile" (click)="see_profile()">
+								<a (click)="see_profile()">
 									<img src="../../assets/profile.svg" alt="">
 									<div class="hover-gallery">
 									<img src="../../assets/icon.png" alt="">
@@ -60,7 +59,7 @@
 							</a>
 						</div>
 						<div class="imagen-port">
-							<a href="/ubications" (click)="view_saved_locations()">
+							<a (click)="view_saved_locations()">
 								<img src="../../assets/ubications.svg" alt="">
 								<div class="hover-gallery">
 									<img src="../../assets/icon.png" alt="">
@@ -69,7 +68,7 @@
 							</a>
 						</div>
 						<div class="imagen-port">
-							<a href="/requestOrders" (click)="request_orders()">
+							<a (click)="request_orders()">
 								<img src="../../assets/request-order.svg" alt="">
 								<div class="hover-gallery">
 									<img src="../../assets/icon.png" alt="">
@@ -78,7 +77,7 @@
 							</a>
 						</div>
 						<div class="imagen-port">
-							<a href="/orderList" (click)="see_my_orders()">
+							<a (click)="see_my_orders()">
 								<img src="../../assets/orders.svg" alt="">
 								<div class="hover-gallery">
 									<img src="../../assets/icon.png" alt="">
@@ -88,7 +87,7 @@
 						</div>
 
 						<div class="imagen-port">
-							<a href="/coupon" (click)="coupon()">
+							<a (click)="coupon()">
 								<img src="../../assets/cupon.svg" alt="">
 								<div class="hover-gallery">
 									<img src="../../assets/icon.png" alt="">
