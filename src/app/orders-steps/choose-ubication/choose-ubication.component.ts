@@ -49,4 +49,8 @@ export class ChooseUbicationComponent implements OnInit {
         });
     }
 
+    requestOrders(){
+        this.router.navigate(['requestOrders'])
+    }
+
 }

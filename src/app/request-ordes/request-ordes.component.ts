@@ -4,6 +4,7 @@ import * as Mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { UsuariosService} from 'src/app/usuarios.service';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 
 @Component({
   selector: 'app-request-ordes',
@@ -22,7 +23,7 @@ export class RequestOrdesComponent implements OnInit {
     ])
 
 });
-  constructor(private usuarioService:UsuariosService) {
+  constructor(private usuarioService:UsuariosService,private router: Router) {
 
   }
 
@@ -90,5 +91,13 @@ export class RequestOrdesComponent implements OnInit {
         this.longitude = position.coords.longitude;
         console.log('lat, lng', this.latitude, this.longitude);
     });
+  }
+  
+  save_ubication(){
+    console.log("save ubicaciones");
+  }
+  next(){
+    console.log("saltar ubicaciones ubicaciones");
+    this.router.navigate(['order-steps/ubicaciones']);
   }
 }

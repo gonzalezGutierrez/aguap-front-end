@@ -25,7 +25,24 @@
 
                 <div class="item_2_son_2">
                     <div>
-                        <button class="buttons" color="primary" mat-raised-button>guardar ubicación</button>
+                        <button 
+                            class="buttons" 
+                            color="primary" 
+                            mat-raised-button
+                            (click)="save_ubication()"
+                            >
+                            guardar ubicación
+                        </button>
+                    </div>
+                    <div>
+                        <button 
+                            class="buttons" 
+                            color="primary" 
+                            mat-raised-button
+                            (click)="next()"
+                            >
+                            saltar
+                        </button>
                     </div>
                 </div>
 
