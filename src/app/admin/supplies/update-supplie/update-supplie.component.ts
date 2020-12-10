@@ -17,6 +17,7 @@ export class UpdateSupplieComponent implements OnInit {
   seleccionado;
   myForm: FormGroup;
   proveedorSelected;
+  t = ''
   constructor(private route: ActivatedRoute,private router: Router,
     private supplieService: SupplieService, private supplierService: SupplierService,
     private fb: FormBuilder) { }
@@ -30,7 +31,7 @@ export class UpdateSupplieComponent implements OnInit {
         this.supplie = data;
       },error => console.log(error));
 
-    this.supplierService.getSuppliers().subscribe(
+    this.supplierService.getSuppliers(this.t).subscribe(
       data => {
         console.log(data);
         this.proveedores = data;

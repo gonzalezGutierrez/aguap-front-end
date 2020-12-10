@@ -14,6 +14,7 @@ export class SupplierListComponent implements OnInit {
   suppliers: Observable<Suppliers[]>;
   datos = [];
   zone: any = [];
+  t = ''
   constructor(private supplierService: SupplierService, private router:Router) { }
   ngOnInit() {
     this.reloadData();
@@ -32,8 +33,8 @@ export class SupplierListComponent implements OnInit {
   }
 
   reloadData() {
-    this.suppliers = this.supplierService.getSuppliers();
-    this.supplierService.getSuppliers().subscribe(
+    this.suppliers = this.supplierService.getSuppliers(this.t);
+    this.supplierService.getSuppliers(this.t).subscribe(
       data => {
         this.datos = data;
         this.print();

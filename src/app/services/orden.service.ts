@@ -29,6 +29,19 @@ export class OrdenService {
         });
     }
 
+    addUbicacion(address, long, lat){
+        let location = {
+            address: address,
+            longitu: long,
+            latitud: lat,
+            add: true
+        }
+        let endpoint = API_URL_LOCAL + `/ordenes/add-servicio`;
+        return this.http.post(endpoint, {
+            location: location,
+        });
+    }
+
     updateUbicacion(idUbicacion:number) {
         let idUsuario = 11;
         let endpoint  = API_URL_LOCAL + `/ordenes/update-ubicacion?idUsuario=${idUsuario}`;

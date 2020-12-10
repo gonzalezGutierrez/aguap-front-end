@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SupplieService } from 'src/app/supplie.service';
 import { SupplierService } from 'src/app/supplier.service';
 import { Supplies } from 'src/app/models/supplies';
+import { UsuariosService } from 'src/app/usuarios.service';
 
 @Component({
   selector: 'app-supplie-list',
@@ -12,8 +13,8 @@ import { Supplies } from 'src/app/models/supplies';
 })
 export class SupplieListComponent implements OnInit {
   constructor(private router:Router, private supplieService:SupplieService,
-    private supplierService: SupplierService) { }
-
+    private supplierService: SupplierService, private usuarioService:UsuariosService) { }
+  token:String
   supplies: Observable<Supplies[]>;
   public datos_provee = []
   lista = []
@@ -33,12 +34,12 @@ export class SupplieListComponent implements OnInit {
   }
 
   reloadData() {
-    this.supplierService.getSuppliers().subscribe(
+    this.supplierService.getSuppliers(this.usuarioService.token).subscribe(
       datos__ => {
         this.datos_provee = datos__;
       }
     );
-    this.supplieService.getSupplies().subscribe(
+    this.supplieService.getSupplies(this.usuarioService.token).subscribe(
       data => {
         this.lista = data;
         this.changeData();

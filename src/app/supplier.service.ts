@@ -17,9 +17,9 @@ export class SupplierService {
     return this.http.post(this.url +"supplier/",suppliers);//, {headers:headers});
   }
 
-  getSuppliers():Observable<any>{
-    //const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
-    return this.http.get(this.url + "supplier/");//, {headers:headers})
+  getSuppliers(token:string):Observable<any>{
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+token);
+    return this.http.get(this.url + "supplier/", {headers:headers})
   }
 
   getSupplier(id:number):Observable<any>{

@@ -14,11 +14,12 @@ export class CreateSupplieComponent implements OnInit {
   submitted = false;
   proveedores = [];
   seleccionado;
+  t = ''
   constructor(private supplieService:SupplieService, private router:Router, 
     private supplierService: SupplierService) { }
 
   ngOnInit() {
-    this.supplierService.getSuppliers().subscribe(
+    this.supplierService.getSuppliers(this.t).subscribe(
       data => {
         this.proveedores = data;
       }
