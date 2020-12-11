@@ -48,7 +48,7 @@ const routes: Routes = [
   {path:'user',component:UsersComponent},
   {path:'profile',component:ProfileComponent},
   {path:'ubications',component:MyUbicationsComponent},
-  {path:'requestOrders',component:RequestOrdesComponent},
+  {path:'sub-order-steps/new-ubication',component:RequestOrdesComponent},
   {path:'orderList',component:OrderListComponent},
   {path:'menubar',component:MenuBarComponent},
   {path:'accountActivation/:token',component:AccountActivationComponent},
@@ -68,7 +68,6 @@ const routes: Routes = [
 
 
 
-  {path: 'postRegister',component:PostRegisterComponent},
   {path: 'admin/menu/suppliersList',component:SupplierListComponent},
   {path: 'admin/menu/addSupplier', component:CreateSupplierComponent},
   {path: 'admin/menu/updateSupplier/:id', component:UpdateSupplierComponent},

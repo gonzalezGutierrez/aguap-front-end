@@ -4,6 +4,9 @@ import * as Mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { UsuariosService} from 'src/app/usuarios.service';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
+import { UbicacionesService } from '../services/ubicaciones.service';
+import { Ubication } from '../models/Ubication';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-request-ordes',
@@ -14,6 +17,9 @@ export class RequestOrdesComponent implements OnInit {
   map: Mapboxgl.Map;
   latitud:number
   longitud:number
+  addrees:string;
+  token:string;
+  id_user_:string;
   marker
   public formGroup = new FormGroup({
 
@@ -22,11 +28,15 @@ export class RequestOrdesComponent implements OnInit {
     ])
 
 });
-  constructor(private usuarioService:UsuariosService) {
+  constructor(private usuarioService:UsuariosService,
+    private UbicacionesService:UbicacionesService,
+    private router:Router) {
 
   }
 
   ngOnInit() {
+    this.token= localStorage.getItem('_token_ubication');
+    this.id_user_ = localStorage.getItem('_idUser_ubication');
     (Mapboxgl as any).accessToken =environment.mapBoxkey
     this.map = new  Mapboxgl.Map({
       container: 'map', // container id
@@ -53,11 +63,6 @@ export class RequestOrdesComponent implements OnInit {
       draggable: true,
       color: 'green'
       }).setLngLat([lng, lat]).addTo( this.map );
-/*
-    this.marker = new Mapboxgl.Marker({
-      color: 'blue'
-      }).setLngLat([-93.1075127,16.7534462]).addTo( this.map );
-    */
 
     this.marker.on('drag', () => {
       console.log(this.marker.getLngLat());
@@ -66,11 +71,29 @@ export class RequestOrdesComponent implements OnInit {
   }
 
   getAddrees(lng: number, lat: number){
-    console.log('geocoder ',lng, lat)
+    this.latitud = 0.0;
+        this.longitud = 0.0;
+        this.addrees = '';
     this.usuarioService.getAddress(lng, lat).subscribe((data:any) => {
       console.log(data.features[0].place_name);
+      this.latitud = lat;
+          this.longitud = lng;
+          this.addrees = data.features[0].place_name;
       this.formGroup.controls.address.setValue(data.features[0].place_name);
     })
+  }
+
+  setUbicacion(){
+    console.log('direccion ::> ',this.addrees, 'Latitud ::> ',this.latitud, 'Longitud ::> ',this.longitud)
+    let ubicacion = new Ubication(parseInt(this.id_user_), this.latitud, this.longitud, this.addrees, 1, 0);
+    console.log(ubicacion);
+    this.UbicacionesService.addUbicacion(this.token, ubicacion).subscribe( 
+      response=>{
+      console.log("respuesta ",response);
+      this.router.navigate(['/order-steps/ubicaciones']);
+    },error=>{
+      console.log("error resepuesta",error);
+    });
   }
 
   UbicacionCercana(){

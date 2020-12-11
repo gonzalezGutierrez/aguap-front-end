@@ -49,4 +49,10 @@ export class ChooseUbicationComponent implements OnInit {
         });
     }
 
+    nueva_ubicacion_route(){
+        localStorage.setItem('_token_ubication', JSON.stringify(this.token));
+        localStorage.setItem('_idUser_ubication', JSON.stringify(this.idUser));
+        this.router.navigate(['/sub-order-steps/new-ubication']);
+    }
+
 }

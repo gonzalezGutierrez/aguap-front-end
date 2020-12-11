@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
   }
   request_orders():void{
     console.log("estoy solicitando ordenes");
-    this.router.navigate(['requestOrders']);
+    this.router.navigate(['order-steps/ubicaciones']);
   }
   see_my_orders():void{
     console.log("estoy en mis ordenes")
