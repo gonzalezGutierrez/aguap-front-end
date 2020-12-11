@@ -20,6 +20,7 @@ export class RequestOrdesComponent implements OnInit {
   addrees:string;
   token:string;
   id_user_:string;
+  user_data:any;
   marker
   public formGroup = new FormGroup({
 
@@ -35,8 +36,9 @@ export class RequestOrdesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.token= localStorage.getItem('_token_ubication');
-    this.id_user_ = localStorage.getItem('_idUser_ubication');
+    this.user_data= JSON.parse(localStorage.getItem('usuario'));
+    this.token=this.user_data.token;
+    this.id_user_ = this.user_data.id;
     (Mapboxgl as any).accessToken =environment.mapBoxkey
     this.map = new  Mapboxgl.Map({
       container: 'map', // container id
