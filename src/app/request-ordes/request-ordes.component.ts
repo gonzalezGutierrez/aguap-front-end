@@ -114,4 +114,12 @@ export class RequestOrdesComponent implements OnInit {
         console.log('lat, lng', this.latitude, this.longitude);
     });
   }
+  
+  save_ubication(){
+    console.log("save ubicaciones");
+  }
+  next(){
+    console.log("saltar ubicaciones ubicaciones");
+    this.router.navigate(['order-steps/ubicaciones']);
+  }
 }

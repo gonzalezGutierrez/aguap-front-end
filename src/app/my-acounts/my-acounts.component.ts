@@ -11,7 +11,7 @@ import{Validation} from '../formValidations/validation';
 })
 export class MyAcountsComponent implements OnInit {
   emails:[];
-  name="Alexis Perez gomez";//recuperar el nombre del usuario actual
+  name:any;//;//recuperar el nombre del usuario actual
   user_data:any;
   token:string='';//el token del usuario actual
   validation=new Validation();
@@ -25,6 +25,7 @@ export class MyAcountsComponent implements OnInit {
   ngOnInit() {
     this.user_data= JSON.parse(localStorage.getItem('usuario'));
     this.token=this.user_data.token; 
+    this.name=this.user_data.name+" "+this.user_data.lastName;    
     console.log("token",this.user_data.token);
     this.get_emails();
   }
@@ -39,11 +40,11 @@ export class MyAcountsComponent implements OnInit {
     if(this.emailForm.valid){
       const email=this.emailForm.get('email').value;
       console.log("el email es ",email);
-      this.accountService.add_email(this.token,email)
+      this.accountService.add_email(this.user_data.token,email)
       .subscribe(response=>{
         this.emailForm.reset();
         this.get_emails();
-        console.log("respuesta ",response);
+        console.log("respuesta get emails ",response);
       },error=>{
         console.log("error ",error);
       });
@@ -52,7 +53,7 @@ export class MyAcountsComponent implements OnInit {
   }
 
   get_emails(){
-    this.accountService.get_mails(this.token)
+    this.accountService.get_mails(this.user_data.token)
     .subscribe(response=>{
       this.emails=response;
     },error=>{
@@ -62,7 +63,7 @@ export class MyAcountsComponent implements OnInit {
 
   delete_email(email:any){
     console.log("email ",email);
-    this.accountService.delete_mail(this.token,email.id)
+    this.accountService.delete_mail(this.user_data.token,email.id)
     .subscribe(response=>{
       this.get_emails();
     },error=>{
