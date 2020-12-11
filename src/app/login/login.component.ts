@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
    
   }
   ngOnInit(){
-    this.user_data= JSON.parse(localStorage.getItem('usuario'));
+    /*this.user_data= JSON.parse(localStorage.getItem('usuario'));
     if(this.user_data.token!=null||this.user_data!=undefined){ //ir directa mente al menu xd xd xd 
       console.log("ir directamente al menu");
-    }
+    }*/
      
   }
 
