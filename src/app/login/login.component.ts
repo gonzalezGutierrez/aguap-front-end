@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   validation=new Validation();
   valid=false;
   dato:any;
+  user_data:any;
   profile=this.fb.group({
     email:['',[Validators.required]],
     password:['',[Validators.required]],
@@ -33,11 +34,11 @@ export class LoginComponent implements OnInit {
    
   }
   ngOnInit(){
-    this.dato= localStorage.getItem('token');
-    console.log("dato perro",this.dato);
-    if(this.dato!=null||this.dato!=undefined){ // ir directa mente al menu xd xd xd 
-      console.log("ir a login perro xd");
+    this.user_data= JSON.parse(localStorage.getItem('usuario'));
+    if(this.user_data.token!=null||this.user_data!=undefined){ //ir directa mente al menu xd xd xd 
+      console.log("ir directamente al menu");
     }
+     
   }
 
   isValidField(field:string){
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
   
   
-  submitForm() :void{ // is login es valido pasar ala vista user
+  submitForm() :void{//is login es valido pasar ala vista user
     if(this.profile.valid){
       this.valid=false;
       let email=this.profile.get('email').value;
@@ -57,11 +58,9 @@ export class LoginComponent implements OnInit {
       console.log("valido ",password,email);
       this.userService.login(email,password)
       .subscribe(response=>{
-        console.log("resupuesta ",response);
-        let token=response['token'];
-        let user=response;
-        localStorage.setItem('usuario', JSON.stringify(user));
-        localStorage.setItem('token',token);
+        let user_data=response;
+        localStorage.setItem('usuario', JSON.stringify(user_data));
+        console.log("login normal ",this.user_data);
         this.router.navigate(['user']);
       },error=>{        
         this.user_error(error['error']);

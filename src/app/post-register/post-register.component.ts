@@ -77,10 +77,8 @@ export class PostRegisterComponent implements OnInit {
     this.userService.userAccountActivation(token)
     .subscribe(response=>{
       this.alert.sucessful('cuenta activa',false);
-      let token=response['token'];
       let user=response;
       localStorage.setItem('usuario', JSON.stringify(user));
-      localStorage.setItem('token',token);
       this.route_menu();
     },error=>{
       console.log("error activar cuenta ",error);
