@@ -8,6 +8,7 @@ import {Alert} from 'src/app/alerts/alert';
 import {myCurrentPassword,ValidateOldPassword} from 'src/app/profile/customvalidator';
 import {Validation} from '../formValidations/validation';
 import Swal from 'sweetalert2';
+import {MustMatch} from 'src/app/register/confirm-password.validator';
 
 @Component({
   selector: 'app-profile',
@@ -38,7 +39,11 @@ export class ProfileComponent implements OnInit {
 
   profilePassword=this.passwordForm.group({
     before_password:['',[Validators.required]],
-    new_password:['',[Validators.required,Validators.pattern(regex.validate_password)]]
+    new_password:['',[Validators.required,Validators.pattern(regex.validate_password)]],
+    password_confirmation:['',[Validators.required]]
+  },
+  {
+    validator: MustMatch('new_password', 'password_confirmation')
   });
 
   constructor(private userService:UserService,private profileForm:FormBuilder,
@@ -48,9 +53,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.profile.disable();
     this.profilePassword.disable();
-    this.token=localStorage.getItem('token');
-    console.log("token es ",this.token);
-    this.userService.getUser(this.token)
+    this.user_data= JSON.parse(localStorage.getItem('usuario'));
+    console.log("token es ",this.user_data.token);
+    this.userService.getUser(this.user_data.token)
     .subscribe(response=>{
       console.log("respuesta ",response);
       this.Iuser=response;
@@ -101,7 +106,7 @@ export class ProfileComponent implements OnInit {
       var email=this.profile.get('email').value;
       var phone=this.profile.get('cell_phone').value;
       var user =new User(name,lastName,email,phone);
-      this.userService.updateUser(this.token,user)
+      this.userService.updateUser(this.user_data.token,user)
       .subscribe(response=>{
         this.Iuser=response;
         this.alert.sucessful("actualizado",true);
@@ -129,7 +134,7 @@ export class ProfileComponent implements OnInit {
   }
 
   oldPasword(password:string):void{
-    this.userService.usersCurrentpassword(this.token,password)
+    this.userService.usersCurrentpassword(this.user_data.token,password)
     .subscribe(response=>{
       console.log("repuesta ",response);
       this.updatePassword(response,password);
@@ -143,7 +148,7 @@ export class ProfileComponent implements OnInit {
     if(response==="true"){
       this.change_password_is_valid=false;
       console.log("cambiar contraseña concidio ",this.change_password_is_valid);
-      this.userService.changeUserPassword(this.token,password)
+      this.userService.changeUserPassword(this.user_data.token,password)
       .subscribe(response=>{
         console.log("respuesta ",response);
         this.profilePassword.reset();
@@ -160,9 +165,10 @@ export class ProfileComponent implements OnInit {
   }
   delete_user(){
     console.log("delete user");
-    this.userService.deleteUser(this.token)
+    this.userService.deleteUser(this.user_data.token)
     .subscribe(response=>{
       console.log("response ",response);
+      localStorage.clear();
     },error=>{
       console.log("error ",error);
     })

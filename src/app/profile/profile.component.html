@@ -121,6 +121,24 @@
                     </mat-error>
                 </mat-form-field> 
 
+                <mat-form-field appearance="fill">
+                    <mat-label>Confirmar contraseña Nueva</mat-label>
+                    <input 
+                        matInput [type]="hide ? 'password' : 'text'"
+                        formControlName="password_confirmation"  
+                    >
+                    <button mat-icon-button matSuffix (click)="hide = !hide" 
+                        [attr.aria-label]="'Hide password'" 
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="isValidField('password_confirmation',profilePassword)">
+                        {{getErrorMessage("password_confirmation",profilePassword)}}
+                    </mat-error>
+                </mat-form-field>
+                
+                
+
                 <div class="container_button">
                     <div class="item_button">
                         <button 

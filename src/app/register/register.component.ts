@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
       console.log("error ",error);
     })
   }
-
+  
   routeLogin():void{
     this.router.navigate(['login']);
   }

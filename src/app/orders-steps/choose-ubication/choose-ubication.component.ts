@@ -49,4 +49,8 @@ export class ChooseUbicationComponent implements OnInit {
         });
     }
 
+    nueva_ubicacion_route(){
+        this.router.navigate(['/sub-order-steps/new-ubication']);
+    }
+
 }
