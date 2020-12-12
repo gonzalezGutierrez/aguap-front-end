@@ -48,6 +48,10 @@
                 <span class="text-bold mt-1">Cantidad: {{servicio.cantidad}}</span> <br>
                 <span class="text-bold mt-1">Subtotal: {{servicio.subtotal | currency}}</span>
             </mat-card>
+
+            <button mat-raised-button color="primary" (click)="confirm_order()">
+                Confirmar Orden
+            </button>
         </div>
     </div>
 </html>

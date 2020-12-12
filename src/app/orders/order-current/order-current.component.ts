@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdenService } from 'src/app/services/orden.service';
-
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-order-current',
     templateUrl: './order-current.component.html',
@@ -11,7 +11,7 @@ export class OrderCurrentComponent implements OnInit {
     order: any = {};
     total: number;
     servicios: any = [];
-    constructor(private orderService:OrdenService) { }
+    constructor(private orderService:OrdenService, private router:Router) { }
 
     ngOnInit() {
         this.getOrder();
@@ -25,4 +25,7 @@ export class OrderCurrentComponent implements OnInit {
         });
     }
 
+    confirm_order(){
+        this.router.navigate(['/user']);
+    }
 }
