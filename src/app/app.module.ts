@@ -54,6 +54,8 @@ import { RegisterDelivererComponent } from './admin/register-deliverer/register-
 import { DelivererMenuComponent } from './deliverer/deliverer-menu/deliverer-menu.component';
 import { DeliveriesComponent } from './deliverer/deliveries/deliveries.component';
 import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.component';
+import { ElegirMedioDeTransporteComponent } from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
+import { ListaPedidosComponent } from './repartidor/lista-pedidos/lista-pedidos.component';
 
 
 const config = new AuthServiceConfig([
@@ -111,6 +113,12 @@ export function provideConfig() {
 
 
     ActivarCuentaComponent,
+
+
+    ElegirMedioDeTransporteComponent,
+
+
+    ListaPedidosComponent,
 
   ],
   imports: [

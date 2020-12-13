@@ -31,6 +31,7 @@ export class ChooseRepartidorComponent implements OnInit {
         this.repartidorService.getRepartidores(like).subscribe((result:any) => {
             this.records_numbers = result.records_number;
             this.repartidores = result.usuarios;
+            console.log("respartidores ",this.repartidores);
             this.spinner.hide();
         });
     }
