@@ -55,9 +55,9 @@
           </div>
           
           <br>
-          <div class="d-flex flex-row justify-content-around">
+          <div class="d-flex flex-row justify-content-around" *ngIf="lista_pedidos">
             <div>
-              <button  type="button" class="btn btn-primary"><strong>Entregado</strong></button>
+              <button  type="button" class="btn btn-primary"><strong>ver servicios</strong></button>
             </div>
             <div >
               <button  type="button" class="btn btn-success"><strong>Cliente ausente</strong></button>
@@ -66,10 +66,15 @@
 
         </div>
 
-        <div class="card-footer">
-          <small class="card-text">Elija una opción para este pedido</small>
-        </div
-        >
+        <div class="card-footer" >
+          <div *ngIf="lista_pedidos;else elseBlock">
+            <small class="card-text" >Elija una opción para este pedido</small>
+          </div>
+          <ng-template #elseBlock>
+            <small class="card-text" >pedido ya entragado</small>
+          </ng-template>
+        </div>
+
       </div>
     </div>
 
