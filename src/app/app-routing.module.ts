@@ -41,6 +41,9 @@ import {UpdateSupplieComponent} from 'src/app/admin/supplies/update-supplie/upda
 import{ElegirMedioDeTransporteComponent} from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
 import{ListaPedidosComponent} from './repartidor/lista-pedidos/lista-pedidos.component';
 
+import {NavbarRepartidoComponent} from './repartidor/layouts/navbar-repartido/navbar-repartido.component' 
+
+
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'registerUser',component:RegisterComponent},
@@ -77,7 +80,8 @@ const routes: Routes = [
   {path: 'admin/menu/suppliesList_',component:SupplieListComponent},
   {path: 'admin/menu/addSupplie_', component:CreateSupplieComponent},
   {path: 'admin/menu/updateSupplie_/:id', component:UpdateSupplieComponent},
-
+  
+  {path:'repartidor/navbar',component:NavbarRepartidoComponent},
   {path:'repartidor/medio-de-transporte',component:ElegirMedioDeTransporteComponent},
   {path:'repartidor/lista-pedidos',component:ListaPedidosComponent},
   {path: '**',component:NotFoundComponent},
