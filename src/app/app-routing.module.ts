@@ -42,15 +42,10 @@ import {UpdateSupplieComponent} from 'src/app/admin/supplies/update-supplie/upda
 import {NavbarRepartidoComponent} from './repartidor/layouts/navbar-repartido/navbar-repartido.component'
 import{ElegirMedioDeTransporteComponent} from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
 import{ListaPedidosComponent} from './repartidor/lista-pedidos/lista-pedidos.component';
-<<<<<<< HEAD
 import{ListaPedidosHistorialComponent} from './repartidor/lista-pedidos-historial/lista-pedidos-historial.component';
 import {ListaPedidosDetallesComponent} from './repartidor/lista-pedidos-detalles/lista-pedidos-detalles.component';
-=======
-import { RutasComponent } from './repartidor/rutas/rutas.component';
+import {RutasComponent} from './repartidor/rutas/rutas.component';
 
-import {NavbarRepartidoComponent} from './repartidor/layouts/navbar-repartido/navbar-repartido.component' 
-
->>>>>>> 94a5b0dd6e5bd8008b4fb56dae2c22fd41c7ad21
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -92,15 +87,10 @@ const routes: Routes = [
   {path:'repartidor/navbar',component:NavbarRepartidoComponent},
   {path:'repartidor/medio-de-transporte',component:ElegirMedioDeTransporteComponent},
   {path:'repartidor/lista-pedidos',component:ListaPedidosComponent},
-<<<<<<< HEAD
   {path:'repartidor/lista-pedidos/historial',component:ListaPedidosHistorialComponent},
   {path:'repartidor/lista-pedidos/detalles',component:ListaPedidosDetallesComponent},
-=======
   {path: 'repartidor/rutas',component:RutasComponent},
->>>>>>> 94a5b0dd6e5bd8008b4fb56dae2c22fd41c7ad21
   {path: '**',component:NotFoundComponent},
-
-
 ];
 
 
