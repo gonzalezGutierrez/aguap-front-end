@@ -24,11 +24,13 @@ export class ChooseDateAndTimeComponent implements OnInit {
     }
 
     onChooseTimeAndDate() {
+        localStorage.setItem('TIME_DATE',JSON.stringify(this.time));
         this.spinner.show();
-        this.orderService.updateFechaOrden(this.time).subscribe((result) => {
+        this.router.navigate(['/order-steps/servicios']);
+        /*this.orderService.updateFechaOrden(this.time).subscribe((result) => {
             this.spinner.hide();
             this.router.navigate(['/order-steps/servicios']);
-        });
+        });*/
     }
 
 }

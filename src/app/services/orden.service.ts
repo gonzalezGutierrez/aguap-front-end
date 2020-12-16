@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_URL_LOCAL } from '../config/API';
+import { Order } from '../models/Order';
+import { ServicioOrden } from '../models/ServicioOrden';
 
 @Injectable({
     providedIn: 'root'
@@ -9,16 +11,24 @@ export class OrdenService {
 
     constructor(private http: HttpClient) { }
 
-    getOrder() {
-        let idUsuario = 11;
+    getOrder(idUsuario:number) {
         let endpoint = API_URL_LOCAL + `/orden?idUsuario=${idUsuario}`;
         return this.http.get(endpoint);
     }
 
-    addOrder() {
-        let idUsuario = 11;
-        let endpoint = API_URL_LOCAL + `/ordenes?idUsuario=${idUsuario}`;
-        return this.http.post(endpoint,{});
+    getOnlyOrderById(idCliente:number){
+        let endpoint = API_URL_LOCAL + `/search/orden?idCliente=${idCliente}`;
+        return this.http.get(endpoint);
+    }
+
+    addOrder(orden:Order) {
+        let endpoint = API_URL_LOCAL + "/ordenes";
+        return this.http.post(endpoint, orden);
+    }
+
+    addPedido(servicioOrden:ServicioOrden){
+        let endpoint = API_URL_LOCAL + "/ordenes/pedidos";
+        return this.http.post(endpoint, servicioOrden);
     }
 
     updateRepartidor(idRepartidor:number) {

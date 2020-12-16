@@ -12,7 +12,7 @@ export class AppComponent {
 
     title = 'aguApp';
 
-    constructor(private orderService:OrdenService) {
+    /*constructor(private orderService:OrdenService) {
         let idOrder = localStorage.getItem('idOrder');
 
         if (idOrder === null) {
@@ -21,6 +21,6 @@ export class AppComponent {
             });
         }
 
-    }
+    }*/
 
 }

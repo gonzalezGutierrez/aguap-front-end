@@ -41,12 +41,16 @@ export class ChooseUbicationComponent implements OnInit {
     }
 
     onChooseUbication(idUbication) {
+        console.log(idUbication);
+        localStorage.setItem('ID_USER',JSON.stringify(this.idUser));
+        localStorage.setItem('ID_UBICATION',JSON.stringify(idUbication));
         this.spinner.show();
-        this.orderService.updateUbicacion(idUbication).subscribe((result:any) => {
+        this.router.navigate(['/order-steps/repartidores']);
+        /*this.orderService.updateUbicacion(idUbication).subscribe((result:any) => {
             this.spinner.hide();
             alert(result.msg);
             this.router.navigate(['/order-steps/repartidores']);
-        });
+        });*/
     }
 
     nueva_ubicacion_route(){
