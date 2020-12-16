@@ -4,7 +4,7 @@
   </div>
 
   <div class="d-flex flex-row justify-content-start flex-wrap">
-    <div class="item" style="width:100%;">
+    <div class="item" style="width:100%;" *ngFor="let pedido of pedidos; index as i">
       <div class="card text-white bg-secondary mb-3"  style="width:100%; ">
        
         <div class="card-body">
@@ -16,35 +16,32 @@
                 <div class="item">
                   <div class="d-flex flex-row justify-content-start" style="width:100%;">
                     <div>
-                      <strong>Total: </strong>
-                      <i class="fas fa-dollar-sign"></i>
+                      <strong>Cliente : </strong>
                     </div>
-                    <div style="margin:3px;">
-                      15550
+                    <div>
+                      {{pedido.cliente.name }}{{pedido.cliente.lastName}}
                     </div>
                   </div>
                 </div>
-                <br>
-
+                
                 <div class="item" style="width: 100%;">
                   <div class="d-flex flex-row justify-content-start flex-wrap " style="width: 100%;">
                     <div>
-                      <strong>Dirección :</strong> 
+                      <strong>Teléfono móvil :</strong> 
                     </div>
                     <div>
-                      <small>tgz ,calle chiapas mz 80 lt 23 col las granjas</small>
+                      <small>{{pedido.cliente.phone}}</small>
                     </div>
                   </div>
                 </div>
-                <br>
-
+              
                 <div class="item" style="width:100%;">
                   <div class="d-flex flex-row justify-content-start flex-wrap" style="width: 100%;">
                     <div>
-                      <strong>Servicios :</strong>
+                      <strong>Dirección :</strong>
                     </div>
                     <div>
-                      <small>llenado de Garrafon</small>
+                      <small>{{pedido.Orden.address}}</small>
                     </div>
                   </div>
                 </div>
@@ -53,14 +50,35 @@
 
             </div>
           </div>
-          
           <br>
           <div class="d-flex flex-row justify-content-around" *ngIf="lista_pedidos">
             <div>
-              <button  type="button" class="btn btn-primary"><strong>ver servicios</strong></button>
+              <button  
+                type="button" 
+                class="btn btn-primary"
+                (click)="ver_detalles(pedido)">
+                <strong>Ver detalles</strong>
+              </button>
             </div>
-            <div >
-              <button  type="button" class="btn btn-success"><strong>Cliente ausente</strong></button>
+            <div>
+              <button  
+                type="button" 
+                class="btn btn-success"
+                (click)="cliente_ausente()">
+                <strong>Cliente ausente</strong>
+              </button>
+            </div>
+          </div>
+
+          <div class="d-flex flex-row justify-content-center" *ngIf="lista_pedidos!=true">
+            <div style="width:100%;">
+              <button 
+                style="width:100%;" 
+                type="button" 
+                class="btn btn-primary"
+                (click)="ver_detalles(pedido)">
+                <strong>ver detalles de la orden</strong>
+              </button>
             </div>
           </div>
 
@@ -71,7 +89,7 @@
             <small class="card-text" >Elija una opción para este pedido</small>
           </div>
           <ng-template #elseBlock>
-            <small class="card-text" >pedido ya entragado</small>
+            <small class="card-text" >Pedido ya Despachado</small>
           </ng-template>
         </div>
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar-repartido',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarRepartidoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
+
+  historial_de_ventas(){
+    console.log("historial de ventas");
+    this.router.navigate(['repartidor/lista-pedidos/historial']);
+  }
+  ajustes(){
+    console.log("ajustes");
+  }
+  lista_pedidos(){
+    console.log("lista pedidos");
+    this.router.navigate(['repartidor/lista-pedidos']);
+  }
+  rutas(){
+    console.log("rutas");
+  }
+  medio_de_trasporte(){
+    console.log("medio de transporte");
+    this.router.navigate(['repartidor/medio-de-transporte']);
+  }
+
 
 }

@@ -24,7 +24,7 @@ export class OrdenService {
     updateRepartidor(idRepartidor:number) {
         let idUsuario = 11;
         let endpoint  = API_URL_LOCAL + `/ordenes/update-repartidor?idUsuario=${idUsuario}`;
-        return this.http.patch(endpoint, {
+        return this.http.patch(endpoint,{
             idRepartidor:idRepartidor
         });
     }

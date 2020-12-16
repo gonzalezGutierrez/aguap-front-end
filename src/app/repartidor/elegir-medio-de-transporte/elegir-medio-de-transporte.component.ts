@@ -13,12 +13,14 @@ export class ElegirMedioDeTransporteComponent implements OnInit {
   ngOnInit() {
   }
 
+  triciclo():void{
+    console.log("ir en tricilco");
+  }
+  
   vehiculo():void{
     console.log("ir en veiculo");
     //this.router.navigate(['']);
   }
-  triciclo():void{
-    console.log("ir en tricilco");
-  }
+  
 
 }

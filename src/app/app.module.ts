@@ -3,17 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { NgxSpinnerModule } from "ngx-spinner";
-
-
 import{MaterialModule} from './material/material.module';
-
-
-
-
-
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -38,14 +29,11 @@ import { CreateSupplierComponent } from 'src/app/admin/suppliers/create-supplier
 import { SupplierListComponent } from 'src/app/admin/suppliers/supplier-list/supplier-list.component';
 import { UpdateSupplierComponent } from 'src/app/admin/suppliers/update-supplier/update-supplier.component';
 import { UpdateSupplieComponent } from 'src/app/admin/supplies/update-supplie/update-supplie.component';
-
-
 import { ChooseUbicationComponent } from './orders-steps/choose-ubication/choose-ubication.component';
 import { ChooseRepartidorComponent } from './orders-steps/choose-repartidor/choose-repartidor.component';
 import { ChooseDateAndTimeComponent } from './orders-steps/choose-date-and-time/choose-date-and-time.component';
 import { ChooseServicesComponent } from './orders-steps/choose-services/choose-services.component';
 import { OrderCurrentComponent } from './orders/order-current/order-current.component';
-
 import { AccountActivationComponent } from './account-activation/account-activation.component';
 import { MyAcountsComponent } from './my-acounts/my-acounts.component';
 import { MenuComponent } from './admin/menu/menu.component';
@@ -57,9 +45,9 @@ import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.componen
 import { ElegirMedioDeTransporteComponent } from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
 import { ListaPedidosComponent } from './repartidor/lista-pedidos/lista-pedidos.component';
 import { NavbarRepartidoComponent } from './repartidor/layouts/navbar-repartido/navbar-repartido.component';
-
-
-
+import { PerfilComponent } from './repartidor/perfil/perfil.component';
+import { ListaPedidosHistorialComponent } from './repartidor/lista-pedidos-historial/lista-pedidos-historial.component';
+import { ListaPedidosDetallesComponent } from './repartidor/lista-pedidos-detalles/lista-pedidos-detalles.component';
 
 const config = new AuthServiceConfig([
   {
@@ -119,6 +107,9 @@ export function provideConfig() {
     ElegirMedioDeTransporteComponent,
     ListaPedidosComponent,
     NavbarRepartidoComponent,
+    PerfilComponent,
+    ListaPedidosHistorialComponent,
+    ListaPedidosDetallesComponent,
     
   ],
   imports: [

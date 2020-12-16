@@ -38,11 +38,12 @@ import {SupplieListComponent} from 'src/app/admin/supplies/supplie-list/supplie-
 import {CreateSupplieComponent} from 'src/app/admin/supplies/create-supplie/create-supplie.component';
 import {UpdateSupplieComponent} from 'src/app/admin/supplies/update-supplie/update-supplie.component';
 
+
+import {NavbarRepartidoComponent} from './repartidor/layouts/navbar-repartido/navbar-repartido.component'
 import{ElegirMedioDeTransporteComponent} from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
 import{ListaPedidosComponent} from './repartidor/lista-pedidos/lista-pedidos.component';
-
-import {NavbarRepartidoComponent} from './repartidor/layouts/navbar-repartido/navbar-repartido.component' 
-
+import{ListaPedidosHistorialComponent} from './repartidor/lista-pedidos-historial/lista-pedidos-historial.component';
+import {ListaPedidosDetallesComponent} from './repartidor/lista-pedidos-detalles/lista-pedidos-detalles.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -84,6 +85,8 @@ const routes: Routes = [
   {path:'repartidor/navbar',component:NavbarRepartidoComponent},
   {path:'repartidor/medio-de-transporte',component:ElegirMedioDeTransporteComponent},
   {path:'repartidor/lista-pedidos',component:ListaPedidosComponent},
+  {path:'repartidor/lista-pedidos/historial',component:ListaPedidosHistorialComponent},
+  {path:'repartidor/lista-pedidos/detalles',component:ListaPedidosDetallesComponent},
   {path: '**',component:NotFoundComponent},
 
 
