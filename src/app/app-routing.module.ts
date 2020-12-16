@@ -40,6 +40,7 @@ import {UpdateSupplieComponent} from 'src/app/admin/supplies/update-supplie/upda
 
 import{ElegirMedioDeTransporteComponent} from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
 import{ListaPedidosComponent} from './repartidor/lista-pedidos/lista-pedidos.component';
+import { RutasComponent } from './repartidor/rutas/rutas.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -80,6 +81,7 @@ const routes: Routes = [
 
   {path:'repartidor/medio-de-transporte',component:ElegirMedioDeTransporteComponent},
   {path:'repartidor/lista-pedidos',component:ListaPedidosComponent},
+  {path: 'repartidor/rutas',component:RutasComponent},
   {path: '**',component:NotFoundComponent},
 
 

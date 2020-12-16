@@ -8,6 +8,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
 
 import{MaterialModule} from './material/material.module';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 
@@ -56,6 +57,7 @@ import { DeliveriesComponent } from './deliverer/deliveries/deliveries.component
 import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.component';
 import { ElegirMedioDeTransporteComponent } from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
 import { ListaPedidosComponent } from './repartidor/lista-pedidos/lista-pedidos.component';
+import { RutasComponent } from './repartidor/rutas/rutas.component';
 
 
 const config = new AuthServiceConfig([
@@ -120,9 +122,13 @@ export function provideConfig() {
 
     ListaPedidosComponent,
 
+
+    RutasComponent,
+
   ],
   imports: [
     BrowserModule,
+    LeafletModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
