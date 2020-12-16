@@ -57,9 +57,9 @@ export class RutasComponent  {
   onMapReady(map: L.Map) {
     L.Routing.control({
       waypoints: [
-       L.latLng(16.760640, -93.131206), //inicio Depósito
-       L.latLng(16.754023, -93.118924), //punto de entrega medio
-       L.latLng(16.743943, -93.124644)], //punto de entrega final
+       L.latLng(20.7177409,-103.3895654), //inicio Depósito
+       L.latLng(20.7176129,-103.3902145), //punto de entrega medio
+       L.latLng(16.7845074,-93.1045188)], //punto de entrega final
       routeWhileDragging: false,
        //language: 'es'   //intrucciones en español
     }).addTo(map);      //cargar al mapa
