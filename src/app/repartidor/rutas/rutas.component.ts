@@ -61,7 +61,7 @@ export class RutasComponent  {
        L.latLng(16.754023, -93.118924), //punto de entrega medio
        L.latLng(16.743943, -93.124644)], //punto de entrega final
       routeWhileDragging: false,
-       language: 'es'   //intrucciones en español
+       //language: 'es'   //intrucciones en español
     }).addTo(map);      //cargar al mapa
   }
 

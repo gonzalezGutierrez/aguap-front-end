@@ -20,6 +20,7 @@ export class NavbarRepartidoComponent implements OnInit {
   }
   ajustes(){
     console.log("ajustes");
+    this.router.navigate(['login']);
   }
   lista_pedidos(){
     console.log("lista pedidos");

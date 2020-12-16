@@ -58,16 +58,27 @@ export class LoginComponent implements OnInit {
       console.log("valido ",password,email);
       this.userService.login(email,password)
       .subscribe(response=>{
-        let user_data=response;
-        localStorage.setItem('usuario', JSON.stringify(user_data));
-        console.log("login normal ",this.user_data);
-        this.router.navigate(['user']);
+        var user_data=response;
+        this.view_to_show(user_data);
       },error=>{        
         this.user_error(error['error']);
       });
     }
     else{
       this.valid=true;
+    }
+  }
+
+  view_to_show(user_data:any){
+    if(user_data.idRol===2){
+      console.log("seva ala vista de repartidor");
+      this.router.navigate(['repartidor/medio-de-transporte']);
+      localStorage.setItem('usuario', JSON.stringify(user_data));
+    }
+    else{
+      console.log("se va ala vista de cliente");
+      this.router.navigate(['user']);
+      localStorage.setItem('usuario', JSON.stringify(user_data));
     }
   }
 

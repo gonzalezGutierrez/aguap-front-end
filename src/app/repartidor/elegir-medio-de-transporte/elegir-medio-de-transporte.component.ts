@@ -9,9 +9,14 @@ import{PedidosService} from 'src/app/repartidor/services/pedidos.service';
 })
 export class ElegirMedioDeTransporteComponent implements OnInit {
 
-  repartido_id=1
+  repartido_id:any;
+  user_data:any;
   pedidos=[];
-  constructor(private router:Router,private pedidosService:PedidosService) { }
+  constructor(private router:Router,private pedidosService:PedidosService) { 
+    this.user_data=JSON.parse(localStorage.getItem('usuario'))
+    this.repartido_id=this.user_data.id;
+    console.log("el id del repartidor es ",this.repartido_id);
+  }
 
   ngOnInit() {
   }

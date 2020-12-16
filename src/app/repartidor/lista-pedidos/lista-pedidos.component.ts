@@ -14,10 +14,11 @@ export class ListaPedidosComponent implements OnInit {
   repartidor_id:any;
   token:any;
   pedidos=[];
-
+  user_data:any
   ngOnInit() {
     console.log("estoy en lista-pedidos ",this.lista_pedidos);
-    this.repartidor_id=1;
+    this.user_data=JSON.parse(localStorage.getItem('usuario'))
+    this.repartidor_id=this.user_data.id;
     this.ver_pedidos_activos_o_historial();
   }
 
