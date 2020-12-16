@@ -10,11 +10,8 @@ export class ServicesService {
     constructor(private http:HttpClient) { }
 
     getServices() {
-
-        let endpoint = API_URL_LOCAL + '/servicios';
-
-        return this.http.get(endpoint);
-
+      let endpoint = API_URL_LOCAL + '/servicios';
+      return this.http.get(endpoint);
     }
 
 }

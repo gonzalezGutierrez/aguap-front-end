@@ -8,6 +8,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 
 
 import{MaterialModule} from './material/material.module';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 
@@ -54,6 +55,12 @@ import { RegisterDelivererComponent } from './admin/register-deliverer/register-
 import { DelivererMenuComponent } from './deliverer/deliverer-menu/deliverer-menu.component';
 import { DeliveriesComponent } from './deliverer/deliveries/deliveries.component';
 import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.component';
+import { ElegirMedioDeTransporteComponent } from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
+import { ListaPedidosComponent } from './repartidor/lista-pedidos/lista-pedidos.component';
+
+import { RutasComponent } from './repartidor/rutas/rutas.component';
+
+import { NavbarRepartidoComponent } from './repartidor/layouts/navbar-repartido/navbar-repartido.component';
 
 
 const config = new AuthServiceConfig([
@@ -108,13 +115,20 @@ export function provideConfig() {
     SupplierListComponent,
     UpdateSupplierComponent,
     UpdateSupplieComponent,
-
-
     ActivarCuentaComponent,
+
+
+    ElegirMedioDeTransporteComponent,
+    ListaPedidosComponent,
+
+    RutasComponent,
+
+    NavbarRepartidoComponent,
 
   ],
   imports: [
     BrowserModule,
+    LeafletModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,

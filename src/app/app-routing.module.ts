@@ -37,7 +37,13 @@ import {UpdateSupplierComponent} from 'src/app/admin/suppliers/update-supplier/u
 import {SupplieListComponent} from 'src/app/admin/supplies/supplie-list/supplie-list.component';
 import {CreateSupplieComponent} from 'src/app/admin/supplies/create-supplie/create-supplie.component';
 import {UpdateSupplieComponent} from 'src/app/admin/supplies/update-supplie/update-supplie.component';
-import { from } from 'rxjs';
+
+import{ElegirMedioDeTransporteComponent} from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
+import{ListaPedidosComponent} from './repartidor/lista-pedidos/lista-pedidos.component';
+import { RutasComponent } from './repartidor/rutas/rutas.component';
+
+import {NavbarRepartidoComponent} from './repartidor/layouts/navbar-repartido/navbar-repartido.component' 
+
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -75,6 +81,11 @@ const routes: Routes = [
   {path: 'admin/menu/suppliesList_',component:SupplieListComponent},
   {path: 'admin/menu/addSupplie_', component:CreateSupplieComponent},
   {path: 'admin/menu/updateSupplie_/:id', component:UpdateSupplieComponent},
+  
+  {path:'repartidor/navbar',component:NavbarRepartidoComponent},
+  {path:'repartidor/medio-de-transporte',component:ElegirMedioDeTransporteComponent},
+  {path:'repartidor/lista-pedidos',component:ListaPedidosComponent},
+  {path: 'repartidor/rutas',component:RutasComponent},
   {path: '**',component:NotFoundComponent},
 
 
