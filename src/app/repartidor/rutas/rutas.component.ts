@@ -10,7 +10,13 @@ import 'leaflet';
   templateUrl: './rutas.component.html',
   styleUrls: ['./rutas.component.css']
 })
+
 export class RutasComponent  {
+  ordenes:any;
+  constructor(){
+    this.ordenes= JSON.parse(localStorage.getItem('ordenes'));
+    console.log("ordenes ",this.ordenes);
+  }
 // Mapa
   streetMaps = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     detectRetina: true,

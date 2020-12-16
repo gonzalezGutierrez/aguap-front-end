@@ -27,6 +27,7 @@ export class NavbarRepartidoComponent implements OnInit {
   }
   rutas(){
     console.log("rutas");
+    this.router.navigate(['repartidor/rutas']);
   }
   medio_de_trasporte(){
     console.log("medio de transporte");

@@ -46,7 +46,6 @@ import{ListaPedidosHistorialComponent} from './repartidor/lista-pedidos-historia
 import {ListaPedidosDetallesComponent} from './repartidor/lista-pedidos-detalles/lista-pedidos-detalles.component';
 import {RutasComponent} from './repartidor/rutas/rutas.component';
 
-
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'registerUser',component:RegisterComponent},
@@ -74,8 +73,6 @@ const routes: Routes = [
   {path:'order-steps/servicios',component:ChooseServicesComponent},
   {path:'orders/order-current',component:OrderCurrentComponent},
 
-
-
   {path: 'admin/menu/suppliersList',component:SupplierListComponent},
   {path: 'admin/menu/addSupplier', component:CreateSupplierComponent},
   {path: 'admin/menu/updateSupplier/:id', component:UpdateSupplierComponent},
@@ -92,7 +89,6 @@ const routes: Routes = [
   {path: 'repartidor/rutas',component:RutasComponent},
   {path: '**',component:NotFoundComponent},
 ];
-
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

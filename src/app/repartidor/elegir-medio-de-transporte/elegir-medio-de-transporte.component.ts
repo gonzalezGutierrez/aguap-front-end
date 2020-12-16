@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import{PedidosService} from 'src/app/repartidor/services/pedidos.service';
 
 @Component({
   selector: 'app-elegir-medio-de-transporte',
@@ -8,18 +9,40 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class ElegirMedioDeTransporteComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  repartido_id=1
+  pedidos=[];
+  constructor(private router:Router,private pedidosService:PedidosService) { }
 
   ngOnInit() {
   }
 
   triciclo():void{
     console.log("ir en tricilco");
+    this.pedidosService.get_pedidos(this.repartido_id)
+    .subscribe(response=>{
+      console.log("respuesta ",response);
+      var activos=response['activos'];
+      this.pedidos=activos['pedidoss'];
+      localStorage.setItem('ordenes',JSON.stringify(this.pedidos));
+      this.router.navigate(['repartidor/rutas']);
+    },error=>{
+      console.log("error ",error);
+    })
   }
   
   vehiculo():void{
     console.log("ir en veiculo");
-    //this.router.navigate(['']);
+    this.pedidosService.get_pedidos(this.repartido_id)
+    .subscribe(response=>{
+      console.log("respuesta ",response);
+      var activos=response['activos'];
+      this.pedidos=activos['pedidoss'];
+      localStorage.setItem('ordenes',JSON.stringify(this.pedidos));
+      this.router.navigate(['repartidor/rutas']);
+    },error=>{
+      console.log("error ",error);
+    })
+    
   }
   
 
