@@ -1,0 +1,15 @@
+<html>
+
+	<div class="head">
+   	 <app-toolbar></app-toolbar>
+  	</div>
+
+   <div class="map"
+	  leaflet
+	  [leafletOptions]="options"
+	  [leafletLayers]="layers"
+	  (leafletMapReady)="onMapReady($event)"
+	  [leafletLayersControl]="layersControl">
+	</div>
+
+</html>

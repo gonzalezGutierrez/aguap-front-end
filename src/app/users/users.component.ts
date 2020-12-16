@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { UsuariosService} from 'src/app/usuarios.service';
-import Swal from 'sweetalert2';
-import {UserService} from 'src/app/services/user.service'
+import { OrdenService } from '../services/orden.service';
 
 @Component({
   selector: 'app-users',
@@ -11,9 +9,17 @@ import {UserService} from 'src/app/services/user.service'
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private router:Router, private usuarioService:UsuariosService, private userService:UserService) { }
+  constructor(private router:Router, private ordenService:OrdenService) { }
+  user_data:any;
+  token:string;
+  idUser:number;
 
   ngOnInit() {
+    this.user_data= JSON.parse(localStorage.getItem('usuario'));
+    this.token=this.user_data.token;
+    this.idUser=this.user_data.id;
+    console.log("el token es ",this.token);
+    console.log("el id es",this.user_data.id);
   }
   
   see_profile():void{
@@ -29,8 +35,14 @@ export class UsersComponent implements OnInit {
     this.router.navigate(['ubications'])
   }
   request_orders():void{
-    console.log("estoy solicitando ordenes");
-    this.router.navigate(['order-steps/ubicaciones']);
+    this.ordenService.getOnlyOrderById(this.idUser).subscribe((result:any) =>{
+        if(result.idOrder == 0){
+          console.log("estoy solicitando ordenes");
+          this.router.navigate(['order-steps/ubicaciones']);
+        }else{
+          this.router.navigate(['/orders/order-current']);
+        }
+    });
   }
   see_my_orders():void{
     console.log("estoy en mis ordenes")

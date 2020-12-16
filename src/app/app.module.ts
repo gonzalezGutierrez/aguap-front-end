@@ -5,6 +5,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from "ngx-spinner";
 import{MaterialModule} from './material/material.module';
+<<<<<<< HEAD
+=======
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+
+
+
+
+
+>>>>>>> 94a5b0dd6e5bd8008b4fb56dae2c22fd41c7ad21
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -44,10 +54,18 @@ import { DeliveriesComponent } from './deliverer/deliveries/deliveries.component
 import { ActivarCuentaComponent } from './activar-cuenta/activar-cuenta.component';
 import { ElegirMedioDeTransporteComponent } from './repartidor/elegir-medio-de-transporte/elegir-medio-de-transporte.component';
 import { ListaPedidosComponent } from './repartidor/lista-pedidos/lista-pedidos.component';
+<<<<<<< HEAD
 import { NavbarRepartidoComponent } from './repartidor/layouts/navbar-repartido/navbar-repartido.component';
 import { PerfilComponent } from './repartidor/perfil/perfil.component';
 import { ListaPedidosHistorialComponent } from './repartidor/lista-pedidos-historial/lista-pedidos-historial.component';
 import { ListaPedidosDetallesComponent } from './repartidor/lista-pedidos-detalles/lista-pedidos-detalles.component';
+=======
+
+import { RutasComponent } from './repartidor/rutas/rutas.component';
+
+import { NavbarRepartidoComponent } from './repartidor/layouts/navbar-repartido/navbar-repartido.component';
+
+>>>>>>> 94a5b0dd6e5bd8008b4fb56dae2c22fd41c7ad21
 
 const config = new AuthServiceConfig([
   {
@@ -106,14 +124,22 @@ export function provideConfig() {
 
     ElegirMedioDeTransporteComponent,
     ListaPedidosComponent,
+
+    RutasComponent,
+
     NavbarRepartidoComponent,
+<<<<<<< HEAD
     PerfilComponent,
     ListaPedidosHistorialComponent,
     ListaPedidosDetallesComponent,
     
+=======
+
+>>>>>>> 94a5b0dd6e5bd8008b4fb56dae2c22fd41c7ad21
   ],
   imports: [
     BrowserModule,
+    LeafletModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,

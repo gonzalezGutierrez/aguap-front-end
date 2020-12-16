@@ -41,12 +41,14 @@ export class ChooseRepartidorComponent implements OnInit {
     }
 
     onChooseRepartidor(idRepartidor) {
+        localStorage.setItem('ID_REPARTIDOR',JSON.stringify(idRepartidor));
         this.spinner.show();
-        this.orderService.updateRepartidor(idRepartidor).subscribe((result:any) => {
+        this.router.navigate(['/order-steps/fecha-hora']);
+        /*this.orderService.updateRepartidor(idRepartidor).subscribe((result:any) => {
             alert(result.msg);
             this.spinner.hide();
             this.router.navigate(['/order-steps/fecha-hora']);
-        });
+        });*/
     }
 
 
