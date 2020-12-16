@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-lista-pedidos',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-pedidos.component.css']
 })
 export class ListaPedidosComponent implements OnInit {
-
+  @Input('lista-pedidos')  lista_pedidos:boolean=true;
+  
   constructor() { }
 
   ngOnInit() {
+    console.log("estoy en lista-pedidos ",this.lista_pedidos);
   }
 
 }

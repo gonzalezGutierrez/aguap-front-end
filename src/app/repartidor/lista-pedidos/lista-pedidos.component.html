@@ -1,30 +1,84 @@
 <html>
-    <div class="header">
-        <app-toolbar></app-toolbar>
+  <div>
+    <app-navbar-repartido></app-navbar-repartido>
+  </div>
+
+  <div class="d-flex flex-row justify-content-start flex-wrap">
+    <div class="item" style="width:100%;">
+      <div class="card text-white bg-secondary mb-3"  style="width:100%; ">
+       
+        <div class="card-body">
+          
+          <div class="card text-dark bg-light mb-3">
+            <div class="card-body">
+              <div class="d-flex flex-column justify-content-start align-items-start " style="width:100%;">
+                
+                <div class="item">
+                  <div class="d-flex flex-row justify-content-start" style="width:100%;">
+                    <div>
+                      <strong>Total: </strong>
+                      <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div style="margin:3px;">
+                      15550
+                    </div>
+                  </div>
+                </div>
+                <br>
+
+                <div class="item" style="width: 100%;">
+                  <div class="d-flex flex-row justify-content-start flex-wrap " style="width: 100%;">
+                    <div>
+                      <strong>Dirección :</strong> 
+                    </div>
+                    <div>
+                      <small>tgz ,calle chiapas mz 80 lt 23 col las granjas</small>
+                    </div>
+                  </div>
+                </div>
+                <br>
+
+                <div class="item" style="width:100%;">
+                  <div class="d-flex flex-row justify-content-start flex-wrap" style="width: 100%;">
+                    <div>
+                      <strong>Servicios :</strong>
+                    </div>
+                    <div>
+                      <small>llenado de Garrafon</small>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          
+          <br>
+          <div class="d-flex flex-row justify-content-around" *ngIf="lista_pedidos">
+            <div>
+              <button  type="button" class="btn btn-primary"><strong>ver servicios</strong></button>
+            </div>
+            <div >
+              <button  type="button" class="btn btn-success"><strong>Cliente ausente</strong></button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-footer" >
+          <div *ngIf="lista_pedidos;else elseBlock">
+            <small class="card-text" >Elija una opción para este pedido</small>
+          </div>
+          <ng-template #elseBlock>
+            <small class="card-text" >pedido ya entragado</small>
+          </ng-template>
+        </div>
+
+      </div>
     </div>
 
-    <div class="card">
-        <div class="card-header">
-          lista de pedidos
-        </div>
-        <div class="card-body">
-          <mat-card>
-            <!--<img 
-                style="width:100px; 
-                height: 100px; margin:auto;" 
-                src="https://www.flaticon.es/svg/static/icons/svg/1777/1777282.svg" alt=""
-            >-->
-          
-            <img style="width:100px; height: 100px; margin:auto;" src="https://www.flaticon.es/svg/static/icons/svg/1777/1777282.svg" alt=""> <br>
-
-           
-            <br>
-            hola mundo 
-	        <br>
-          </mat-card>
-        </div>
-      </div>
-    
+  </div>
 
 </html>
 

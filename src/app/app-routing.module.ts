@@ -42,6 +42,9 @@ import{ElegirMedioDeTransporteComponent} from './repartidor/elegir-medio-de-tran
 import{ListaPedidosComponent} from './repartidor/lista-pedidos/lista-pedidos.component';
 import { RutasComponent } from './repartidor/rutas/rutas.component';
 
+import {NavbarRepartidoComponent} from './repartidor/layouts/navbar-repartido/navbar-repartido.component' 
+
+
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'registerUser',component:RegisterComponent},
@@ -78,7 +81,8 @@ const routes: Routes = [
   {path: 'admin/menu/suppliesList_',component:SupplieListComponent},
   {path: 'admin/menu/addSupplie_', component:CreateSupplieComponent},
   {path: 'admin/menu/updateSupplie_/:id', component:UpdateSupplieComponent},
-
+  
+  {path:'repartidor/navbar',component:NavbarRepartidoComponent},
   {path:'repartidor/medio-de-transporte',component:ElegirMedioDeTransporteComponent},
   {path:'repartidor/lista-pedidos',component:ListaPedidosComponent},
   {path: 'repartidor/rutas',component:RutasComponent},
