@@ -16,6 +16,7 @@ export class RutasComponent  {
     detectRetina: true,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   });
+  
 // Segundo mapa
   wMaps = tileLayer('http://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
     detectRetina: true,
